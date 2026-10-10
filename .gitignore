@@ -30,11 +30,6 @@ __pycache__/
 .DS_Store
 *conflicted copy*
 
-# volumi generati: git traccia SOLO i PDF delle dispense (mai .tex, .aux e altri file di compilazione)
-volumi/*
-!volumi/dispensa_*/
-volumi/dispensa_*/*
-!volumi/dispensa_*/*.pdf
 
 # per ora fuori dal sito: notebook, dati e test (numerazione dei capitoli da riallineare), laboratorio
 dati/
@@ -43,3 +38,6 @@ test/
 docs/notebook.md
 docs/javascripts/catalogo_pl.js
 docs/stylesheets/interattivi.css
+
+# volumi generati (tex e PDF): fuori da git; online i PDF stanno in docs/pdf/
+volumi/

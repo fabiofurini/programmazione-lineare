@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "Se usi questo materiale, per favore citalo come segue."
+title: "Programmazione lineare: dispense online con esercizi svolti"
+abstract: >-
+  Le dispense del corso di Programmazione lineare — funzioni lineari, poliedri,
+  problemi di PL, algoritmo del simplesso, dualità, metodi avanzati, analisi di
+  sensitività, tecniche di modellazione — con definizioni, teoremi e
+  dimostrazioni, esempi svolti ed esercizi con soluzioni. Versione italiana in
+  costruzione (per ora il capitolo 1).
+authors:
+  - family-names: Furini
+    given-names: Fabio
+    email: fabio.furini@uniroma1.it
+    affiliation: "DIAG, Sapienza Università di Roma"
+url: "https://fabiofurini.github.io/programmazione-lineare/"
+repository-code: "https://github.com/fabiofurini/programmazione-lineare"
+license:
+  - CC-BY-4.0
+  - MIT
+date-released: 2026-10-10
+keywords:
+  - programmazione lineare
+  - algoritmo del simplesso
+  - dualità
+  - analisi di sensitività
+  - ricerca operativa
+  - materiale didattico

@@ -1,0 +1,53 @@
+/* Metodo grafico (grafico_pl.js). Si appoggia agli stili .gi di interattivi.css.
+ * Colori delle note: regione ammissibile e vincoli rossi, gradiente e curve di
+ * livello blu, vertici neri, vertici visitati dal simplesso viola, ottimo blu
+ * (gli stessi RGB delle macro \red, \blue, \violet di mathjax.js). */
+.gpl {
+  --gpl-rosso: rgb(224, 49, 49); --gpl-blu: rgb(25, 113, 194); --gpl-viola: rgb(156, 54, 181);
+  --gpl-nero: #1b1f24; --gpl-muted: #5b6675; --gpl-griglia: #d5dbe3;
+  --gpl-giusto: #2B8A3E; --gpl-sbagliato: rgb(224, 49, 49);
+}
+[data-md-color-scheme="slate"] .gpl {
+  --gpl-rosso: #FF6B6B; --gpl-blu: #4DABF7; --gpl-viola: #DA77F2;
+  --gpl-nero: #e9eef5; --gpl-muted: #9fb0c3; --gpl-griglia: #2f4058;
+  --gpl-giusto: #63E6A0; --gpl-sbagliato: #FF8787;
+}
+.gpl .gpl-formula { font-size: 1.05em; min-height: 4.5em; }
+.gpl .gpl-board { aspect-ratio: 1 / 1; max-height: 640px; }
+.gpl .gpl-livello { text-align: center; margin-top: .4em; min-height: 1.6em; }
+.gpl .gpl-nota { color: var(--gpl-muted); font-size: .92em; }
+
+/* testi dentro il grafico (cssClass di JSXGraph: sostituisce .JXGtext) */
+.gpl .gpl-t { font-family: "Source Sans 3", sans-serif; white-space: nowrap; pointer-events: none; line-height: 1; }
+.gpl .gpl-tick { color: var(--gpl-muted); font-size: 11px; }
+.gpl .gpl-asse { color: var(--gpl-muted); font-size: 13px; }
+.gpl .gpl-vincolo { color: var(--gpl-rosso); font-size: 11px; }
+.gpl .gpl-F { color: var(--gpl-rosso); font-size: 14px; }
+.gpl .gpl-blu { color: var(--gpl-blu); font-size: 13px; }
+.gpl .gpl-nero { color: var(--gpl-nero); font-size: 11px; }
+.gpl .gpl-viola { color: var(--gpl-viola); font-size: 12px; }
+.gpl .gpl-forte { font-weight: 700; }
+
+/* pannello a destra */
+.gpl .gpl-scelta { display: flex; align-items: center; gap: .6em; margin-bottom: .5em; }
+.gpl select, .gpl textarea {
+  font: inherit; color: inherit; background: var(--gi-card); border: 1px solid var(--gi-line); border-radius: 8px; padding: .25em .5em;
+}
+.gpl textarea { width: 100%; box-sizing: border-box; font-family: "JetBrains Mono", monospace; font-size: .95em; margin: .4em 0 .1em; resize: vertical; }
+.gpl .gpl-editor { margin: .2em 0 .6em; }
+.gpl .gpl-editor summary { cursor: pointer; font-weight: 600; }
+.gpl .gpl-editor small { display: block; color: var(--gpl-muted); line-height: 1.35; margin-top: .3em; }
+.gpl .gpl-errore { color: var(--gpl-sbagliato); margin-top: .3em; }
+.gpl .gpl-opzioni { border-top: 1px solid var(--gi-line); padding-top: .4em; }
+.gpl .gpl-opzioni label { display: block; cursor: pointer; margin: .15em 0; }
+.gpl .gpl-regola { margin: .1em 0 .2em 1.6em; color: var(--gpl-muted); }
+.gpl .gpl-tabella { margin-top: .6em; }
+.gpl .gpl-tit { font-weight: 700; margin-bottom: .2em; }
+.gpl table.gi-tabella { display: table; width: 100%; border-collapse: collapse; }
+.gpl table.gi-tabella td, .gpl table.gi-tabella th { text-align: center; padding: .15em .35em; border-bottom: 1px solid var(--gi-line); }
+.gpl tr.gpl-ott td { color: var(--gpl-blu); font-weight: 700; }
+.gpl .gpl-esito { margin-top: .7em; padding: .5em .8em; border-radius: 6px; border-left: 4px solid var(--gpl-muted); line-height: 1.45;
+  background: color-mix(in srgb, var(--gpl-muted) 8%, transparent); }
+.gpl .gpl-esito.giusto { border-left-color: var(--gpl-giusto); background: color-mix(in srgb, var(--gpl-giusto) 10%, transparent); }
+.gpl .gpl-esito.sbagliato { border-left-color: var(--gpl-sbagliato); background: color-mix(in srgb, var(--gpl-sbagliato) 8%, transparent); }
+.gpl .gi-legenda .gpl-pallino { display: inline-block; width: 9px; height: 9px; border-radius: 50%; vertical-align: middle; margin-right: .35em; }

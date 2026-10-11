@@ -116,5 +116,55 @@ nav:
   - Funzioni lineari, poliedri e problemi di programmazione lineare:
       - problemi-pl/index.md
       - "1. Funzioni lineari": problemi-pl/01-funzioni-lineari.md
+      - "2. Semispazi e poliedri": problemi-pl/02-poliedri.md
+      - "3. Problemi di ottimizzazione lineare": problemi-pl/03-problemi-ottimizzazione-lineare.md
+      - "4. Problemi di programmazione lineare": problemi-pl/04-problemi-pl.md
+      - "5. Esiti possibili e formulazioni equivalenti": problemi-pl/05-esiti-equivalenze.md
+  - L'algoritmo del simplesso:
+      - simplesso/index.md
+      - "6. Algoritmo del simplesso": simplesso/06-simplesso.md
+      - "7. Condizioni di ottimalità e regole di pivot": simplesso/07-ottimalita-pivot.md
+      - "8. Fase 0 dell'algoritmo del simplesso": simplesso/08-fase-zero.md
+  - Dualità e simplesso duale:
+      - dualita/index.md
+      - "9. Teoria della dualità": dualita/09-dualita.md
+      - "10. Algoritmo del simplesso duale": dualita/10-simplesso-duale.md
+  - Metodi matriciali, sensitività e geometria:
+      - metodi-avanzati/index.md
+      - "11. Algoritmo del simplesso rivisto": metodi-avanzati/11-simplesso-rivisto.md
+      - "12. Algoritmo del simplesso duale rivisto": metodi-avanzati/12-rivisto-duale.md
+      - "13. Il metodo primale-duale": metodi-avanzati/13-primale-duale.md
+      - "14. Analisi di sensitività": metodi-avanzati/14-sensitivita.md
+      - "15. La geometria della programmazione lineare": metodi-avanzati/15-geometria.md
+  - Modellazione:
+      - modellazione/index.md
+      - "16. Tecniche di modellazione per la programmazione lineare": modellazione/16-modellazione.md
+  - Esercizi:
+      - esercizi/index.md
+      - "2. Semispazi e poliedri": esercizi/es-02-poliedri.md
+      - "3. Problemi di ottimizzazione lineare": esercizi/es-03-problemi-ottimizzazione-lineare.md
+      - "4. Problemi di programmazione lineare": esercizi/es-04-problemi-pl.md
+      - "5. Esiti possibili e formulazioni equivalenti": esercizi/es-05-esiti-equivalenze.md
+      - "6. Algoritmo del simplesso": esercizi/es-06-simplesso.md
+      - "7. Condizioni di ottimalità e regole di pivot": esercizi/es-07-ottimalita-pivot.md
+      - "8. Fase 0 dell'algoritmo del simplesso": esercizi/es-08-fase-zero.md
+      - "9. Teoria della dualità": esercizi/es-09-dualita.md
+      - "10. Algoritmo del simplesso duale": esercizi/es-10-simplesso-duale.md
+      - "11. Algoritmo del simplesso rivisto": esercizi/es-11-simplesso-rivisto.md
+      - "12. Algoritmo del simplesso duale rivisto": esercizi/es-12-rivisto-duale.md
+      - "13. Il metodo primale-duale": esercizi/es-13-primale-duale.md
+      - "14. Analisi di sensitività": esercizi/es-14-sensitivita.md
+      - "15. La geometria della programmazione lineare": esercizi/es-15-geometria.md
+      - "16. Tecniche di modellazione per la programmazione lineare": esercizi/es-16-modellazione.md
+  - Catalogo dei problemi:
+      - catalogo/index.md
+      - "Problemi LP con due variabili – Tipo A": catalogo/2-variabili-tipo-a.md
+      - "Problemi LP con due variabili – Tipo B": catalogo/2-variabili-tipo-b.md
+      - "Problemi LP con due variabili – Tipo C": catalogo/2-variabili-tipo-c.md
+      - "Problemi LP con due variabili – Tipo D": catalogo/2-variabili-tipo-d.md
+      - "Problemi LP con tre variabili – Tipo A": catalogo/3-variabili-tipo-a.md
+      - "Problemi LP con tre variabili – Tipo B": catalogo/3-variabili-tipo-b.md
+      - "Problemi LP con tre variabili – Tipo C": catalogo/3-variabili-tipo-c.md
+      - "Problemi LP con tre variabili – Tipo D": catalogo/3-variabili-tipo-d.md
   - Materiale: materiale.md
   - Indice completo: indice.md

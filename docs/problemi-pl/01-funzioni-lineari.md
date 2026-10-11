@@ -6,7 +6,7 @@ title: "Funzioni lineari"
 
 <div class="info-capitolo" markdown>
 
-**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 1**
+**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 1** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf)
 
 </div>
 

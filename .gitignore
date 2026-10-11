@@ -31,12 +31,10 @@ __pycache__/
 *conflicted copy*
 
 
-# per ora fuori dal sito: notebook, dati e test (numerazione dei capitoli da riallineare), laboratorio
+# per ora fuori dal sito: notebook, dati e test (numerazione dei capitoli da riallineare)
 dati/
 notebooks/
 
 docs/notebook.md
-docs/javascripts/catalogo_pl.js
-docs/stylesheets/interattivi.css
 
 # volumi generati (tex e PDF): fuori da git; online i PDF stanno in docs/pdf/

@@ -664,3 +664,12 @@ title: "Esiti possibili e formulazioni equivalenti"
     $$
 
 [^1]: ovvero il minimo comune multiplo dei denominatori.
+
+<!-- laboratorio-interattivo: sezione generata da interattivi.py -->
+
+## Laboratorio interattivo { #laboratorio-interattivo }
+
+Le idee del capitolo, da toccare con mano: muovi i cursori e trascina i punti.
+Tutti i grafici del corso sono nel [laboratorio interattivo](../laboratorio/index.md#cap-5).
+
+<div class="gi" data-grafico="esiti"></div>

@@ -726,3 +726,12 @@ title: "Problemi di programmazione lineare"
     cioè sul segmento che congiunge i punti $\begin{pmatrix} 2\\ 0\\ 0 \end{pmatrix}$ e $\begin{pmatrix} 0\\ 0\\ 4 \end{pmatrix}$. Prendendo per esempio la soluzione ottima $\tilde{\boldsymbol x}(\, LP \,) = \begin{pmatrix} 2\\ 0\\ 0 \end{pmatrix}$ (dove $\tilde{x}_1=2$, $\tilde{x}_2=0$ e $\tilde{x}_3=0$), il valore ottimo è: $z(\, LP \,) = 2\,\tilde{x}_1 + 2\,\tilde{x}_2 + \tilde{x}_3 = 2 \cdot 2 + 2 \cdot 0 + 0 = 4.$
 
     ![Figura 9](../img/04-problemi-pl/fig09.svg){ .fig .cornice loading=lazy style="width:59%" }
+
+<!-- laboratorio-interattivo: sezione generata da interattivi.py -->
+
+## Laboratorio interattivo { #laboratorio-interattivo }
+
+Le idee del capitolo, da toccare con mano: muovi i cursori e trascina i punti.
+Tutti i grafici del corso sono nel [laboratorio interattivo](../laboratorio/index.md#cap-4).
+
+<div class="gi" data-grafico="metodo-grafico"></div>

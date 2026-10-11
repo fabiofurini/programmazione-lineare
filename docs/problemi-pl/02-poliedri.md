@@ -236,3 +236,12 @@ title: "Semispazi e poliedri"
     La sua rappresentazione tridimensionale corrisponde all'iperpiano mostrato in figura.
 
     ![Figura 4](../img/02-poliedri/fig04.svg){ .fig .ovale loading=lazy style="width:47%" }
+
+<!-- laboratorio-interattivo: sezione generata da interattivi.py -->
+
+## Laboratorio interattivo { #laboratorio-interattivo }
+
+Le idee del capitolo, da toccare con mano: muovi i cursori e trascina i punti.
+Tutti i grafici del corso sono nel [laboratorio interattivo](../laboratorio/index.md#cap-2).
+
+<div class="gi" data-grafico="poliedro"></div>

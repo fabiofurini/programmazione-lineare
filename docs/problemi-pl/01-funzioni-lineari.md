@@ -198,3 +198,12 @@ title: "Funzioni lineari"
     Con ${\boldsymbol c}=\begin{pmatrix} -8\\ -4 \end{pmatrix}$, abbiamo $f\left(\begin{pmatrix} x_1 \\ x_2 \\ \end{pmatrix}\right)=-8\;x_1- 4\;x_2$. Il suo grafico è:
 
     ![Figura 4](../img/01-funzioni-lineari/fig04.svg){ .fig .ovale loading=lazy style="width:59%" }
+
+<!-- laboratorio-interattivo: sezione generata da interattivi.py -->
+
+## Laboratorio interattivo { #laboratorio-interattivo }
+
+Le idee del capitolo, da toccare con mano: muovi i cursori e trascina i punti.
+Tutti i grafici del corso sono nel [laboratorio interattivo](../laboratorio/index.md#cap-1).
+
+<div class="gi" data-grafico="livello-lineare"></div>

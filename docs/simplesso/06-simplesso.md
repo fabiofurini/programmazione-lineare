@@ -1814,3 +1814,12 @@ Nello stesso dizionario anche $\bar{c}_2 = 2 > 0$, quindi anche $x_2$ può esser
 Alla prima iterazione la colonna pivot $x_1$ è stata scelta tra le due variabili fuori base con costo ridotto positivo. Scegliendo invece $x_2$, l'algoritmo del simplesso raggiunge la stessa soluzione ottima dopo tre operazioni di pivot, visitando i vertici $(0,4)$ e $\left(\frac{12}{5},\frac{24}{5}\right)$: la variazione della scelta della colonna pivot cambia il percorso sul poliedro e il numero di iterazioni (si veda l'esercizio <em>Algoritmo del simplesso con una diversa colonna pivot</em>, problema $P10$).
 
 [^1]: Il rango per righe e il rango per colonne di una matrice sono uguali
+
+<!-- laboratorio-interattivo: sezione generata da interattivi.py -->
+
+## Laboratorio interattivo { #laboratorio-interattivo }
+
+Le idee del capitolo, da toccare con mano: muovi i cursori e trascina i punti.
+Tutti i grafici del corso sono nel [laboratorio interattivo](../laboratorio/index.md#cap-6).
+
+<div class="gi" data-grafico="simplesso-passi"></div>

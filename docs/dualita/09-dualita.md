@@ -1796,3 +1796,12 @@ title: "Teoria della dualità"
 !!! chiave ""
 
     Poiché da un problema LP in forma generica di massimo si può ottenere un problema LP equivalente in forma canonica di massimo, la dualità debole, la dualità forte e il teorema degli scarti complementari valgono anche nel caso generico.
+
+<!-- laboratorio-interattivo: sezione generata da interattivi.py -->
+
+## Laboratorio interattivo { #laboratorio-interattivo }
+
+Le idee del capitolo, da toccare con mano: muovi i cursori e trascina i punti.
+Tutti i grafici del corso sono nel [laboratorio interattivo](../laboratorio/index.md#cap-9).
+
+<div class="gi" data-grafico="dualita-debole"></div>

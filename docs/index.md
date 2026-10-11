@@ -9,8 +9,8 @@ hide:
 
 ![Lavori in corso: sito e materiale didattico sono ancora in costruzione](img/cantiere.svg){ width="560" }
 
-**Sito in costruzione.** Il materiale è ancora in lavorazione: slide, grafici interattivi e notebook
-arriveranno più avanti.
+**Sito in costruzione.** Il materiale è ancora in lavorazione: slide e notebook arriveranno più
+avanti; il laboratorio interattivo è già aperto e crescerà.
 
 # Programmazione lineare
 
@@ -23,6 +23,7 @@ esempi svolti passo per passo ed esercizi con le soluzioni.
 
 [Comincia dai problemi di PL :material-arrow-right:](problemi-pl/index.md){ .md-button .md-button--primary }
 [Gli esercizi](esercizi/index.md){ .md-button }
+[Prova un grafico interattivo](laboratorio/index.md){ .md-button }
 [:material-download: Scarica le dispense (PDF)](materiale.md){ .md-button }
 
 </div>
@@ -119,6 +120,15 @@ dispensa: sul sito e nel PDF trovi tutto allo stesso posto.
     Esercizi per ogni capitolo, ciascuno con la soluzione svolta che si apre con un clic.
 
     [:octicons-arrow-right-24: Gli esercizi](esercizi/index.md)
+
+-   :material-gesture-tap: **Laboratorio interattivo**
+
+    ---
+
+    Muovi i parametri con i cursori, trascina i punti e guarda poliedri, rette di livello,
+    vertici ottimi e problemi duali cambiare sotto i tuoi occhi.
+
+    [:octicons-arrow-right-24: I grafici](laboratorio/index.md)
 
 -   :material-download: **Dispense ed eserciziari in PDF**
 

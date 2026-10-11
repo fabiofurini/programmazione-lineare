@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # Laboratorio interattivo
 
 Qui la programmazione lineare si tocca con mano. Scegli un'app: si apre a tutta pagina.

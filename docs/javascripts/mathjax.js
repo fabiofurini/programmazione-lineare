@@ -30,6 +30,7 @@ window.MathJax = {
       violet: ["{\\color[RGB]{156,54,181}{#1}}", 1], orange: ["{\\color[RGB]{232,89,12}{#1}}", 1],
       airforceblue: ["{\\color[RGB]{93,138,168}{#1}}", 1], munsell: ["{\\color[RGB]{212,163,0}{#1}}", 1],
       viridian: ["{\\color[RGB]{64,130,109}{#1}}", 1],
+      pazocal: ["\\mathcal{#1}", 1],   // \pazocal{B} delle note (font Zapf Chancery): sul sito calligrafico
       argmin: "\\operatorname*{arg\\,min}", argmax: "\\operatorname*{arg\\,max}",
       argsup: "\\operatorname*{arg\\,sup}", arginf: "\\operatorname*{arg\\,inf}",
       rank: "\\operatorname{rank}",

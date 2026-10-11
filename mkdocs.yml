@@ -108,28 +108,28 @@ markdown_extensions:
 
 extra_javascript:
   - javascripts/cloudflare-analytics.js?v=bff73345a1
-  - javascripts/mathjax.js?v=bf833266bf
+  - javascripts/mathjax.js?v=b427963c07
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
 
 nav:
   - Home: index.md
-  - Funzioni lineari, poliedri e problemi di programmazione lineare:
+  - Problemi di PL:
       - problemi-pl/index.md
       - "1. Funzioni lineari": problemi-pl/01-funzioni-lineari.md
       - "2. Semispazi e poliedri": problemi-pl/02-poliedri.md
       - "3. Problemi di ottimizzazione lineare": problemi-pl/03-problemi-ottimizzazione-lineare.md
       - "4. Problemi di programmazione lineare": problemi-pl/04-problemi-pl.md
       - "5. Esiti possibili e formulazioni equivalenti": problemi-pl/05-esiti-equivalenze.md
-  - L'algoritmo del simplesso:
+  - Simplesso:
       - simplesso/index.md
       - "6. Algoritmo del simplesso": simplesso/06-simplesso.md
       - "7. Condizioni di ottimalità e regole di pivot": simplesso/07-ottimalita-pivot.md
       - "8. Fase 0 dell'algoritmo del simplesso": simplesso/08-fase-zero.md
-  - Dualità e simplesso duale:
+  - Dualità:
       - dualita/index.md
       - "9. Teoria della dualità": dualita/09-dualita.md
       - "10. Algoritmo del simplesso duale": dualita/10-simplesso-duale.md
-  - Metodi matriciali, sensitività e geometria:
+  - Metodi avanzati:
       - metodi-avanzati/index.md
       - "11. Algoritmo del simplesso rivisto": metodi-avanzati/11-simplesso-rivisto.md
       - "12. Algoritmo del simplesso duale rivisto": metodi-avanzati/12-rivisto-duale.md
@@ -156,7 +156,7 @@ nav:
       - "14. Analisi di sensitività": esercizi/es-14-sensitivita.md
       - "15. La geometria della programmazione lineare": esercizi/es-15-geometria.md
       - "16. Tecniche di modellazione per la programmazione lineare": esercizi/es-16-modellazione.md
-  - Catalogo dei problemi:
+  - Catalogo:
       - catalogo/index.md
       - "Problemi LP con due variabili – Tipo A": catalogo/2-variabili-tipo-a.md
       - "Problemi LP con due variabili – Tipo B": catalogo/2-variabili-tipo-b.md
@@ -167,4 +167,4 @@ nav:
       - "Problemi LP con tre variabili – Tipo C": catalogo/3-variabili-tipo-c.md
       - "Problemi LP con tre variabili – Tipo D": catalogo/3-variabili-tipo-d.md
   - Materiale: materiale.md
-  - Indice completo: indice.md
+  - Indice: indice.md

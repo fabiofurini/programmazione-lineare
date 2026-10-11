@@ -1,73 +1,85 @@
 # Laboratorio interattivo
 
-Qui la programmazione lineare si tocca con mano. Ogni grafico ha dei **cursori**:
-ciascun parametro ha il suo colore, lo stesso nel cursore e nella formula, così si vede
-subito *chi fa che cosa*. In molti grafici puoi anche **trascinare i punti**. Il pulsante ▶
-accanto a un parametro lo fa muovere da solo. I problemi vengono dal
-[catalogo](../catalogo/index.md) P0–P86, con i numeri in frazioni esatte. I colori sono
-quelli delle dispense: la regione ammissibile in rosso, gli ottimi in blu.
+Qui la programmazione lineare si tocca con mano. Scegli un'app: si apre a tutta pagina.
+Trascina i punti e muovi i cursori; il pulsante ▶ accanto a un parametro lo fa muovere da solo.
+I problemi vengono dal [catalogo](../catalogo/index.md), con i numeri in frazioni esatte.
 
-!!! tip "Come si usa"
-    Trascina i cursori e i punti, oppure clicca ▶ per l'animazione. Sul grafico puoi
-    spostarti trascinando con due dita (o con il mouse) e ingrandire con
-    Maiusc + rotellina. Ogni grafico si ritrova anche in fondo al capitolo delle
-    dispense a cui si riferisce.
+## Funzioni lineari, poliedri e problemi di programmazione lineare
 
 <div class="grid cards" markdown>
 
--   :material-vector-triangle: **[Funzioni lineari, poliedri e problemi di programmazione lineare](#parte-1)** — rette di livello e gradiente di una funzione lineare · semispazi, poliedri e vertici · il metodo grafico · ottimo unico, ottimi multipli, illimitato, inammissibile
--   :material-stairs-up: **[L'algoritmo del simplesso](#parte-2)** — il simplesso passo per passo
--   :material-swap-horizontal: **[Dualità e simplesso duale](#parte-3)** — dualità debole e forte
--   :material-cube-outline: **[Metodi matriciali, sensitività e geometria](#parte-4)** — analisi di sensitività
+-   :material-chart-line-variant: **Rette di livello**
+
+    ---
+
+    Sposta il vettore dei costi e guarda come cambiano le rette di livello e il gradiente di una funzione lineare.
+
+    [Apri l'app →](rette-di-livello.md)
+
+-   :material-vector-polygon: **Semispazi e poliedri**
+
+    ---
+
+    Muovi i vincoli: la regione ammissibile è l'intersezione dei semipiani e i suoi vertici si aggiornano.
+
+    [Apri l'app →](poliedri.md)
+
+-   :material-vector-triangle: **Il metodo grafico**
+
+    ---
+
+    Fai scorrere la retta di livello verso il gradiente fino all'ultimo punto che tocca ancora la regione ammissibile.
+
+    [Apri l'app →](metodo-grafico.md)
+
+-   :material-signal-distance-variant: **Gli esiti di un problema**
+
+    ---
+
+    Ottimo unico, ottimi multipli, problema illimitato, problema inammissibile: cambia i dati e riconosci ciascun caso.
+
+    [Apri l'app →](esiti.md)
 
 </div>
 
-## Funzioni lineari, poliedri e problemi di programmazione lineare { #parte-1 }
+## L'algoritmo del simplesso
 
-### 1. Funzioni lineari { #cap-1 }
+<div class="grid cards" markdown>
 
-<div class="gi" data-grafico="livello-lineare"></div>
+-   :material-stairs-up: **Il simplesso passo per passo**
 
-Il capitolo: [Funzioni lineari](../problemi-pl/01-funzioni-lineari.md).
+    ---
 
-### 2. Semispazi e poliedri { #cap-2 }
+    Segui il simplesso da un vertice al vertice adiacente, con la scelta di colonna e riga pivot a ogni passo.
 
-<div class="gi" data-grafico="poliedro"></div>
+    [Apri l'app →](simplesso-passi.md)
 
-Il capitolo: [Semispazi e poliedri](../problemi-pl/02-poliedri.md).
+</div>
 
-### 4. Problemi di programmazione lineare { #cap-4 }
+## Dualità e simplesso duale
 
-<div class="gi" data-grafico="metodo-grafico"></div>
+<div class="grid cards" markdown>
 
-Il capitolo: [Problemi di programmazione lineare](../problemi-pl/04-problemi-pl.md).
+-   :material-swap-horizontal: **Dualità debole e forte**
 
-### 5. Esiti possibili e formulazioni equivalenti { #cap-5 }
+    ---
 
-<div class="gi" data-grafico="esiti"></div>
+    Muovi una soluzione primale e una duale ammissibili e osserva i due valori obiettivo avvicinarsi fino a coincidere.
 
-Il capitolo: [Esiti possibili e formulazioni equivalenti](../problemi-pl/05-esiti-equivalenze.md).
+    [Apri l'app →](dualita-debole.md)
 
-## L'algoritmo del simplesso { #parte-2 }
+</div>
 
-### 6. Algoritmo del simplesso { #cap-6 }
+## Metodi matriciali, sensitività e geometria
 
-<div class="gi" data-grafico="simplesso-passi"></div>
+<div class="grid cards" markdown>
 
-Il capitolo: [Algoritmo del simplesso](../simplesso/06-simplesso.md).
+-   :material-tune-vertical: **Analisi di sensitività**
 
-## Dualità e simplesso duale { #parte-3 }
+    ---
 
-### 9. Teoria della dualità { #cap-9 }
+    Varia un coefficiente e scopri fin dove la base ottima resta ottima, e quando invece cambia.
 
-<div class="gi" data-grafico="dualita-debole"></div>
+    [Apri l'app →](sensitivita.md)
 
-Il capitolo: [Teoria della dualità](../dualita/09-dualita.md).
-
-## Metodi matriciali, sensitività e geometria { #parte-4 }
-
-### 14. Analisi di sensitività { #cap-14 }
-
-<div class="gi" data-grafico="sensitivita"></div>
-
-Il capitolo: [Analisi di sensitività](../metodi-avanzati/14-sensitivita.md).
+</div>

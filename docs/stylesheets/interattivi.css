@@ -90,3 +90,42 @@
 /* dentro i grafici le formule non hanno barre di scorrimento proprie (extra.css le dà a .arithmatex
    per le formule lunghe del testo): se una formula è davvero più larga, scorre il riquadro .gi-formula */
 .md-typeset .gi .arithmatex, .md-typeset .gi mjx-container { overflow: visible !important; }
+
+/* ---------------------------------------------------------------- app a pagina intera
+   (pagine del laboratorio: <div class="gi gi-app-intera" data-grafico="…">)
+   Il contenitore occupa tutta la larghezza e circa l'altezza della finestra; il grafico
+   riempie lo spazio che resta, i controlli stanno nella colonna a destra (sotto, su telefono).
+   JSXGraph ridisegna da solo la board quando il suo contenitore cambia dimensione. */
+body:has(.gi-app-intera) .md-grid { max-width: none; }
+.gi.gi-app-intera {
+  display: flex; flex-direction: column;
+  height: calc(100vh - 260px); min-height: 480px;
+  margin: .8em 0;
+}
+.gi-app-intera .gi-corpo {
+  flex: 1 1 auto; min-height: 0;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+}
+.gi-app-intera .gi-corpo > div { min-height: 0; }
+.gi-app-intera .gi-corpo > div:first-child { display: flex; flex-direction: column; }
+.gi-app-intera .gi-corpo > div:last-child { overflow-y: auto; }
+.gi-app-intera .gi-board { flex: 1 1 auto; min-height: 0; width: 100%; height: auto; }
+.gi-app-intera .gi-board:not([style*="aspect-ratio"]) { aspect-ratio: auto !important; }
+/* le ricette con un rapporto proprio (es. due board sovrapposte in un quadrato) lo mantengono:
+   il quadrato prende tutta l'altezza disponibile e sta al centro */
+.gi-app-intera .gi-board[style*="aspect-ratio"] { flex: 0 0 auto; height: max(320px, calc(100vh - 530px)); width: auto; max-width: 100%; align-self: center; }
+.gi-app-intera .gi-formula, .gi-app-intera .gi-legenda { flex: 0 0 auto; }
+@media (max-width: 860px) {
+  .gi.gi-app-intera { height: auto; min-height: 0; }
+  .gi-app-intera .gi-corpo { grid-template-columns: minmax(0, 1fr); }
+  .gi-app-intera .gi-corpo > div:first-child { display: block; }
+  .gi-app-intera .gi-corpo > div:last-child { overflow: visible; }
+  .gi-app-intera .gi-board { height: 70vh; min-height: 320px; flex: none; }
+  .gi-app-intera .gi-board[style*="aspect-ratio"] { width: 100%; height: auto; }
+}
+/* testata compatta sopra l'app, così il grafico sta nella prima schermata */
+body:has(.gi-app-intera) .md-content__inner { margin-top: 0; padding-top: .3rem; }
+body:has(.gi-app-intera) .md-content__inner::before { display: none; }
+body:has(.gi-app-intera) .md-typeset h1 { margin: 0 0 .2em; font-size: 1.6rem; line-height: 1.2; }
+body:has(.gi-app-intera) .md-typeset p { margin: .3em 0; font-size: .8rem; }
+body:has(.gi-app-intera) .md-main__inner { margin-top: .6rem; }

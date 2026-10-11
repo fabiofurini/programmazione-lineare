@@ -670,6 +670,6 @@ title: "Esiti possibili e formulazioni equivalenti"
 ## Laboratorio interattivo { #laboratorio-interattivo }
 
 Le idee del capitolo, da toccare con mano: muovi i cursori e trascina i punti.
-Tutti i grafici del corso sono nel [laboratorio interattivo](../laboratorio/index.md#cap-5).
+Ogni app si apre anche a tutta pagina nel [laboratorio interattivo](../laboratorio/index.md): [Gli esiti di un problema](../laboratorio/esiti.md).
 
 <div class="gi" data-grafico="esiti"></div>

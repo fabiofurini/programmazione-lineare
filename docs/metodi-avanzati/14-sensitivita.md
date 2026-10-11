@@ -503,6 +503,6 @@ title: "Analisi di sensitività"
 ## Laboratorio interattivo { #laboratorio-interattivo }
 
 Le idee del capitolo, da toccare con mano: muovi i cursori e trascina i punti.
-Tutti i grafici del corso sono nel [laboratorio interattivo](../laboratorio/index.md#cap-14).
+Ogni app si apre anche a tutta pagina nel [laboratorio interattivo](../laboratorio/index.md): [Analisi di sensitività](../laboratorio/sensitivita.md).
 
 <div class="gi" data-grafico="sensitivita"></div>

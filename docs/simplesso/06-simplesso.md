@@ -1820,6 +1820,6 @@ Alla prima iterazione la colonna pivot $x_1$ è stata scelta tra le due variabil
 ## Laboratorio interattivo { #laboratorio-interattivo }
 
 Le idee del capitolo, da toccare con mano: muovi i cursori e trascina i punti.
-Tutti i grafici del corso sono nel [laboratorio interattivo](../laboratorio/index.md#cap-6).
+Ogni app si apre anche a tutta pagina nel [laboratorio interattivo](../laboratorio/index.md): [Il simplesso passo per passo](../laboratorio/simplesso-passi.md).
 
 <div class="gi" data-grafico="simplesso-passi"></div>

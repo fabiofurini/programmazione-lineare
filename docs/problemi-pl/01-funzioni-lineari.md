@@ -204,6 +204,6 @@ title: "Funzioni lineari"
 ## Laboratorio interattivo { #laboratorio-interattivo }
 
 Le idee del capitolo, da toccare con mano: muovi i cursori e trascina i punti.
-Tutti i grafici del corso sono nel [laboratorio interattivo](../laboratorio/index.md#cap-1).
+Ogni app si apre anche a tutta pagina nel [laboratorio interattivo](../laboratorio/index.md): [Rette di livello](../laboratorio/rette-di-livello.md).
 
 <div class="gi" data-grafico="livello-lineare"></div>

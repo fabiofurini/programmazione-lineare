@@ -48,6 +48,11 @@ theme:
     - search.suggest
     - search.highlight
 
+# le pagine delle singole app non stanno nel menu: il laboratorio è una voce sola
+not_in_nav: |
+  /laboratorio/*.md
+  !/laboratorio/index.md
+
 plugins:
   - search:
       lang: it
@@ -92,7 +97,7 @@ extra:
 extra_css:
   - stylesheets/extra.css?v=d60085bd58
   - https://cdn.jsdelivr.net/npm/jsxgraph@1.10.1/distrib/jsxgraph.css
-  - stylesheets/interattivi.css?v=e225dd77f7
+  - stylesheets/interattivi.css?v=80719695d4
 
 markdown_extensions:
   - admonition
@@ -178,7 +183,6 @@ nav:
       - "Problemi LP con tre variabili – Tipo B": catalogo/3-variabili-tipo-b.md
       - "Problemi LP con tre variabili – Tipo C": catalogo/3-variabili-tipo-c.md
       - "Problemi LP con tre variabili – Tipo D": catalogo/3-variabili-tipo-d.md
-  - Laboratorio:
-      - laboratorio/index.md
+  - Laboratorio: laboratorio/index.md
   - Materiale: materiale.md
   - Indice: indice.md

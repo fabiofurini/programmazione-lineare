@@ -45,6 +45,7 @@ Per citare questo materiale, vedi [`CITATION.cff`](CITATION.cff).
 - [Analisi Matematica 1](https://fabiofurini.github.io/analisi-matematica-1/)
 - [Algebra lineare](https://fabiofurini.github.io/algebra-lineare/)
 - [Ottimizzazione convessa](https://fabiofurini.github.io/ottimizzazione-convessa/)
+- [Algoritmi](https://fabiofurini.github.io/algoritmi/)
 
 ---
 

@@ -6,7 +6,7 @@ title: "Algoritmo del simplesso duale"
 
 <div class="info-capitolo" markdown>
 
-**Parte 3 · Dualità e simplesso duale · Capitolo 10** · [:material-file-pdf-box: Dispensa, volume 3 (PDF)](../pdf/dispensa-3-dualita.pdf) · [:material-pencil: Esercizi](../esercizi/es-10-simplesso-duale.md)
+**Parte 3 · Dualità e simplesso duale · Capitolo 10** · [:material-file-pdf-box: Dispensa, volume 3 (PDF)](../pdf/dispensa-3-dualita.pdf) · [:material-pencil: Esercizi: Algoritmo del simplesso duale](../esercizi/es-10-simplesso-duale.md)
 
 </div>
 
@@ -1772,3 +1772,7 @@ title: "Algoritmo del simplesso duale"
             \tilde x_4=0~~
             \text{  di valore   } -8
             $$
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Algoritmo del simplesso duale](../esercizi/es-10-simplesso-duale.md)

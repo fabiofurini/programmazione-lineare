@@ -6,7 +6,7 @@ title: "Esercizi · Problemi di ottimizzazione lineare"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 3** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 3](../problemi-pl/03-problemi-ottimizzazione-lineare.md) · [:material-file-pdf-box: Eserciziario, volume 1 (PDF)](../pdf/esercizi-1-problemi-di-programmazione-lineare.pdf)
+**Esercizi · Capitolo 3** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 3: Problemi di ottimizzazione lineare](../problemi-pl/03-problemi-ottimizzazione-lineare.md) · [:material-file-pdf-box: Eserciziario, volume 1 (PDF)](../pdf/esercizi-1-problemi-di-programmazione-lineare.pdf)
 
 </div>
 

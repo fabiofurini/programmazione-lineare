@@ -6,7 +6,7 @@ title: "Esercizi · Fase 0 dell'algoritmo del simplesso"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 8** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 8](../simplesso/08-fase-zero.md) · [:material-file-pdf-box: Eserciziario, volume 2 (PDF)](../pdf/esercizi-2-simplesso.pdf)
+**Esercizi · Capitolo 8** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 8: Fase 0 dell'algoritmo del simplesso](../simplesso/08-fase-zero.md) · [:material-file-pdf-box: Eserciziario, volume 2 (PDF)](../pdf/esercizi-2-simplesso.pdf)
 
 </div>
 

@@ -6,7 +6,7 @@ title: "Esercizi · Teoria della dualità"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 9** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 9](../dualita/09-dualita.md) · [:material-file-pdf-box: Eserciziario, volume 3 (PDF)](../pdf/esercizi-3-dualita.pdf)
+**Esercizi · Capitolo 9** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 9: Teoria della dualità](../dualita/09-dualita.md) · [:material-file-pdf-box: Eserciziario, volume 3 (PDF)](../pdf/esercizi-3-dualita.pdf)
 
 </div>
 

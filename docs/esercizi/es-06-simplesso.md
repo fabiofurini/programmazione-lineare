@@ -6,7 +6,7 @@ title: "Esercizi · Algoritmo del simplesso"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 6** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 6](../simplesso/06-simplesso.md) · [:material-file-pdf-box: Eserciziario, volume 2 (PDF)](../pdf/esercizi-2-simplesso.pdf)
+**Esercizi · Capitolo 6** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 6: Algoritmo del simplesso](../simplesso/06-simplesso.md) · [:material-file-pdf-box: Eserciziario, volume 2 (PDF)](../pdf/esercizi-2-simplesso.pdf)
 
 </div>
 

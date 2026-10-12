@@ -6,7 +6,7 @@ title: "Algoritmo del simplesso rivisto"
 
 <div class="info-capitolo" markdown>
 
-**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 11** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi](../esercizi/es-11-simplesso-rivisto.md)
+**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 11** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi: Algoritmo del simplesso rivisto](../esercizi/es-11-simplesso-rivisto.md)
 
 </div>
 
@@ -662,3 +662,7 @@ title: "Algoritmo del simplesso rivisto"
     $$
 
     è una soluzione ottima del problema LP e ${\bar{z}} = 32$ è il valore ottimo.
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Algoritmo del simplesso rivisto](../esercizi/es-11-simplesso-rivisto.md)

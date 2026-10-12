@@ -6,7 +6,7 @@ title: "Esiti possibili e formulazioni equivalenti"
 
 <div class="info-capitolo" markdown>
 
-**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 5** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-pencil: Esercizi](../esercizi/es-05-esiti-equivalenze.md)
+**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 5** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-pencil: Esercizi: Esiti possibili e formulazioni equivalenti](../esercizi/es-05-esiti-equivalenze.md) · [:material-gesture-tap: App: Gli esiti di un problema](../laboratorio/esiti.md)
 
 </div>
 
@@ -662,6 +662,10 @@ title: "Esiti possibili e formulazioni equivalenti"
     & {x_1,} &  & {x_2,} &  & {x_3,} &  & {x_4,} &  & {x_5} & { \ge} & { 0 }
     \end{array}
     $$
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Esiti possibili e formulazioni equivalenti](../esercizi/es-05-esiti-equivalenze.md)
 
 [^1]: ovvero il minimo comune multiplo dei denominatori.
 

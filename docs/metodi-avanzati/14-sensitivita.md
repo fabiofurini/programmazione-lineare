@@ -6,7 +6,7 @@ title: "Analisi di sensitività"
 
 <div class="info-capitolo" markdown>
 
-**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 14** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi](../esercizi/es-14-sensitivita.md)
+**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 14** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi: Analisi di sensitività](../esercizi/es-14-sensitivita.md) · [:material-gesture-tap: App: Analisi di sensitività](../laboratorio/sensitivita.md)
 
 </div>
 
@@ -497,6 +497,10 @@ title: "Analisi di sensitività"
     </table></div>
 
     In tutti i casi la precedente base ottima viene usata come <strong>avvio a caldo</strong>: i due algoritmi ripartono da essa, e di solito poche operazioni di pivot bastano a ripristinare l'ottimalità.
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Analisi di sensitività](../esercizi/es-14-sensitivita.md)
 
 <!-- laboratorio-interattivo: sezione generata da interattivi.py -->
 

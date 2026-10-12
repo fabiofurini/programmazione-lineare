@@ -6,7 +6,7 @@ title: "Problemi di programmazione lineare"
 
 <div class="info-capitolo" markdown>
 
-**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 4** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-pencil: Esercizi](../esercizi/es-04-problemi-pl.md)
+**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 4** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-pencil: Esercizi: Problemi di programmazione lineare](../esercizi/es-04-problemi-pl.md) · [:material-gesture-tap: App: Il metodo grafico](../laboratorio/metodo-grafico.md)
 
 </div>
 
@@ -726,6 +726,10 @@ title: "Problemi di programmazione lineare"
     cioè sul segmento che congiunge i punti $\begin{pmatrix} 2\\ 0\\ 0 \end{pmatrix}$ e $\begin{pmatrix} 0\\ 0\\ 4 \end{pmatrix}$. Prendendo per esempio la soluzione ottima $\tilde{\boldsymbol x}(\, LP \,) = \begin{pmatrix} 2\\ 0\\ 0 \end{pmatrix}$ (dove $\tilde{x}_1=2$, $\tilde{x}_2=0$ e $\tilde{x}_3=0$), il valore ottimo è: $z(\, LP \,) = 2\,\tilde{x}_1 + 2\,\tilde{x}_2 + \tilde{x}_3 = 2 \cdot 2 + 2 \cdot 0 + 0 = 4.$
 
     ![Figura 9](../img/04-problemi-pl/fig09.svg){ .fig .cornice loading=lazy style="width:59%" }
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Problemi di programmazione lineare](../esercizi/es-04-problemi-pl.md)
 
 <!-- laboratorio-interattivo: sezione generata da interattivi.py -->
 

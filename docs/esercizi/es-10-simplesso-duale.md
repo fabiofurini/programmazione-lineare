@@ -6,7 +6,7 @@ title: "Esercizi · Algoritmo del simplesso duale"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 10** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 10](../dualita/10-simplesso-duale.md) · [:material-file-pdf-box: Eserciziario, volume 3 (PDF)](../pdf/esercizi-3-dualita.pdf)
+**Esercizi · Capitolo 10** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 10: Algoritmo del simplesso duale](../dualita/10-simplesso-duale.md) · [:material-file-pdf-box: Eserciziario, volume 3 (PDF)](../pdf/esercizi-3-dualita.pdf)
 
 </div>
 

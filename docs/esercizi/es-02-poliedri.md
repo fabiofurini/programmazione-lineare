@@ -6,7 +6,7 @@ title: "Esercizi · Semispazi e poliedri"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 2** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 2](../problemi-pl/02-poliedri.md) · [:material-file-pdf-box: Eserciziario, volume 1 (PDF)](../pdf/esercizi-1-problemi-di-programmazione-lineare.pdf)
+**Esercizi · Capitolo 2** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 2: Semispazi e poliedri](../problemi-pl/02-poliedri.md) · [:material-file-pdf-box: Eserciziario, volume 1 (PDF)](../pdf/esercizi-1-problemi-di-programmazione-lineare.pdf)
 
 </div>
 

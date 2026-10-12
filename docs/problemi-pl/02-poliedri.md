@@ -6,7 +6,7 @@ title: "Semispazi e poliedri"
 
 <div class="info-capitolo" markdown>
 
-**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 2** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-pencil: Esercizi](../esercizi/es-02-poliedri.md)
+**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 2** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-pencil: Esercizi: Semispazi e poliedri](../esercizi/es-02-poliedri.md) · [:material-gesture-tap: App: Semispazi e poliedri](../laboratorio/poliedri.md)
 
 </div>
 
@@ -236,6 +236,10 @@ title: "Semispazi e poliedri"
     La sua rappresentazione tridimensionale corrisponde all'iperpiano mostrato in figura.
 
     ![Figura 4](../img/02-poliedri/fig04.svg){ .fig .ovale loading=lazy style="width:47%" }
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Semispazi e poliedri](../esercizi/es-02-poliedri.md)
 
 <!-- laboratorio-interattivo: sezione generata da interattivi.py -->
 

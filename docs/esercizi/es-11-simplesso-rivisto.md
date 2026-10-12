@@ -6,7 +6,7 @@ title: "Esercizi · Algoritmo del simplesso rivisto"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 11** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 11](../metodi-avanzati/11-simplesso-rivisto.md) · [:material-file-pdf-box: Eserciziario, volume 4 (PDF)](../pdf/esercizi-4-metodi-avanzati.pdf)
+**Esercizi · Capitolo 11** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 11: Algoritmo del simplesso rivisto](../metodi-avanzati/11-simplesso-rivisto.md) · [:material-file-pdf-box: Eserciziario, volume 4 (PDF)](../pdf/esercizi-4-metodi-avanzati.pdf)
 
 </div>
 

@@ -6,7 +6,7 @@ title: "Condizioni di ottimalità e regole di pivot"
 
 <div class="info-capitolo" markdown>
 
-**Parte 2 · L'algoritmo del simplesso · Capitolo 7** · [:material-file-pdf-box: Dispensa, volume 2 (PDF)](../pdf/dispensa-2-simplesso.pdf) · [:material-pencil: Esercizi](../esercizi/es-07-ottimalita-pivot.md)
+**Parte 2 · L'algoritmo del simplesso · Capitolo 7** · [:material-file-pdf-box: Dispensa, volume 2 (PDF)](../pdf/dispensa-2-simplesso.pdf) · [:material-pencil: Esercizi: Condizioni di ottimalità e regole di pivot](../esercizi/es-07-ottimalita-pivot.md)
 
 </div>
 
@@ -758,3 +758,7 @@ title: "Condizioni di ottimalità e regole di pivot"
     In particolare,  $x_r = 0$. Ma in $D$,  $x_r$ è in base. Quindi $\bar{b}_r=0$ e, poiché $\bar{a}_{rs} > 0$, abbiamo $\frac{\bar{b}_r}{\bar{a}_{rs}} = 0 = t_m$. Quindi $x_r$ era una candidata a essere la riga pivot in $D$, e poiché $r < t$, per la regola di Bland avrebbe dovuto essere scelta al posto di $x_t$.
 
     Questa è la contraddizione che dimostra che una sequenza ciclica di dizionari non può esistere usando la regola di Bland. <span class="qed">□</span>
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Condizioni di ottimalità e regole di pivot](../esercizi/es-07-ottimalita-pivot.md)

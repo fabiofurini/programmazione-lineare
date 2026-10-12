@@ -6,7 +6,7 @@ title: "La geometria della programmazione lineare"
 
 <div class="info-capitolo" markdown>
 
-**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 15** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi](../esercizi/es-15-geometria.md)
+**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 15** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi: La geometria della programmazione lineare](../esercizi/es-15-geometria.md)
 
 </div>
 
@@ -441,3 +441,7 @@ title: "La geometria della programmazione lineare"
     </table></div>
 
 - Il numero di vertici di un poliedro può essere <strong>esponenziale</strong> nel numero dei suoi vincoli e variabili: per un problema LP in forma standard di massimo è limitato da $\binom{n+m}{m}$. Per questo l'algoritmo del simplesso, che visita un vertice alla volta, non si può dimostrare efficiente semplicemente contando i vertici, e perché il suo comportamento pratico è molto migliore del suo caso peggiore.
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: La geometria della programmazione lineare](../esercizi/es-15-geometria.md)

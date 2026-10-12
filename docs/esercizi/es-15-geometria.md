@@ -6,7 +6,7 @@ title: "Esercizi · La geometria della programmazione lineare"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 15** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 15](../metodi-avanzati/15-geometria.md) · [:material-file-pdf-box: Eserciziario, volume 4 (PDF)](../pdf/esercizi-4-metodi-avanzati.pdf)
+**Esercizi · Capitolo 15** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 15: La geometria della programmazione lineare](../metodi-avanzati/15-geometria.md) · [:material-file-pdf-box: Eserciziario, volume 4 (PDF)](../pdf/esercizi-4-metodi-avanzati.pdf)
 
 </div>
 

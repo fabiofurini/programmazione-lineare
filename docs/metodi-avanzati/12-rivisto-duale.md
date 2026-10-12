@@ -6,7 +6,7 @@ title: "Algoritmo del simplesso duale rivisto"
 
 <div class="info-capitolo" markdown>
 
-**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 12** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi](../esercizi/es-12-rivisto-duale.md)
+**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 12** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi: Algoritmo del simplesso duale rivisto](../esercizi/es-12-rivisto-duale.md)
 
 </div>
 
@@ -430,3 +430,7 @@ title: "Algoritmo del simplesso duale rivisto"
         $$
 
         cioè $\tilde{\boldsymbol \pi}(\, D(LP) \,) = \left(\frac{7}{6}~~\frac{1}{6}~~0\right)'$, il cui valore obiettivo è ${\boldsymbol b}' \tilde{\boldsymbol \pi} = -8 = z(\, LP \,)$, in accordo con il teorema della dualità forte.
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Algoritmo del simplesso duale rivisto](../esercizi/es-12-rivisto-duale.md)

@@ -6,7 +6,7 @@ title: "Esercizi · Analisi di sensitività"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 14** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 14](../metodi-avanzati/14-sensitivita.md) · [:material-file-pdf-box: Eserciziario, volume 4 (PDF)](../pdf/esercizi-4-metodi-avanzati.pdf)
+**Esercizi · Capitolo 14** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 14: Analisi di sensitività](../metodi-avanzati/14-sensitivita.md) · [:material-file-pdf-box: Eserciziario, volume 4 (PDF)](../pdf/esercizi-4-metodi-avanzati.pdf)
 
 </div>
 

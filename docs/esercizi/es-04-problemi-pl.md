@@ -6,7 +6,7 @@ title: "Esercizi · Problemi di programmazione lineare"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 4** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 4](../problemi-pl/04-problemi-pl.md) · [:material-file-pdf-box: Eserciziario, volume 1 (PDF)](../pdf/esercizi-1-problemi-di-programmazione-lineare.pdf)
+**Esercizi · Capitolo 4** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 4: Problemi di programmazione lineare](../problemi-pl/04-problemi-pl.md) · [:material-file-pdf-box: Eserciziario, volume 1 (PDF)](../pdf/esercizi-1-problemi-di-programmazione-lineare.pdf)
 
 </div>
 

@@ -6,7 +6,7 @@ title: "Esercizi · Il metodo primale-duale"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 13** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 13](../metodi-avanzati/13-primale-duale.md) · [:material-file-pdf-box: Eserciziario, volume 4 (PDF)](../pdf/esercizi-4-metodi-avanzati.pdf)
+**Esercizi · Capitolo 13** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 13: Il metodo primale-duale](../metodi-avanzati/13-primale-duale.md) · [:material-file-pdf-box: Eserciziario, volume 4 (PDF)](../pdf/esercizi-4-metodi-avanzati.pdf)
 
 </div>
 

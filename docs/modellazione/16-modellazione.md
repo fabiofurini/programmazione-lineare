@@ -6,7 +6,7 @@ title: "Tecniche di modellazione per la programmazione lineare"
 
 <div class="info-capitolo" markdown>
 
-**Parte 5 · Modellazione · Capitolo 16** · [:material-file-pdf-box: Dispensa, volume 5 (PDF)](../pdf/dispensa-5-modellazione.pdf) · [:material-pencil: Esercizi](../esercizi/es-16-modellazione.md)
+**Parte 5 · Modellazione · Capitolo 16** · [:material-file-pdf-box: Dispensa, volume 5 (PDF)](../pdf/dispensa-5-modellazione.pdf) · [:material-pencil: Esercizi: Tecniche di modellazione per la programmazione lineare](../esercizi/es-16-modellazione.md)
 
 </div>
 
@@ -359,3 +359,7 @@ title: "Tecniche di modellazione per la programmazione lineare"
 - Un errore frequente è scrivere un costo fisso come termine non lineare della funzione obiettivo, oppure imporre una quantità minima positiva con il vincolo $x_j \ge q$: quest'ultimo esclude la soluzione $x_j = 0$, che invece deve restare ammissibile.
 
 - Ogni volta che i requisiti di un problema sono del tipo elencato sopra, il modello LP ottenuto ignorandoli resta utile: è un <strong>rilassamento</strong> del modello corretto, e quindi il suo valore ottimo è un upper bound sul valore ottimo del modello corretto, per un problema di massimo, e un lower bound per un problema di minimo.
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Tecniche di modellazione per la programmazione lineare](../esercizi/es-16-modellazione.md)

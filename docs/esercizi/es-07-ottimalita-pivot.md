@@ -6,7 +6,7 @@ title: "Esercizi · Condizioni di ottimalità e regole di pivot"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 7** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 7](../simplesso/07-ottimalita-pivot.md) · [:material-file-pdf-box: Eserciziario, volume 2 (PDF)](../pdf/esercizi-2-simplesso.pdf)
+**Esercizi · Capitolo 7** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 7: Condizioni di ottimalità e regole di pivot](../simplesso/07-ottimalita-pivot.md) · [:material-file-pdf-box: Eserciziario, volume 2 (PDF)](../pdf/esercizi-2-simplesso.pdf)
 
 </div>
 

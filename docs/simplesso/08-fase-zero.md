@@ -6,7 +6,7 @@ title: "Fase 0 dell'algoritmo del simplesso"
 
 <div class="info-capitolo" markdown>
 
-**Parte 2 · L'algoritmo del simplesso · Capitolo 8** · [:material-file-pdf-box: Dispensa, volume 2 (PDF)](../pdf/dispensa-2-simplesso.pdf) · [:material-pencil: Esercizi](../esercizi/es-08-fase-zero.md)
+**Parte 2 · L'algoritmo del simplesso · Capitolo 8** · [:material-file-pdf-box: Dispensa, volume 2 (PDF)](../pdf/dispensa-2-simplesso.pdf) · [:material-pencil: Esercizi: Fase 0 dell'algoritmo del simplesso](../esercizi/es-08-fase-zero.md)
 
 </div>
 
@@ -557,3 +557,7 @@ title: "Fase 0 dell'algoritmo del simplesso"
     $$
 
     L'algoritmo del simplesso ne esplora un piccolo sottoinsieme, passando da una soluzione di base ammissibile a un'altra il cui valore obiettivo non è minore.
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Fase 0 dell'algoritmo del simplesso](../esercizi/es-08-fase-zero.md)

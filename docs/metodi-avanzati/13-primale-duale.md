@@ -6,7 +6,7 @@ title: "Il metodo primale-duale"
 
 <div class="info-capitolo" markdown>
 
-**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 13** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi](../esercizi/es-13-primale-duale.md)
+**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 13** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi: Il metodo primale-duale](../esercizi/es-13-primale-duale.md)
 
 </div>
 
@@ -429,3 +429,7 @@ title: "Il metodo primale-duale"
     La differenza tra l'algoritmo del simplesso duale e il metodo primale-duale è che il primo mantiene una <strong>base</strong> duale ammissibile, mentre il secondo mantiene una <strong>soluzione</strong> duale ammissibile, che non deve essere di base. Per questo motivo il metodo primale-duale può partire da qualunque soluzione duale ammissibile, anche una suggerita dalla struttura del problema.
 
 - L'interesse pratico del metodo primale-duale è che il primale ristretto [(13.3)](#eq-PD_RP) è spesso molto più facile del problema LP originale: ha meno variabili e, per diversi problemi di <strong>ottimizzazione combinatoria</strong> risulta essere un problema con un algoritmo combinatorio noto, come un problema di cammino minimo o di flusso massimo. In questi casi il metodo primale-duale diventa un algoritmo puramente combinatorio, ed è all'origine di molti algoritmi classici e di diversi algoritmi di approssimazione.
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Il metodo primale-duale](../esercizi/es-13-primale-duale.md)

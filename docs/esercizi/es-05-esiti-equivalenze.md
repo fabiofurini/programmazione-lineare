@@ -6,7 +6,7 @@ title: "Esercizi · Esiti possibili e formulazioni equivalenti"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 5** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 5](../problemi-pl/05-esiti-equivalenze.md) · [:material-file-pdf-box: Eserciziario, volume 1 (PDF)](../pdf/esercizi-1-problemi-di-programmazione-lineare.pdf)
+**Esercizi · Capitolo 5** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 5: Esiti possibili e formulazioni equivalenti](../problemi-pl/05-esiti-equivalenze.md) · [:material-file-pdf-box: Eserciziario, volume 1 (PDF)](../pdf/esercizi-1-problemi-di-programmazione-lineare.pdf)
 
 </div>
 

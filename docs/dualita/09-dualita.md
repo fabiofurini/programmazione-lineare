@@ -6,7 +6,7 @@ title: "Teoria della dualità"
 
 <div class="info-capitolo" markdown>
 
-**Parte 3 · Dualità e simplesso duale · Capitolo 9** · [:material-file-pdf-box: Dispensa, volume 3 (PDF)](../pdf/dispensa-3-dualita.pdf) · [:material-pencil: Esercizi](../esercizi/es-09-dualita.md)
+**Parte 3 · Dualità e simplesso duale · Capitolo 9** · [:material-file-pdf-box: Dispensa, volume 3 (PDF)](../pdf/dispensa-3-dualita.pdf) · [:material-pencil: Esercizi: Teoria della dualità](../esercizi/es-09-dualita.md) · [:material-gesture-tap: App: Dualità debole e forte](../laboratorio/dualita-debole.md)
 
 </div>
 
@@ -1796,6 +1796,10 @@ title: "Teoria della dualità"
 !!! chiave ""
 
     Poiché da un problema LP in forma generica di massimo si può ottenere un problema LP equivalente in forma canonica di massimo, la dualità debole, la dualità forte e il teorema degli scarti complementari valgono anche nel caso generico.
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Teoria della dualità](../esercizi/es-09-dualita.md)
 
 <!-- laboratorio-interattivo: sezione generata da interattivi.py -->
 

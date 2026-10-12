@@ -6,7 +6,7 @@ title: "Esercizi · Tecniche di modellazione per la programmazione lineare"
 
 <div class="info-capitolo" markdown>
 
-**Esercizi · Capitolo 16** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 16](../modellazione/16-modellazione.md) · [:material-file-pdf-box: Eserciziario, volume 5 (PDF)](../pdf/esercizi-5-modellazione.pdf)
+**Esercizi · Capitolo 16** · ogni soluzione si apre con un clic · [:material-book-open-variant: Capitolo 16: Tecniche di modellazione per la programmazione lineare](../modellazione/16-modellazione.md) · [:material-file-pdf-box: Eserciziario, volume 5 (PDF)](../pdf/esercizi-5-modellazione.pdf)
 
 </div>
 

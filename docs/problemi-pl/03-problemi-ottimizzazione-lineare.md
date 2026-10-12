@@ -6,7 +6,7 @@ title: "Problemi di ottimizzazione lineare"
 
 <div class="info-capitolo" markdown>
 
-**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 3** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-pencil: Esercizi](../esercizi/es-03-problemi-ottimizzazione-lineare.md)
+**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 3** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-pencil: Esercizi: Problemi di ottimizzazione lineare](../esercizi/es-03-problemi-ottimizzazione-lineare.md)
 
 </div>
 
@@ -352,3 +352,7 @@ title: "Problemi di ottimizzazione lineare"
     Il minimo di $-2\left(\frac{1}{2}x-1\right)$ e il massimo di $\frac{1}{2}x-1$ sono entrambi raggiunti in $x=5$.
 
     ![Figura 6](../img/03-problemi-ottimizzazione-lineare/fig06.svg){ .fig .ovale loading=lazy style="width:44%" }
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Problemi di ottimizzazione lineare](../esercizi/es-03-problemi-ottimizzazione-lineare.md)

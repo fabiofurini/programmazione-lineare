@@ -6,7 +6,7 @@ title: "Algoritmo del simplesso"
 
 <div class="info-capitolo" markdown>
 
-**Parte 2 · L'algoritmo del simplesso · Capitolo 6** · [:material-file-pdf-box: Dispensa, volume 2 (PDF)](../pdf/dispensa-2-simplesso.pdf) · [:material-pencil: Esercizi](../esercizi/es-06-simplesso.md)
+**Parte 2 · L'algoritmo del simplesso · Capitolo 6** · [:material-file-pdf-box: Dispensa, volume 2 (PDF)](../pdf/dispensa-2-simplesso.pdf) · [:material-pencil: Esercizi: Algoritmo del simplesso](../esercizi/es-06-simplesso.md) · [:material-gesture-tap: App: Il simplesso passo per passo](../laboratorio/simplesso-passi.md)
 
 </div>
 
@@ -1812,6 +1812,10 @@ Nello stesso dizionario anche $\bar{c}_2 = 2 > 0$, quindi anche $x_2$ può esser
     In blu tratteggiato, le curve di livello $5\,x_1 + 2\,x_2 = 0$, $5\,x_1 + 2\,x_2 = \frac{40}{3}$ e $5\,x_1 + 2\,x_2 = 32$ della funzione obiettivo associate ai valori assunti nei tre vertici.
 
 Alla prima iterazione la colonna pivot $x_1$ è stata scelta tra le due variabili fuori base con costo ridotto positivo. Scegliendo invece $x_2$, l'algoritmo del simplesso raggiunge la stessa soluzione ottima dopo tre operazioni di pivot, visitando i vertici $(0,4)$ e $\left(\frac{12}{5},\frac{24}{5}\right)$: la variazione della scelta della colonna pivot cambia il percorso sul poliedro e il numero di iterazioni (si veda l'esercizio <em>Algoritmo del simplesso con una diversa colonna pivot</em>, problema $P10$).
+
+---
+
+**Esercizi su questo capitolo:** [:material-pencil: Algoritmo del simplesso](../esercizi/es-06-simplesso.md)
 
 [^1]: Il rango per righe e il rango per colonne di una matrice sono uguali
 

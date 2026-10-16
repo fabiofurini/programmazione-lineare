@@ -122,6 +122,11 @@ Le dispense e gli eserciziari in PDF, aggiornati a ogni pubblicazione del sito, 
 - :material-presentation: [Capitolo 7 · Condizioni di ottimalità e regole di pivot](pdf/slide-07-ottimalita-pivot.pdf)
 - :material-presentation: [Capitolo 8 · Fase 0 dell'algoritmo del simplesso](pdf/slide-08-fase-zero.pdf)
 
+### Dualità e simplesso duale
+
+- :material-presentation: [Capitolo 9 · Teoria della dualità](pdf/slide-09-dualita.pdf)
+- :material-presentation: [Capitolo 10 · Algoritmo del simplesso duale](pdf/slide-10-simplesso-duale.pdf)
+
 ### Metodi matriciali, sensitività e geometria
 
 - :material-presentation: [Capitolo 11 · Algoritmo del simplesso rivisto](pdf/slide-11-simplesso-rivisto.pdf)

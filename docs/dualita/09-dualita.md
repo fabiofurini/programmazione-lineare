@@ -6,7 +6,7 @@ title: "Teoria della dualità"
 
 <div class="info-capitolo" markdown>
 
-**Parte 3 · Dualità e simplesso duale · Capitolo 9** · [:material-file-pdf-box: Dispensa, volume 3 (PDF)](../pdf/dispensa-3-dualita.pdf) · [:material-pencil: Esercizi: Teoria della dualità](../esercizi/es-09-dualita.md) · [:material-gesture-tap: App: Dualità debole e forte](../laboratorio/dualita-debole.md)
+**Parte 3 · Dualità e simplesso duale · Capitolo 9** · [:material-file-pdf-box: Dispensa, volume 3 (PDF)](../pdf/dispensa-3-dualita.pdf) · [:material-presentation: Slide](../pdf/slide-09-dualita.pdf) · [:material-pencil: Esercizi: Teoria della dualità](../esercizi/es-09-dualita.md) · [:material-gesture-tap: App: Dualità debole e forte](../laboratorio/dualita-debole.md)
 
 </div>
 

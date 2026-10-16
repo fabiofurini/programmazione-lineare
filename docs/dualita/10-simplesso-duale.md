@@ -6,7 +6,7 @@ title: "Algoritmo del simplesso duale"
 
 <div class="info-capitolo" markdown>
 
-**Parte 3 · Dualità e simplesso duale · Capitolo 10** · [:material-file-pdf-box: Dispensa, volume 3 (PDF)](../pdf/dispensa-3-dualita.pdf) · [:material-pencil: Esercizi: Algoritmo del simplesso duale](../esercizi/es-10-simplesso-duale.md)
+**Parte 3 · Dualità e simplesso duale · Capitolo 10** · [:material-file-pdf-box: Dispensa, volume 3 (PDF)](../pdf/dispensa-3-dualita.pdf) · [:material-presentation: Slide](../pdf/slide-10-simplesso-duale.pdf) · [:material-pencil: Esercizi: Algoritmo del simplesso duale](../esercizi/es-10-simplesso-duale.md)
 
 </div>
 
@@ -973,7 +973,7 @@ title: "Algoritmo del simplesso duale"
 
     dove $\bar{a}_{rp}$ è il valore della riga $\bar{\boldsymbol a}_{r}$ associato alla colonna pivot $x_p$.
 
-- Dati $s_m$ e la riga $\bar{\boldsymbol a}_{r}$, <strong>i nuovi costi ridotti</strong> (che determinano il nuovo vettore $\bar{\boldsymbol c}$) e <strong>il nuovo valore obiettivo</strong> si ottengono segue:
+- Dati $s_m$ e la riga $\bar{\boldsymbol a}_{r}$, <strong>i nuovi costi ridotti</strong> (che determinano il nuovo vettore $\bar{\boldsymbol c}$) e <strong>il nuovo valore obiettivo</strong> si ottengono come segue:
 
     \begin{equation*}
     \label{DUAL_UPDATED2}
@@ -1326,7 +1326,7 @@ title: "Algoritmo del simplesso duale"
     \end{pmatrix}
     $$
 
-    e il valore ottimo è $z(\, LP \,) = -8$, in accordo con l'esecuzione riportata nelle pagine pages.
+    e il valore ottimo è $z(\, LP \,) = -8$, in accordo con l'esecuzione riportata nelle pagine precedenti.
 
     Le tre basi visitate dall'algoritmo corrispondono a tre soluzioni ammissibili del problema <strong>duale</strong>, date da ${\boldsymbol \pi} = {\boldsymbol c}'_{\pazocal{B}} \, {\boldsymbol A}_{\pazocal{B}}^{-1}$:
 

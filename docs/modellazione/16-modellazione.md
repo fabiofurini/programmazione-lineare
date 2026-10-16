@@ -6,7 +6,7 @@ title: "Tecniche di modellazione per la programmazione lineare"
 
 <div class="info-capitolo" markdown>
 
-**Parte 5 · Modellazione · Capitolo 16** · [:material-file-pdf-box: Dispensa, volume 5 (PDF)](../pdf/dispensa-5-modellazione.pdf) · [:material-pencil: Esercizi: Tecniche di modellazione per la programmazione lineare](../esercizi/es-16-modellazione.md)
+**Parte 5 · Modellazione · Capitolo 16** · [:material-file-pdf-box: Dispensa, volume 5 (PDF)](../pdf/dispensa-5-modellazione.pdf) · [:material-presentation: Slide](../pdf/slide-16-modellazione.pdf) · [:material-pencil: Esercizi: Tecniche di modellazione per la programmazione lineare](../esercizi/es-16-modellazione.md)
 
 </div>
 

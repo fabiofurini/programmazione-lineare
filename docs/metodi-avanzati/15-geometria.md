@@ -6,7 +6,7 @@ title: "La geometria della programmazione lineare"
 
 <div class="info-capitolo" markdown>
 
-**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 15** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi: La geometria della programmazione lineare](../esercizi/es-15-geometria.md)
+**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 15** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-presentation: Slide](../pdf/slide-15-geometria.pdf) · [:material-pencil: Esercizi: La geometria della programmazione lineare](../esercizi/es-15-geometria.md)
 
 </div>
 

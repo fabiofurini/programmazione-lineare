@@ -6,7 +6,7 @@ title: "Algoritmo del simplesso"
 
 <div class="info-capitolo" markdown>
 
-**Parte 2 · L'algoritmo del simplesso · Capitolo 6** · [:material-file-pdf-box: Dispensa, volume 2 (PDF)](../pdf/dispensa-2-simplesso.pdf) · [:material-pencil: Esercizi: Algoritmo del simplesso](../esercizi/es-06-simplesso.md) · [:material-gesture-tap: App: Il simplesso passo per passo](../laboratorio/simplesso-passi.md)
+**Parte 2 · L'algoritmo del simplesso · Capitolo 6** · [:material-file-pdf-box: Dispensa, volume 2 (PDF)](../pdf/dispensa-2-simplesso.pdf) · [:material-presentation: Slide](../pdf/slide-06-simplesso.pdf) · [:material-pencil: Esercizi: Algoritmo del simplesso](../esercizi/es-06-simplesso.md) · [:material-gesture-tap: App: Il simplesso passo per passo](../laboratorio/simplesso-passi.md)
 
 </div>
 
@@ -601,7 +601,7 @@ title: "Algoritmo del simplesso"
 
     <a id="box-6-def-simplex-2"></a>
 
-    !!! definizione "Definizione 6.3: dictionary"
+    !!! definizione "Definizione 6.3: dizionario"
 
         Data una base ${\boldsymbol  A}_{\pazocal{B}}$ del problema LP [(6.1)](#eq-FORM_STANDARD),  il <strong>dizionario</strong> associato è un sistema di $m+1$ equazioni lineari in cui le variabili in base e la funzione obiettivo sono scritte in funzione delle variabili fuori base:
 

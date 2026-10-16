@@ -114,3 +114,22 @@ Le dispense e gli eserciziari in PDF, aggiornati a ogni pubblicazione del sito, 
 - :material-presentation: [Capitolo 2 · Semispazi e poliedri](pdf/slide-02-poliedri.pdf)
 - :material-presentation: [Capitolo 3 · Problemi di ottimizzazione lineare](pdf/slide-03-problemi-ottimizzazione-lineare.pdf)
 - :material-presentation: [Capitolo 4 · Problemi di programmazione lineare](pdf/slide-04-problemi-pl.pdf)
+- :material-presentation: [Capitolo 5 · Esiti possibili e formulazioni equivalenti](pdf/slide-05-esiti-equivalenze.pdf)
+
+### L'algoritmo del simplesso
+
+- :material-presentation: [Capitolo 6 · Algoritmo del simplesso](pdf/slide-06-simplesso.pdf)
+- :material-presentation: [Capitolo 7 · Condizioni di ottimalità e regole di pivot](pdf/slide-07-ottimalita-pivot.pdf)
+- :material-presentation: [Capitolo 8 · Fase 0 dell'algoritmo del simplesso](pdf/slide-08-fase-zero.pdf)
+
+### Metodi matriciali, sensitività e geometria
+
+- :material-presentation: [Capitolo 11 · Algoritmo del simplesso rivisto](pdf/slide-11-simplesso-rivisto.pdf)
+- :material-presentation: [Capitolo 12 · Algoritmo del simplesso duale rivisto](pdf/slide-12-rivisto-duale.pdf)
+- :material-presentation: [Capitolo 13 · Il metodo primale-duale](pdf/slide-13-primale-duale.pdf)
+- :material-presentation: [Capitolo 14 · Analisi di sensitività](pdf/slide-14-sensitivita.pdf)
+- :material-presentation: [Capitolo 15 · La geometria della programmazione lineare](pdf/slide-15-geometria.pdf)
+
+### Modellazione
+
+- :material-presentation: [Capitolo 16 · Tecniche di modellazione per la programmazione lineare](pdf/slide-16-modellazione.pdf)

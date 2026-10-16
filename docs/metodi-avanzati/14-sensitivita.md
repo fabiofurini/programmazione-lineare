@@ -6,7 +6,7 @@ title: "Analisi di sensitività"
 
 <div class="info-capitolo" markdown>
 
-**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 14** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi: Analisi di sensitività](../esercizi/es-14-sensitivita.md) · [:material-gesture-tap: App: Analisi di sensitività](../laboratorio/sensitivita.md)
+**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 14** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-presentation: Slide](../pdf/slide-14-sensitivita.pdf) · [:material-pencil: Esercizi: Analisi di sensitività](../esercizi/es-14-sensitivita.md) · [:material-gesture-tap: App: Analisi di sensitività](../laboratorio/sensitivita.md)
 
 </div>
 
@@ -244,7 +244,7 @@ title: "Analisi di sensitività"
     z(\, LP \,) = {\boldsymbol \pi} \; {\boldsymbol b} = \sum_{i=1}^m \pi_i \; b_i .
     $$
 
-- Se il $k$-esimo vincolo <u>non</u> è attivo nella soluzione ottima, cioè se la sua variabile è in base con valore strettamente positivo, allora $\pi_k = 0$: una piccola variazione di $b_k$ non cambia il valore ottimo.
+- Se il $k$-esimo vincolo <u>non</u> è attivo nella soluzione ottima, cioè se la sua variabile di scarto è in base con valore strettamente positivo, allora $\pi_k = 0$: una piccola variazione di $b_k$ non cambia il valore ottimo.
 
 <a id="box-5-ex-sens-2"></a>
 
@@ -401,7 +401,7 @@ title: "Analisi di sensitività"
 
     La base estesa è ancora <u>duale ammissibile</u>, perché i costi ridotti non cambiano e il costo ridotto della nuova variabile di scarto è $0$. La sua ammissibilità primale, invece, dipende dalla soluzione ottima $\tilde{\boldsymbol x}(\, LP \,)$ del problema LP originale:
 
-    1. se $\tilde{\boldsymbol x}(\, LP \,)$ <strong>soddisfa</strong> il nuovo vincolo, allora la base resta ottima e la soluzione ottima non cambia;
+    1. se $\tilde{\boldsymbol x}(\, LP \,)$ <strong>soddisfa</strong> il nuovo vincolo, allora la base estesa resta ottima e la soluzione ottima non cambia;
 
     2. se $\tilde{\boldsymbol x}(\, LP \,)$ <strong>viola</strong> il nuovo vincolo, allora la nuova variabile di scarto assume un valore negativo e l'<strong>algoritmo del simplesso duale</strong> riparte dalla base estesa, con $x_{n+m+1}$ come prima riga pivot.
 

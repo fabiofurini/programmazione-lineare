@@ -6,7 +6,7 @@ title: "Fase 0 dell'algoritmo del simplesso"
 
 <div class="info-capitolo" markdown>
 
-**Parte 2 · L'algoritmo del simplesso · Capitolo 8** · [:material-file-pdf-box: Dispensa, volume 2 (PDF)](../pdf/dispensa-2-simplesso.pdf) · [:material-pencil: Esercizi: Fase 0 dell'algoritmo del simplesso](../esercizi/es-08-fase-zero.md)
+**Parte 2 · L'algoritmo del simplesso · Capitolo 8** · [:material-file-pdf-box: Dispensa, volume 2 (PDF)](../pdf/dispensa-2-simplesso.pdf) · [:material-presentation: Slide](../pdf/slide-08-fase-zero.pdf) · [:material-pencil: Esercizi: Fase 0 dell'algoritmo del simplesso](../esercizi/es-08-fase-zero.md)
 
 </div>
 
@@ -49,7 +49,8 @@ title: "Fase 0 dell'algoritmo del simplesso"
     \begin{align*}
     \label{OBJ_AUX} &&   \max \;\; - \; x_0  \tag{8.2a}\\[1.5ex]
     \label{CONS1_AUX}     && \text{soggetto a} \quad  \sum_{j=1}^{n+m} \; {a_{ij} \; x_j} - x_0  & = b_i,  & \forall \;\; i \in \{1,2,\dots,m\}  \tag{8.2b}\\[1.5ex]
-    \label{CONS2_AUX}     && x_0, \; x_j                       &\ge  0, & \forall \;\; j \in \{1,2,\dots,n+m\} \tag{8.2c}
+    \label{CONS3_AUX}     && x_0                               &\ge  0, &  \tag{8.2c}\\[1.5ex]
+    \label{CONS2_AUX}     && x_j                               &\ge  0, & \forall \;\; j \in \{1,2,\dots,n+m\} \tag{8.2d}
     \end{align*}
 
 - La variabile ausiliaria $x_0$ è posta in <u>prima</u> posizione, e quindi i dati del problema ausiliario del simplesso [(8.2)](#eq-FORM_AUX) sono il vettore colonna ${\boldsymbol x} \in \R^{n+m+1}$ delle variabili, il vettore dei costi ${\boldsymbol c} \in \Z^{n+m+1}$, la cui prima componente è $-1$ e le cui altre componenti sono $0$, la matrice dei vincoli ${\boldsymbol A} \in \Z^{m \times (n+m+1)}$, ottenuta aggiungendo in testa alla matrice dei vincoli originale una colonna di $m$ componenti tutte uguali a $-1$, e il vettore dei termini noti ${\boldsymbol b} \in \Z^{m}$:
@@ -502,7 +503,7 @@ title: "Fase 0 dell'algoritmo del simplesso"
 
     - **Passo 1:** <strong>Test di ottimalità</strong>
 
-        Rispetto al dizionario corrente, se $\bar c_j\le 0$ for all $j\in\pazocal N$, allora la soluzione di base ammissibile $x_i=\bar b_i$, $\forall i\in\pazocal B$, e $x_j=0$, $\forall j\in\pazocal N$, è una soluzione ottima e $\bar z$ è il valore ottimo. In questo caso <code>STOP</code>.
+        Rispetto al dizionario corrente, se $\bar c_j\le 0$ per ogni $j\in\pazocal N$, allora la soluzione di base ammissibile $x_i=\bar b_i$, $\forall i\in\pazocal B$, e $x_j=0$, $\forall j\in\pazocal N$, è una soluzione ottima e $\bar z$ è il valore ottimo. In questo caso <code>STOP</code>.
 
     - **Passo 2:** <strong>Operazioni di pivot</strong>
 
@@ -516,7 +517,7 @@ title: "Fase 0 dell'algoritmo del simplesso"
 
 ## 8.6 Il Teorema fondamentale della programmazione lineare
 
-- La Fase $0$ e l'algoritmo del simplesso, eseguiti uno dopo l'altro, dimostrano il seguente teorema, che descrive tutti i possibili esiti di un problema LP e mostra che, ogni volta che esiste una soluzione ottima, una di esse è una soluzione di base <u>ammissibile</u>.
+- La Fase $0$ e l'algoritmo del simplesso, eseguiti uno dopo l'altro, dimostrano il seguente teorema, che descrive tutti i possibili esiti di un problema LP e mostra che, ogni volta che esiste una soluzione ottima, una di esse è una soluzione <u>di base</u> ammissibile.
 
 <a id="box-9-theo-fundamental"></a>
 

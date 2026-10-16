@@ -6,7 +6,7 @@ title: "Il metodo primale-duale"
 
 <div class="info-capitolo" markdown>
 
-**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 13** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi: Il metodo primale-duale](../esercizi/es-13-primale-duale.md)
+**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 13** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-presentation: Slide](../pdf/slide-13-primale-duale.pdf) · [:material-pencil: Esercizi: Il metodo primale-duale](../esercizi/es-13-primale-duale.md)
 
 </div>
 
@@ -208,7 +208,7 @@ title: "Il metodo primale-duale"
 
 ## 13.5 Esecuzione del metodo primale-duale
 
-- Consideriamo il seguente problema LP in forma standard di minimo con $n=4$ variabili non negative variabili e $m=2$ vincoli lineari di uguaglianza, che viene risolto negli esempi di questa sezione:
+- Consideriamo il seguente problema LP in forma standard di minimo con $n=4$ variabili non negative e $m=2$ vincoli lineari di uguaglianza, che viene risolto negli esempi di questa sezione:
 
     $$
     \begin{array}{rrrrrrrrrrrrr}
@@ -344,7 +344,7 @@ title: "Il metodo primale-duale"
     {\boldsymbol \pi} \leftarrow (2~~0)' + 1 \cdot (1~~-1)' = (3~~-1)' ,
     $$
 
-    con valore obiettivo duale ${\boldsymbol b}' {\boldsymbol \pi} = 14$. La seconda variabile variabile è diventata <u>negativa</u>: ciò è consentito, perché le variabili duali di [(13.2)](#eq-PD_DUAL) sono libere.
+    con valore obiettivo duale ${\boldsymbol b}' {\boldsymbol \pi} = 14$. La seconda variabile duale è diventata <u>negativa</u>: ciò è consentito, perché le variabili duali di [(13.2)](#eq-PD_DUAL) sono libere.
 
 <a id="box-7-ex-pd-4"></a>
 

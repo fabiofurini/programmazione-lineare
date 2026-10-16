@@ -6,7 +6,7 @@ title: "Algoritmo del simplesso rivisto"
 
 <div class="info-capitolo" markdown>
 
-**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 11** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi: Algoritmo del simplesso rivisto](../esercizi/es-11-simplesso-rivisto.md)
+**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 11** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-presentation: Slide](../pdf/slide-11-simplesso-rivisto.pdf) · [:material-pencil: Esercizi: Algoritmo del simplesso rivisto](../esercizi/es-11-simplesso-rivisto.md)
 
 </div>
 
@@ -32,7 +32,7 @@ title: "Algoritmo del simplesso rivisto"
 
     <div class="minipage" style="width:38%" markdown>
 
-    ![Figura 1](../img/11-simplesso-rivisto/fig01.svg){ .fig .ovale loading=lazy style="width:92%" }
+    ![Figura 1](../img/11-simplesso-rivisto/fig01.svg){ .fig .cornice loading=lazy style="width:92%" }
 
     </div>
 

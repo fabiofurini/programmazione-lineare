@@ -6,7 +6,7 @@ title: "Algoritmo del simplesso duale rivisto"
 
 <div class="info-capitolo" markdown>
 
-**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 12** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-pencil: Esercizi: Algoritmo del simplesso duale rivisto](../esercizi/es-12-rivisto-duale.md)
+**Parte 4 · Metodi matriciali, sensitività e geometria · Capitolo 12** · [:material-file-pdf-box: Dispensa, volume 4 (PDF)](../pdf/dispensa-4-metodi-avanzati.pdf) · [:material-presentation: Slide](../pdf/slide-12-rivisto-duale.pdf) · [:material-pencil: Esercizi: Algoritmo del simplesso duale rivisto](../esercizi/es-12-rivisto-duale.md)
 
 </div>
 

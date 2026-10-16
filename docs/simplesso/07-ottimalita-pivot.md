@@ -6,7 +6,7 @@ title: "Condizioni di ottimalità e regole di pivot"
 
 <div class="info-capitolo" markdown>
 
-**Parte 2 · L'algoritmo del simplesso · Capitolo 7** · [:material-file-pdf-box: Dispensa, volume 2 (PDF)](../pdf/dispensa-2-simplesso.pdf) · [:material-pencil: Esercizi: Condizioni di ottimalità e regole di pivot](../esercizi/es-07-ottimalita-pivot.md)
+**Parte 2 · L'algoritmo del simplesso · Capitolo 7** · [:material-file-pdf-box: Dispensa, volume 2 (PDF)](../pdf/dispensa-2-simplesso.pdf) · [:material-presentation: Slide](../pdf/slide-07-ottimalita-pivot.pdf) · [:material-pencil: Esercizi: Condizioni di ottimalità e regole di pivot](../esercizi/es-07-ottimalita-pivot.md)
 
 </div>
 
@@ -579,7 +579,7 @@ title: "Condizioni di ottimalità e regole di pivot"
     - \underbrace{{{\boldsymbol  A}_{\pazocal{B}}^{-1} \;{\boldsymbol  A}_{p}} }_{=\bar{\boldsymbol A}_{p}} \; {\vartheta} \ge 0
     $$
 
-    Allora, ponendo $x_p = \vartheta$ e ${\boldsymbol  x}_{\pazocal{B}} = {{\bar{\boldsymbol b}}} - \bar{\boldsymbol A}_{p} \; {\vartheta}$ (tutte le altre variabili a zero), otteniamo un'altra soluzione ammissibile con un valore della funzione obiettivo strettamente migliore. Questo contraddice il fatto che ${\boldsymbol  x}_{\pazocal{B}}={{\bar{\boldsymbol b}}}$ e ${\boldsymbol  x}_{\pazocal{N}}={{{\boldsymbol 0}}}$ siano ottime, quindi deve valere $~{ \bar{\boldsymbol c}} \le {\boldsymbol 0}~$. <span class="qed">□</span>
+    Allora, ponendo $x_p = \vartheta$ e ${\boldsymbol  x}_{\pazocal{B}} = {{\bar{\boldsymbol b}}} - \bar{\boldsymbol A}_{p} \; {\vartheta}$ (tutte le altre variabili a zero), otteniamo un'altra soluzione ammissibile con un valore della funzione obiettivo strettamente migliore. Questo contraddice il fatto che la soluzione ${\boldsymbol  x}_{\pazocal{B}}={{\bar{\boldsymbol b}}}$ e ${\boldsymbol  x}_{\pazocal{N}}={{{\boldsymbol 0}}}$ sia ottima, quindi deve valere $~{ \bar{\boldsymbol c}} \le {\boldsymbol 0}~$. <span class="qed">□</span>
 
 - Combinando con le condizioni sufficienti di ottimalità, abbiamo dimostrato che:
 

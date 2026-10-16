@@ -6,7 +6,7 @@ title: "Esiti possibili e formulazioni equivalenti"
 
 <div class="info-capitolo" markdown>
 
-**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 5** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-pencil: Esercizi: Esiti possibili e formulazioni equivalenti](../esercizi/es-05-esiti-equivalenze.md) · [:material-gesture-tap: App: Gli esiti di un problema](../laboratorio/esiti.md)
+**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 5** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-presentation: Slide](../pdf/slide-05-esiti-equivalenze.pdf) · [:material-pencil: Esercizi: Esiti possibili e formulazioni equivalenti](../esercizi/es-05-esiti-equivalenze.md) · [:material-gesture-tap: App: Gli esiti di un problema](../laboratorio/esiti.md)
 
 </div>
 
@@ -493,7 +493,7 @@ title: "Esiti possibili e formulazioni equivalenti"
     $$
     \begin{array}{rrrrrrrrrrrrr}
     {\max} & {2} \, {x_1} & {+} & {4} \, {x_2} & {+} & {2} \, {x_3} \\[2ex]
-    \text{soggetto a} & {-} \, {x_1} & + & \, {x_2} & {+} & {x_3} & {=} & 2 \\[2ex]
+    \text{soggetto a} & {-} \, {x_1} & {+} & \, {x_2} & {+} & {x_3} & {=} & 2 \\[2ex]
     & {8} \, {x_1} & {+} & {2} \, {x_2} &  &  & {=} & {19} \\[2ex]
     & {x_1} &  &  &  &  & { \ge} & { 0 } \\[2ex]
     &  &  & {x_2} &  &  & { \le} & { 0 } \\[2ex]

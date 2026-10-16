@@ -6,7 +6,7 @@ title: "Problemi di programmazione lineare"
 
 <div class="info-capitolo" markdown>
 
-**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 4** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-pencil: Esercizi: Problemi di programmazione lineare](../esercizi/es-04-problemi-pl.md) · [:material-gesture-tap: App: Il metodo grafico](../laboratorio/metodo-grafico.md)
+**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 4** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-presentation: Slide](../pdf/slide-04-problemi-pl.pdf) · [:material-pencil: Esercizi: Problemi di programmazione lineare](../esercizi/es-04-problemi-pl.md) · [:material-gesture-tap: App: Il metodo grafico](../laboratorio/metodo-grafico.md)
 
 </div>
 

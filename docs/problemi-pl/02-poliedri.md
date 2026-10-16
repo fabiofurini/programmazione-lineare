@@ -6,7 +6,7 @@ title: "Semispazi e poliedri"
 
 <div class="info-capitolo" markdown>
 
-**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 2** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-pencil: Esercizi: Semispazi e poliedri](../esercizi/es-02-poliedri.md) · [:material-gesture-tap: App: Semispazi e poliedri](../laboratorio/poliedri.md)
+**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 2** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-presentation: Slide](../pdf/slide-02-poliedri.pdf) · [:material-pencil: Esercizi: Semispazi e poliedri](../esercizi/es-02-poliedri.md) · [:material-gesture-tap: App: Semispazi e poliedri](../laboratorio/poliedri.md)
 
 </div>
 
@@ -78,7 +78,7 @@ title: "Semispazi e poliedri"
     \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} \in \R^2 :~~ 50x_1 + 31 \; x_2 \le 250 ~~\right\} \text{   dove   }
     {\boldsymbol a}=
     \begin{pmatrix}
-    -3 &  2 \\
+    50 &  31 \\
     \end{pmatrix}
     ~~{\rm e}~~
     b=250
@@ -100,7 +100,7 @@ title: "Semispazi e poliedri"
     a_{11} & a_{12} & \dots & a_{1n}\\
     a_{21} & a_{22} & \dots & a_{2n}\\
     \vdots  & \vdots  & \ddots & \vdots \\
-    a_{m1} & a_{n2} & \dots & a_{mn}\\
+    a_{m1} & a_{m2} & \dots & a_{mn}\\
     \end{pmatrix}}_{{\boldsymbol A}} \in \R^{m \times n}
     $$
 

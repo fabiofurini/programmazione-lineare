@@ -105,3 +105,12 @@ Le dispense e gli eserciziari in PDF, aggiornati a ogni pubblicazione del sito, 
     [:octicons-download-24: esercizi-5-modellazione.pdf](pdf/esercizi-5-modellazione.pdf)
 
 </div>
+
+## Slide
+
+### Funzioni lineari, poliedri e problemi di programmazione lineare
+
+- :material-presentation: [Capitolo 1 · Funzioni lineari](pdf/slide-01-funzioni-lineari.pdf)
+- :material-presentation: [Capitolo 2 · Semispazi e poliedri](pdf/slide-02-poliedri.pdf)
+- :material-presentation: [Capitolo 3 · Problemi di ottimizzazione lineare](pdf/slide-03-problemi-ottimizzazione-lineare.pdf)
+- :material-presentation: [Capitolo 4 · Problemi di programmazione lineare](pdf/slide-04-problemi-pl.pdf)

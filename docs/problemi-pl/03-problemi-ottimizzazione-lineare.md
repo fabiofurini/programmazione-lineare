@@ -6,7 +6,7 @@ title: "Problemi di ottimizzazione lineare"
 
 <div class="info-capitolo" markdown>
 
-**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 3** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-pencil: Esercizi: Problemi di ottimizzazione lineare](../esercizi/es-03-problemi-ottimizzazione-lineare.md)
+**Parte 1 · Funzioni lineari, poliedri e problemi di programmazione lineare · Capitolo 3** · [:material-file-pdf-box: Dispensa, volume 1 (PDF)](../pdf/dispensa-1-problemi-di-programmazione-lineare.pdf) · [:material-presentation: Slide](../pdf/slide-03-problemi-ottimizzazione-lineare.pdf) · [:material-pencil: Esercizi: Problemi di ottimizzazione lineare](../esercizi/es-03-problemi-ottimizzazione-lineare.md)
 
 </div>
 

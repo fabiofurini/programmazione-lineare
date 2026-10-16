@@ -7,11 +7,6 @@ hide:
 
 <div class="hero" markdown>
 
-![Lavori in corso: sito e materiale didattico sono ancora in costruzione](img/cantiere.svg){ width="560" }
-
-**Sito in costruzione.** Il materiale è ancora in lavorazione: slide e notebook arriveranno più
-avanti; il laboratorio interattivo è già aperto e crescerà.
-
 # Programmazione lineare
 
 Materiale didattico ideato e sviluppato da **[Fabio Furini](https://fabiofurini.github.io/)**, professore
@@ -174,3 +169,5 @@ Materiale didattico di **[Fabio Furini](https://fabiofurini.github.io/)** —
 [DIAG](https://www.diag.uniroma1.it/), Sapienza Università di Roma.
 
 *This website is also available in [English](https://fabiofurini.github.io/linear-programming/).*
+
+*Le slide delle lezioni, un PDF per capitolo, sono nella pagina [Materiale](materiale.md).*

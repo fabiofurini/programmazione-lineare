@@ -118,7 +118,7 @@ markdown_extensions:
 
 extra_javascript:
   - javascripts/cloudflare-analytics.js?v=bff73345a1
-  - javascripts/mathjax.js?v=ed583d755b
+  - javascripts/mathjax.js?v=345982a7a4
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
   # grafici interattivi: JSXGraph, il motore, il catalogo dei problemi, poi le ricette (gi-*.js, le aggiunge genera_sito.py)
   - https://cdn.jsdelivr.net/npm/jsxgraph@1.10.1/distrib/jsxgraphcore.js

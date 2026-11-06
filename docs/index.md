@@ -18,6 +18,7 @@ esempi svolti passo per passo ed esercizi con le soluzioni.
 
 [Comincia dai problemi di PL :material-arrow-right:](problemi-pl/index.md){ .md-button .md-button--primary }
 [Gli esercizi](esercizi/index.md){ .md-button }
+[:material-clipboard-check-outline: Mettiti alla prova](autovalutazione.md){ .md-button }
 [Prova un grafico interattivo](laboratorio/index.md){ .md-button }
 [:material-download: Scarica le dispense (PDF)](materiale.md){ .md-button }
 
@@ -115,6 +116,16 @@ dispensa: sul sito e nel PDF trovi tutto allo stesso posto.
     Esercizi per ogni capitolo, ciascuno con la soluzione svolta che si apre con un clic.
 
     [:octicons-arrow-right-24: Gli esercizi](esercizi/index.md)
+
+-   :material-clipboard-check-outline: **Autovalutazione**
+
+    ---
+
+    *Facsimile d'esame*
+
+    Un facsimile nuovo a ogni avvio: 13 domande, 33 punti, con la soluzione e il link alle dispense.
+
+    [:octicons-arrow-right-24: Mettiti alla prova](autovalutazione.md)
 
 -   :material-gesture-tap: **Laboratorio interattivo**
 

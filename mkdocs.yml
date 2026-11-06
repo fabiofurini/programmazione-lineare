@@ -98,6 +98,7 @@ extra_css:
   - stylesheets/extra.css?v=d60085bd58
   - https://cdn.jsdelivr.net/npm/jsxgraph@1.10.1/distrib/jsxgraph.css
   - stylesheets/interattivi.css?v=5d53d6f224
+  - stylesheets/quiz.css?v=9e3792b41c
 
 markdown_extensions:
   - admonition
@@ -127,6 +128,7 @@ extra_javascript:
   - javascripts/gi-cap1-5.js?v=45fda7a885
   - javascripts/gi-cap6-8.js?v=ecd6f0e348
   - javascripts/gi-cap9-14.js?v=379a5b9c26
+  - javascripts/quiz.js?v=be7fae2b85
 
 nav:
   - Home: index.md
@@ -173,6 +175,7 @@ nav:
       - "14. Analisi di sensitività": esercizi/es-14-sensitivita.md
       - "15. La geometria della programmazione lineare": esercizi/es-15-geometria.md
       - "16. Tecniche di modellazione per la programmazione lineare": esercizi/es-16-modellazione.md
+  - Quiz: autovalutazione.md
   - Catalogo:
       - catalogo/index.md
       - "Problemi LP con due variabili – Tipo A": catalogo/2-variabili-tipo-a.md

@@ -499,7 +499,7 @@ window.QUIZ_GEN = window.QUIZ_GEN || {};
   // 5. Forme equivalenti: conteggio di variabili e vincoli (cap. 5)
   G.push({
     id: "lp-g-forme-equivalenti", livello: "facile", capitolo: "05-outcomes-equivalences",
-    link: link("05-outcomes-equivalences", "535-da-un-problema-lp-generico-alla-forma-canonica-e-alla-forma-standard-di-massimo", "535-from-a-generic-lp-problem-to-the-canonical-and-standard-maximization-form"),
+    link: link("05-outcomes-equivalences", "box-10-defEquivalent"),
     genera: function (rng, lingua) {
       return tenta(function () {
         var n = ri(rng, 3, 4);
@@ -701,7 +701,7 @@ window.QUIZ_GEN = window.QUIZ_GEN || {};
   // 9. Fase 0: operazione di pivot speciale (cap. 8)
   G.push({
     id: "lp-g-fase0-pivot-speciale", livello: "facile", capitolo: "08-phase-zero",
-    link: link("08-phase-zero", "82-risoluzione-del-problema-ausiliario-del-simplesso", "82-solving-the-simplex-auxiliary-problem"),
+    link: link("08-phase-zero", "box-1-def-phase0"),
     genera: function (rng, lingua) {
       return tenta(function () {
         var n = 2, m = 3;
@@ -872,7 +872,7 @@ window.QUIZ_GEN = window.QUIZ_GEN || {};
   // 13. Operazione di pivot duale (cap. 10)
   G.push({
     id: "lp-g-pivot-duale", livello: "media", capitolo: "10-dual-simplex",
-    link: link("10-dual-simplex", "104-operazioni-di-pivot-duali", "104-dual-pivoting-operations"),
+    link: link("10-dual-simplex", "box-8-def-dualpivot"),
     genera: function (rng, lingua) {
       return tenta(function () {
         var D = dizCasuale(rng, 3, 3, -3, 3);
@@ -1990,6 +1990,492 @@ window.QUIZ_GEN = window.QUIZ_GEN || {};
           en: "Objective function: total profit $" + lin(c, ["x_1", "x_2"]) + "$ to maximize. One constraint per resource: the consumption $\\sum_j a_{ij} x_j$ (row $i$ of the table, not column) does not exceed the availability $b_i$."
         };
         return impacchetta(rng, lingua, giusta, sb, testo, spieg, { c: c, A: A, b: b });
+      });
+    }
+  });
+  // ====================================================================== copertura dettagliata (7 novembre 2026)
+  // 19 generatori nuovi; gemelli in verifica/verifica_generatori.py (sezione «copertura dettagliata»)
+  function L2(it, en) { return { it: it, en: en }; }
+  function oV(v) { v = q(v); var s = "$" + v.tex() + "$"; return opz(s, s, v.key()); }
+
+  // ---------------------------------------------------------------- 7. colonna con la regola di Bland
+  G.push({
+    id: "lp-g-bland-colonna", livello: "facile", capitolo: "07-optimality-pivot", link: link("07-optimality-pivot", "73-regole-di-pivot", "73-pivot-rules"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var N = ord(shuffle(rng, range(1, 7)).slice(0, 4)), c = {};
+        N.forEach(function (j) { c[j] = q(ri(rng, -5, 5)); });
+        var pos = N.filter(function (j) { return c[j].sgn() > 0; });
+        if (pos.length < 2) return null;
+        var giusto = pos[0], best = N.reduce(function (u, j) { return c[j].cmp(c[u]) > 0 ? j : u; }, N[0]);
+        if (best === giusto) return null;
+        var mk = function (j) { return j === 0 ? opz("Nessuna: il dizionario è ottimo", "None: the dictionary is optimal", "0") : opz("$" + xv(j) + "$", "$" + xv(j) + "$", String(j)); };
+        var neg = N.filter(function (j) { return c[j].sgn() <= 0; });
+        var sb = scegli([mk(best), mk(neg.length ? neg[0] : 0), mk(pos[pos.length - 1]), mk(0)], mk(giusto), 3);
+        if (!sb) return null;
+        var lista = N.map(function (j) { return "$\\bar c_{" + j + "} = " + c[j].tex() + "$"; }).join(", ");
+        var testo = L2("Nell'algoritmo del simplesso per un problema in forma standard di massimo, il dizionario corrente ha le variabili fuori base $" + N.map(xv).join(", ") + "$ con costi ridotti " + lista + ". Con la regola di Bland (colonna pivot: la variabile fuori base di indice minimo con $\\bar c_j > 0$), quale variabile entra in base?",
+          "In the simplex algorithm for a problem in standard maximization form, the current dictionary has nonbasic variables $" + N.map(xv).join(", ") + "$ with reduced costs " + lista + ". With Bland's rule (pivot column: the nonbasic variable of smallest index with $\\bar c_j > 0$), which variable enters the basis?");
+        var sp = L2("Candidate: le variabili con $\\bar c_j > 0$; si prende l'indice minimo, $" + xv(giusto) + "$, non quella con il costo ridotto più grande.",
+          "Candidates: the variables with $\\bar c_j > 0$; take the smallest index, $" + xv(giusto) + "$, not the one with the largest reduced cost.");
+        return impacchetta(rng, lingua, mk(giusto), sb, testo, sp, { N: N, c: N.map(function (j) { return c[j].key(); }) });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- 8. pivot speciale della Fase 0
+  G.push({
+    id: "lp-g-fase0-x0", livello: "facile", capitolo: "08-phase-zero", link: link("08-phase-zero", "box-2-def-aux"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var m = ri(rng, 3, 4), n = 2, b = [];
+        for (var i = 0; i < m; i++) b.push(ri(rng, -9, 9));
+        var mn = Math.min.apply(null, b);
+        if (mn >= 0 || b.filter(function (v) { return v === mn; }).length > 1 || b.filter(function (v) { return v < 0; }).length < 2) return null;
+        var r = b.indexOf(mn), second = b.map(function (v, k) { return k; }).filter(function (k) { return b[k] < 0 && k !== r; })[0];
+        var mk = function (val, k) { return opz("$x_0 = " + val + "$, " + "esce $" + xv(n + 1 + k) + "$", "$x_0 = " + val + "$, $" + xv(n + 1 + k) + "$ leaves", val + "|" + (n + 1 + k)); };
+        var giusta = mk(-mn, r);
+        var sb = scegli([mk(-b[second], second), mk(-mn, second), mk(Math.max.apply(null, b), b.indexOf(Math.max.apply(null, b))), mk(-mn + 1, r)], giusta, 3);
+        if (!sb) return null;
+        var bb = "$" + vett(b) + "$";
+        var testo = L2("Nella Fase $0$ per un problema in forma canonica di massimo con $n = 2$ variabili e termini noti ${\\boldsymbol b} = $ " + bb + ", il problema ausiliario $\\max\\{-x_0 : {\\boldsymbol A}{\\boldsymbol x} - x_0 {\\boldsymbol 1} \\le {\\boldsymbol b},~ {\\boldsymbol x} \\ge {\\boldsymbol 0},~ x_0 \\ge 0\\}$ ha gli scarti $x_3, \\dots, x_{" + (n + m) + "}$ in base. Nel pivot speciale entra $x_0$: quale valore prende $x_0$ e quale scarto esce?",
+          "In Phase $0$ for a problem in canonical maximization form with $n = 2$ variables and right-hand sides ${\\boldsymbol b} = $ " + bb + ", the auxiliary problem $\\max\\{-x_0 : {\\boldsymbol A}{\\boldsymbol x} - x_0 {\\boldsymbol 1} \\le {\\boldsymbol b},~ {\\boldsymbol x} \\ge {\\boldsymbol 0},~ x_0 \\ge 0\\}$ has the slacks $x_3, \\dots, x_{" + (n + m) + "}$ basic. In the special pivot $x_0$ enters: which value does $x_0$ take and which slack leaves?");
+        var sp = L2("Esce lo scarto con il termine noto più negativo, $b_{" + (r + 1) + "} = " + mn + "$, e $x_0 = " + (-mn) + "$: così tutti gli scarti diventano non negativi.",
+          "The slack with the most negative right-hand side leaves, $b_{" + (r + 1) + "} = " + mn + "$, and $x_0 = " + (-mn) + "$: so all slacks become nonnegative.");
+        return impacchetta(rng, lingua, giusta, sb, testo, sp, { b: b, n: n });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- 9. bound dalla dualità debole
+  G.push({
+    id: "lp-g-duale-bound", livello: "facile", capitolo: "09-duality", link: link("09-duality", "box-6-theo-dual-1"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var A = [[ri(rng, 1, 5), ri(rng, 1, 5)], [ri(rng, 1, 5), ri(rng, 1, 5)]], b = [ri(rng, 4, 20), ri(rng, 4, 20)], c = [ri(rng, 1, 6), ri(rng, 1, 6)];
+        var p = [ri(rng, 0, 4), ri(rng, 0, 4)];
+        var amm = A[0][0] * p[0] + A[1][0] * p[1] >= c[0] && A[0][1] * p[0] + A[1][1] * p[1] >= c[1];
+        if (!amm || p[0] + p[1] === 0) return null;
+        var ub = b[0] * p[0] + b[1] * p[1], wrong = c[0] * p[0] + c[1] * p[1];
+        var giusta = opz("$z(LP) \\le " + ub + "$", "$z(LP) \\le " + ub + "$", "le|" + ub);
+        var sb = scegli([opz("$z(LP) \\ge " + ub + "$", "$z(LP) \\ge " + ub + "$", "ge|" + ub), opz("$z(LP) \\le " + wrong + "$", "$z(LP) \\le " + wrong + "$", "le|" + wrong), opz("$z(LP) = " + ub + "$", "$z(LP) = " + ub + "$", "eq|" + ub)], giusta, 3);
+        if (!sb || wrong === ub) return null;
+        var testo = L2("Per il problema LP " + lpTex("it", "max", c, A, ["le", "le"], b) + " il cui duale è $\\min\\{{\\boldsymbol b}'{\\boldsymbol \\pi} : {\\boldsymbol A}'{\\boldsymbol \\pi} \\ge {\\boldsymbol c},~ {\\boldsymbol \\pi} \\ge {\\boldsymbol 0}\\}$, la soluzione $\\bar{\\boldsymbol \\pi} = " + vett(p) + "$ è duale ammissibile. Che cosa se ne ricava sul valore ottimo $z(LP)$?",
+          "For the LP problem " + lpTex("en", "max", c, A, ["le", "le"], b) + " whose dual is $\\min\\{{\\boldsymbol b}'{\\boldsymbol \\pi} : {\\boldsymbol A}'{\\boldsymbol \\pi} \\ge {\\boldsymbol c},~ {\\boldsymbol \\pi} \\ge {\\boldsymbol 0}\\}$, the solution $\\bar{\\boldsymbol \\pi} = " + vett(p) + "$ is dual feasible. What follows for the optimal value $z(LP)$?");
+        var sp = L2("Per la dualità debole ${\\boldsymbol c}'{\\boldsymbol x} \\le {\\boldsymbol b}'\\bar{\\boldsymbol \\pi} = " + ub + "$ per ogni ${\\boldsymbol x}$ ammissibile; l'uguaglianza non è garantita.",
+          "By weak duality ${\\boldsymbol c}'{\\boldsymbol x} \\le {\\boldsymbol b}'\\bar{\\boldsymbol \\pi} = " + ub + "$ for every feasible ${\\boldsymbol x}$; equality is not guaranteed.");
+        return impacchetta(rng, lingua, giusta, sb, testo, sp, { A: A, b: b, c: c, p: p });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- 10. riga e colonna del pivot duale
+  var DS_PRE = L2("Nell'algoritmo del simplesso duale per un problema in forma standard di massimo, con dizionario $x_i = \\bar b_i - \\sum_j \\bar a_{ij} x_j$, base duale ammissibile ($\\bar c_j \\le 0$) e regola di Bland (riga: indice minimo con $\\bar b_i < 0$; colonna: rapporto minimo $\\bar c_j / \\bar a_{rj}$ fra i $j$ con $\\bar a_{rj} < 0$, a parità indice minimo), ",
+    "In the dual simplex algorithm for a problem in standard maximization form, with dictionary $x_i = \\bar b_i - \\sum_j \\bar a_{ij} x_j$, a dual feasible basis ($\\bar c_j \\le 0$) and Bland's rule (row: smallest index with $\\bar b_i < 0$; column: minimum ratio $\\bar c_j / \\bar a_{rj}$ over $j$ with $\\bar a_{rj} < 0$, ties by smallest index), ");
+  G.push({
+    id: "lp-g-duale-riga", livello: "facile", capitolo: "10-dual-simplex", link: link("10-dual-simplex", "1041-determinare-la-riga-pivot", "1041-determining-the-pivot-row"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var B = ord(shuffle(rng, range(1, 7)).slice(0, 3)), b = {};
+        B.forEach(function (i) { b[i] = q(ri(rng, -6, 6)); });
+        var neg = B.filter(function (i) { return b[i].sgn() < 0; });
+        if (neg.length < 2) return null;
+        var giusto = neg[0], piuNeg = neg.reduce(function (u, i) { return b[i].cmp(b[u]) < 0 ? i : u; }, neg[0]);
+        if (piuNeg === giusto) return null;
+        var mk = function (i) { return i === 0 ? opz("Nessuna: la base è ottima", "None: the basis is optimal", "0") : opz("$" + xv(i) + "$", "$" + xv(i) + "$", String(i)); };
+        var pos = B.filter(function (i) { return b[i].sgn() >= 0; });
+        var sb = scegli([mk(piuNeg), mk(pos.length ? pos[0] : 0), mk(0), mk(neg[neg.length - 1])], mk(giusto), 3);
+        if (!sb) return null;
+        var lista = B.map(function (i) { return "$\\bar b_{" + i + "} = " + b[i].tex() + "$"; }).join(", ");
+        var testo = L2(DS_PRE.it + "le variabili in base $" + B.map(xv).join(", ") + "$ hanno valori " + lista + ". Quale variabile esce dalla base?",
+          DS_PRE.en + "the basic variables $" + B.map(xv).join(", ") + "$ have values " + lista + ". Which variable leaves the basis?");
+        var sp = L2("Candidate le variabili con $\\bar b_i < 0$; esce quella di indice minimo, $" + xv(giusto) + "$, non la più negativa.",
+          "Candidates are the variables with $\\bar b_i < 0$; the one with smallest index leaves, $" + xv(giusto) + "$, not the most negative.");
+        return impacchetta(rng, lingua, mk(giusto), sb, testo, sp, { B: B, b: B.map(function (i) { return b[i].key(); }) });
+      });
+    }
+  });
+  G.push({
+    id: "lp-g-duale-colonna", livello: "facile", capitolo: "10-dual-simplex", link: link("10-dual-simplex", "1042-determinare-la-colonna-pivot", "1042-determining-the-pivot-column"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var N = ord(shuffle(rng, range(1, 7)).slice(0, 4)), a = {}, c = {};
+        N.forEach(function (j) { a[j] = q(ri(rng, -4, 3)); c[j] = q(-ri(rng, 0, 6)); });
+        var cand = N.filter(function (j) { return a[j].sgn() < 0; });
+        var giusto = 0, s = null;
+        cand.forEach(function (j) { var v = c[j].div(a[j]); if (s === null || v.cmp(s) < 0) { s = v; giusto = j; } });
+        if (cand.length < 2) return null;
+        var mk = function (j) { return j === 0 ? opz("Nessuna: il problema è inammissibile", "None: the problem is infeasible", "0") : opz("$" + xv(j) + "$", "$" + xv(j) + "$", String(j)); };
+        var maxNeg = cand.reduce(function (u, j) { return a[j].cmp(a[u]) < 0 ? j : u; }, cand[0]);
+        var nonCand = N.filter(function (j) { return a[j].sgn() >= 0; });
+        var sb = scegli([mk(maxNeg), mk(nonCand.length ? nonCand[0] : 0), mk(0), mk(cand[cand.length - 1]), mk(cand[0])], mk(giusto), 3);
+        if (!sb) return null;
+        var lista = N.map(function (j) { return "$\\bar a_{r" + j + "} = " + a[j].tex() + "$, $\\bar c_{" + j + "} = " + c[j].tex() + "$"; }).join("; ");
+        var testo = L2(DS_PRE.it + "la riga pivot $x_r$ ha, per le variabili fuori base: " + lista + ". Quale variabile entra in base?",
+          DS_PRE.en + "the pivot row $x_r$ has, for the nonbasic variables: " + lista + ". Which variable enters the basis?");
+        var sp = L2("Contano solo le colonne con $\\bar a_{rj} < 0$; il rapporto minimo $\\bar c_j / \\bar a_{rj} = " + s.tex() + "$ si ha per $" + xv(giusto) + "$.",
+          "Only columns with $\\bar a_{rj} < 0$ count; the minimum ratio $\\bar c_j / \\bar a_{rj} = " + s.tex() + "$ is attained by $" + xv(giusto) + "$.");
+        return impacchetta(rng, lingua, mk(giusto), sb, testo, sp, { N: N, a: N.map(function (j) { return a[j].key(); }), c: N.map(function (j) { return c[j].key(); }) });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- 16. modellazione: min-max, rapporti, scorte
+  G.push({
+    id: "lp-g-mod-minmax", livello: "facile", capitolo: "16-modelling", link: link("16-modelling", "1661-funzioni-obiettivo-min-max-e-max-min", "1661-min-max-and-max-min-objective-functions"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var f = [[ri(rng, 1, 5), ri(rng, -3, 4)], [ri(rng, -3, 4), ri(rng, 1, 5)]];
+        if (!righeBuone(f)) return null;
+        var mm = rng() < 0.5;   // true: min max; false: max min
+        var e1 = lin(f[0], xs(2)), e2 = lin(f[1], xs(2));
+        var mk = function (senso, verso, v) {
+          var s = "$\\" + senso + "\\ w$, $w " + verso + " " + e1 + "$, $w " + verso + " " + e2 + "$";
+          return opz(s, s, v);
+        };
+        var giusta = mm ? mk("min", "\\ge", "min-ge") : mk("max", "\\le", "max-le");
+        var sb = mm ? [mk("min", "\\le", "min-le"), mk("max", "\\ge", "max-ge"), mk("max", "\\le", "max-le")] : [mk("max", "\\ge", "max-ge"), mk("min", "\\le", "min-le"), mk("min", "\\ge", "min-ge")];
+        var obj = mm ? "\\min\\ \\max\\{" + e1 + ",~ " + e2 + "\\}" : "\\max\\ \\min\\{" + e1 + ",~ " + e2 + "\\}";
+        var testo = L2("In un modello LP con ${\\boldsymbol x} \\ge {\\boldsymbol 0}$ e altri vincoli lineari, la funzione obiettivo è $" + obj + "$. Con una nuova variabile libera $w$, quale formulazione lineare è equivalente?",
+          "In an LP model with ${\\boldsymbol x} \\ge {\\boldsymbol 0}$ and other linear constraints, the objective is $" + obj + "$. With a new free variable $w$, which linear formulation is equivalent?");
+        var sp = L2(mm ? "$w$ non deve essere minore di nessuna delle due funzioni; minimizzandolo vale il loro massimo." : "$w$ non deve superare nessuna delle due funzioni; massimizzandolo vale il loro minimo.",
+          mm ? "$w$ must not be less than either function; minimizing it gives their maximum." : "$w$ must not exceed either function; maximizing it gives their minimum.");
+        return impacchetta(rng, lingua, giusta, sb, testo, sp, { mm: mm ? 1 : 0, f: f });
+      });
+    }
+  });
+  G.push({
+    id: "lp-g-mod-rapporto", livello: "facile", capitolo: "16-modelling", link: link("16-modelling", "1663-rapporti-e-percentuali", "1663-ratios-and-percentages"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var n = 3, k = ri(rng, 1, 3), g = new Q(ri(rng, 1, 4), 10);
+        var corr = [], d1 = [], d2 = [];
+        for (var j = 1; j <= n; j++) { var aj = q(j === k ? 1 : 0); corr.push(aj.sub(g)); d1.push(aj.add(g)); d2.push(aj.mul(g).sub(1)); }
+        var d3 = []; for (var j2 = 1; j2 <= n; j2++) d3.push(q(j2 === k ? 1 : 0).sub(j2 === k ? g : q(0)));
+        var mk = function (v, verso) { var s = "$" + lin(v, xs(n)) + " " + verso + " 0$"; return opz(s, s, chiave(v) + "|" + verso); };
+        var giusta = mk(corr, "\\le");
+        var sb = scegli([mk(d1, "\\le"), mk(d3, "\\le"), mk(corr, "\\ge"), mk(d2, "\\le")], giusta, 3);
+        if (!sb) return null;
+        var pct = g.mul(100).tex();
+        var testo = L2("In un modello di miscelazione con quantità $x_1, x_2, x_3 \\ge 0$ e $x_1 + x_2 + x_3 > 0$, il materiale $" + k + "$ deve essere al più il $" + pct + "\\%$ del totale: $\\frac{x_{" + k + "}}{x_1 + x_2 + x_3} \\le " + g.tex() + "$. Quale vincolo lineare è equivalente?",
+          "In a blending model with quantities $x_1, x_2, x_3 \\ge 0$ and $x_1 + x_2 + x_3 > 0$, material $" + k + "$ must be at most $" + pct + "\\%$ of the total: $\\frac{x_{" + k + "}}{x_1 + x_2 + x_3} \\le " + g.tex() + "$. Which linear constraint is equivalent?");
+        var sp = L2("Si moltiplica per il denominatore positivo: $x_{" + k + "} - " + g.tex() + "(x_1 + x_2 + x_3) \\le 0$.",
+          "Multiply by the positive denominator: $x_{" + k + "} - " + g.tex() + "(x_1 + x_2 + x_3) \\le 0$.");
+        return impacchetta(rng, lingua, giusta, sb, testo, sp, { k: k, g: g.key() });
+      });
+    }
+  });
+  G.push({
+    id: "lp-g-mod-scorte", livello: "facile", capitolo: "16-modelling", link: link("16-modelling", "165-pianificazione-multi-periodo", "165-multi-period-planning"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var T = 3, d = [], x = [], y = [], y0 = ri(rng, 0, 10), cur = y0, sbagliato = [], cum = [], cc = 0;
+        for (var t = 0; t < T; t++) {
+          d.push(5 * ri(rng, 2, 8)); x.push(5 * ri(rng, 1, 9));
+          cur = cur + x[t] - d[t]; y.push(cur);
+          sbagliato.push(x[t] - d[t]); cc += x[t]; cum.push(cc);
+        }
+        if (y.some(function (v) { return v < 0; })) return null;
+        var mk = function (v) { var s = "$" + vett(v) + "$"; return opz(s, s, v.join(",")); };
+        var alt = y.map(function (v, t) { return v + d[t]; });
+        var sb = scegli([mk(sbagliato), mk(cum), mk(alt), mk(y.map(function (v) { return v - y0; }))], mk(y), 3);
+        if (!sb) return null;
+        var testo = L2("In un modello multi-periodo con $3$ periodi, $x_t$ è la produzione e $y_t$ la scorta a fine periodo $t$, con scorta iniziale $y_0 = " + y0 + "$ e bilancio $y_{t-1} + x_t = d_t + y_t$. Con domande $d = " + vett(d) + "$ e produzioni $x = " + vett(x) + "$, quanto valgono $(y_1, y_2, y_3)$?",
+          "In a multi-period model with $3$ periods, $x_t$ is the production and $y_t$ the inventory at the end of period $t$, with initial inventory $y_0 = " + y0 + "$ and balance $y_{t-1} + x_t = d_t + y_t$. With demands $d = " + vett(d) + "$ and productions $x = " + vett(x) + "$, what are $(y_1, y_2, y_3)$?");
+        var sp = L2("$y_t = y_{t-1} + x_t - d_t$, partendo da $y_0 = " + y0 + "$: si ottiene $" + vett(y) + "$.",
+          "$y_t = y_{t-1} + x_t - d_t$, starting from $y_0 = " + y0 + "$: we get $" + vett(y) + "$.");
+        return impacchetta(rng, lingua, mk(y), sb, testo, sp, { d: d, x: x, y0: y0 });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- 13. passo duale del metodo primale-duale
+  G.push({
+    id: "lp-g-pd-theta", livello: "facile", capitolo: "13-primal-dual", link: link("13-primal-dual", "133-il-passo-duale", "133-the-dual-step"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var J = [4, 5, 6], s = [], ay = [];
+        J.forEach(function () { s.push(ri(rng, 1, 9)); ay.push(ri(rng, -3, 3)); });
+        var cand = J.filter(function (j, k) { return ay[k] > 0; });
+        if (cand.length < 2) return null;
+        var th = null, arg = null;
+        J.forEach(function (j, k) { if (ay[k] > 0) { var v = new Q(s[k], ay[k]); if (th === null || v.cmp(th) < 0) { th = v; arg = j; } } });
+        var maxR = null; J.forEach(function (j, k) { if (ay[k] > 0) { var v = new Q(s[k], ay[k]); if (maxR === null || v.cmp(maxR) > 0) maxR = v; } });
+        var all = null; J.forEach(function (j, k) { if (ay[k] !== 0) { var v = new Q(s[k], Math.abs(ay[k])); if (all === null || v.cmp(all) < 0) all = v; } });
+        var sb = scegli([oV(maxR), oV(all), oV(q(Math.min.apply(null, s))), oV(th.mul(2))], oV(th), 3);
+        if (!sb) return null;
+        var lista = J.map(function (j, k) { return "$s_{" + j + "} = " + s[k] + "$, ${\\boldsymbol A}_{" + j + "}'{\\boldsymbol y} = " + ay[k] + "$"; }).join("; ");
+        var testo = L2("Nel metodo primale-duale per $\\min\\{{\\boldsymbol c}'{\\boldsymbol x} : {\\boldsymbol A}{\\boldsymbol x} = {\\boldsymbol b},~ {\\boldsymbol x} \\ge {\\boldsymbol 0}\\}$, la soluzione duale ammissibile ${\\boldsymbol \\pi}$ si aggiorna in ${\\boldsymbol \\pi} + \\theta{\\boldsymbol y}$ con il massimo $\\theta$ che conserva ${\\boldsymbol A}_j'{\\boldsymbol \\pi} \\le c_j$. Le variabili fuori dall'insieme ammesso hanno scarti duali $s_j = c_j - {\\boldsymbol A}_j'{\\boldsymbol \\pi}$ e valori: " + lista + ". Quanto vale $\\theta$?",
+          "In the primal-dual method for $\\min\\{{\\boldsymbol c}'{\\boldsymbol x} : {\\boldsymbol A}{\\boldsymbol x} = {\\boldsymbol b},~ {\\boldsymbol x} \\ge {\\boldsymbol 0}\\}$, the dual feasible solution ${\\boldsymbol \\pi}$ is updated to ${\\boldsymbol \\pi} + \\theta{\\boldsymbol y}$ with the largest $\\theta$ keeping ${\\boldsymbol A}_j'{\\boldsymbol \\pi} \\le c_j$. The variables outside the admitted set have dual slacks $s_j = c_j - {\\boldsymbol A}_j'{\\boldsymbol \\pi}$ and values: " + lista + ". What is $\\theta$?");
+        var sp = L2("Limitano $\\theta$ solo le $j$ con ${\\boldsymbol A}_j'{\\boldsymbol y} > 0$: $\\theta = \\min s_j / {\\boldsymbol A}_j'{\\boldsymbol y} = " + th.tex() + "$, per $j = " + arg + "$.",
+          "Only $j$ with ${\\boldsymbol A}_j'{\\boldsymbol y} > 0$ limit $\\theta$: $\\theta = \\min s_j / {\\boldsymbol A}_j'{\\boldsymbol y} = " + th.tex() + "$, for $j = " + arg + "$.");
+        return impacchetta(rng, lingua, oV(th), sb, testo, sp, { s: s, ay: ay });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- 14. nuova variabile
+  G.push({
+    id: "lp-g-sens-nuova-var", livello: "facile", capitolo: "14-sensitivity", link: link("14-sensitivity", "144-aggiunta-di-una-nuova-variabile", "144-adding-a-new-variable"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var p = [new Q(ri(rng, 0, 6), pick(rng, [1, 2])), new Q(ri(rng, 0, 6), pick(rng, [1, 2]))], Acol = [ri(rng, 1, 4), ri(rng, 1, 4)], cs = ri(rng, 1, 12);
+        var rc = q(cs).sub(p[0].mul(Acol[0])).sub(p[1].mul(Acol[1]));
+        if (rc.isZero()) return null;
+        var esito = rc.sgn() < 0 ? "ott" : "pivot";
+        var mk = function (v, e) {
+          return opz("$\\bar c_\\star = " + v.tex() + "$: " + (e === "ott" ? "la base resta ottima" : "la base non è più ottima"),
+                     "$\\bar c_\\star = " + v.tex() + "$: " + (e === "ott" ? "the basis stays optimal" : "the basis is no longer optimal"), v.key() + "|" + e);
+        };
+        var giusta = mk(rc, esito), alt = q(cs).add(p[0].mul(Acol[0])).add(p[1].mul(Acol[1])).neg();
+        var sb = scegli([mk(rc, esito === "ott" ? "pivot" : "ott"), mk(rc.neg(), rc.neg().sgn() < 0 ? "ott" : "pivot"), mk(alt, alt.sgn() < 0 ? "ott" : "pivot"), mk(q(cs), "pivot")], giusta, 3);
+        if (!sb) return null;
+        var testo = L2("Un problema in forma standard di massimo ha base ottima con prezzi ombra ${\\boldsymbol \\pi} = " + vett(p) + "$. Si aggiunge una variabile $x_\\star \\ge 0$ con costo $c_\\star = " + cs + "$ e colonna ${\\boldsymbol A}_\\star = " + vett(Acol) + "$. Quanto vale il suo costo ridotto $\\bar c_\\star = c_\\star - {\\boldsymbol \\pi}{\\boldsymbol A}_\\star$ e che cosa si conclude?",
+          "A problem in standard maximization form has an optimal basis with shadow prices ${\\boldsymbol \\pi} = " + vett(p) + "$. A variable $x_\\star \\ge 0$ with cost $c_\\star = " + cs + "$ and column ${\\boldsymbol A}_\\star = " + vett(Acol) + "$ is added. What is its reduced cost $\\bar c_\\star = c_\\star - {\\boldsymbol \\pi}{\\boldsymbol A}_\\star$ and what is concluded?");
+        var sp = L2("$\\bar c_\\star = " + cs + " - (" + p[0].tex() + " \\cdot " + Acol[0] + " + " + p[1].tex() + " \\cdot " + Acol[1] + ") = " + rc.tex() + "$; la base resta ottima se e solo se $\\bar c_\\star \\le 0$.",
+          "$\\bar c_\\star = " + cs + " - (" + p[0].tex() + " \\cdot " + Acol[0] + " + " + p[1].tex() + " \\cdot " + Acol[1] + ") = " + rc.tex() + "$; the basis stays optimal if and only if $\\bar c_\\star \\le 0$.");
+        return impacchetta(rng, lingua, giusta, sb, testo, sp, { p: p.map(function (v) { return v.key(); }), A: Acol, cs: cs });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- media: pivot di Bland su un dizionario
+  G.push({
+    id: "lp-g-pivot-completo", livello: "media", capitolo: "07-optimality-pivot", link: link("07-optimality-pivot", "box-1-theo-pivot-1"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var L = lpGentile(rng, 2, 2, { den: 6, minPivot: 2 }); if (!L) return null;
+        var D = L.ris.storia[0].D, p = L.ris.storia[0].p, r = L.ris.storia[0].r, E = pivot(D, p, r);
+        var mk = function (pp, rr, z) { var s = L2("entra $" + xv(pp) + "$, esce $" + xv(rr) + "$, nuovo $\\bar z = " + z.tex() + "$", "$" + xv(pp) + "$ enters, $" + xv(rr) + "$ leaves, new $\\bar z = " + z.tex() + "$"); return opz(s.it, s.en, pp + "|" + rr + "|" + z.key()); };
+        var giusta = mk(p, r, E.z);
+        var altri = D.B.filter(function (i) { return i !== r; });
+        var cand = [mk(p, r, D.z.add(D.c[p])), altri.length ? mk(p, altri[0], E.z) : null, mk(p, r, D.z.sub(D.c[p].mul(E.b[p])))];
+        D.N.forEach(function (j) { if (j !== p) cand.push(mk(j, r, E.z)); });
+        var sb = scegli(cand, giusta, 3);
+        if (!sb) return null;
+        var testo = L2("Nell'algoritmo del simplesso per un problema in forma standard di massimo, il dizionario ammissibile corrente è " + dizTex(D) + " (nella riga di $x_i$ il coefficiente di $x_j$ è $-\\bar a_{ij}$). Con la regola di Bland (colonna: indice minimo con $\\bar c_j > 0$; riga: rapporto minimo $\\bar b_i / \\bar a_{ip}$ con $\\bar a_{ip} > 0$, a parità indice minimo), quale pivot si esegue e quale valore $\\bar z$ si ottiene?",
+          "In the simplex algorithm for a problem in standard maximization form, the current feasible dictionary is " + dizTex(D) + " (in the row of $x_i$ the coefficient of $x_j$ is $-\\bar a_{ij}$). With Bland's rule (column: smallest index with $\\bar c_j > 0$; row: minimum ratio $\\bar b_i / \\bar a_{ip}$ with $\\bar a_{ip} > 0$, ties by smallest index), which pivot is performed and which value $\\bar z$ is obtained?");
+        var sp = L2("Entra $" + xv(p) + "$; il test dei rapporti dà $t_m = " + L.ris.storia[0].t.tex() + "$ sulla riga di $" + xv(r) + "$; $\\bar z$ passa a $" + D.z.tex() + " + " + D.c[p].tex() + " \\cdot " + L.ris.storia[0].t.tex() + " = " + E.z.tex() + "$.",
+          "$" + xv(p) + "$ enters; the ratio test gives $t_m = " + L.ris.storia[0].t.tex() + "$ on the row of $" + xv(r) + "$; $\\bar z$ becomes $" + D.z.tex() + " + " + D.c[p].tex() + " \\cdot " + L.ris.storia[0].t.tex() + " = " + E.z.tex() + "$.");
+        return impacchetta(rng, lingua, giusta, sb, testo, sp, { D: dizDati(D) });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- media: valori assoluti (mediana)
+  G.push({
+    id: "lp-g-mod-assoluti", livello: "media", capitolo: "16-modelling", link: link("16-modelling", "1662-valori-assoluti", "1662-absolute-values"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var a = ord([ri(rng, 0, 20), ri(rng, 0, 20), ri(rng, 0, 20)]);
+        if (a[0] === a[1] || a[1] === a[2]) return null;
+        var opt = a[2] - a[0], media = (a[0] + a[1] + a[2]) / 3;
+        if (media !== Math.floor(media)) return null;
+        var fm = Math.abs(media - a[0]) + Math.abs(media - a[1]) + Math.abs(media - a[2]);
+        var sb = scegli([oV(fm), oV(q(0)), oV(q(a[2] - a[1])), oV(q(opt + a[1] - a[0]))], oV(q(opt)), 3);
+        if (!sb) return null;
+        var testo = L2("Si vuole $\\min\\ |x - " + a[0] + "| + |x - " + a[1] + "| + |x - " + a[2] + "|$ con $x$ reale, linearizzando ogni termine con $w_i \\ge x - a_i$, $w_i \\ge a_i - x$ e $\\min\\ w_1 + w_2 + w_3$. Qual è il valore ottimo del modello LP?",
+          "We want $\\min\\ |x - " + a[0] + "| + |x - " + a[1] + "| + |x - " + a[2] + "|$ with real $x$, linearizing each term with $w_i \\ge x - a_i$, $w_i \\ge a_i - x$ and $\\min\\ w_1 + w_2 + w_3$. What is the optimal value of the LP model?");
+        var sp = L2("All'ottimo $w_i = |x - a_i|$; la somma delle distanze è minima nella mediana $x = " + a[1] + "$: valore $" + opt + "$ (nella media $x = " + media + "$ vale $" + fm + "$).",
+          "At the optimum $w_i = |x - a_i|$; the sum of distances is minimal at the median $x = " + a[1] + "$: value $" + opt + "$ (at the mean $x = " + media + "$ it is $" + fm + "$).");
+        return impacchetta(rng, lingua, oV(q(opt)), sb, testo, sp, { a: a });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- media: un pivot duale completo
+  G.push({
+    id: "lp-g-duale-pivot-z", livello: "media", capitolo: "10-dual-simplex", link: link("10-dual-simplex", "1045-aggiornamento-del-dizionario", "1045-update-of-the-dictionary"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var A = [[-ri(rng, 1, 4), -ri(rng, 1, 4)], [ri(rng, -3, 3), -ri(rng, 1, 4)]], b = [-ri(rng, 2, 12), ri(rng, -8, 8)], c = [-ri(rng, 1, 6), -ri(rng, 1, 6)];
+        if (!righeBuone(A)) return null;
+        var D = dizIniziale(A, b, c), ps = passoDuale(D);
+        if (!ps || ps.p === null) return null;
+        var E = pivot(D, ps.p, ps.r);
+        if (maxDen(E) > 6) return null;
+        var mk = function (pp, z) { var s = L2("entra $" + xv(pp) + "$, nuovo $\\bar z = " + z.tex() + "$", "$" + xv(pp) + "$ enters, new $\\bar z = " + z.tex() + "$"); return opz(s.it, s.en, pp + "|" + z.key()); };
+        var giusta = mk(ps.p, E.z), other = D.N.filter(function (j) { return j !== ps.p; })[0];
+        var cand = [mk(other, E.z), mk(ps.p, E.z.neg()), mk(ps.p, D.z.sub(ps.s.mul(D.b[ps.r]).neg()))];
+        var Eo = D.a[ps.r][other].sgn() !== 0 ? pivot(D, other, ps.r) : null;
+        if (Eo) cand.unshift(mk(other, Eo.z));
+        var sb = scegli(cand, giusta, 3);
+        if (!sb) return null;
+        var testo = L2(DS_PRE.it + "si parte dal dizionario " + dizTex(D) + ". Quale variabile entra al primo pivot duale e quale valore $\\bar z$ si ottiene?",
+          DS_EN_PRE() + "we start from the dictionary " + dizTex(D) + ". Which variable enters at the first dual pivot and which value $\\bar z$ is obtained?");
+        var sp = L2("Esce $" + xv(ps.r) + "$ (indice minimo con $\\bar b_i < 0$); il rapporto minimo $\\bar c_j / \\bar a_{rj} = " + ps.s.tex() + "$ fa entrare $" + xv(ps.p) + "$; il nuovo valore è $\\bar z = " + E.z.tex() + "$.",
+          "$" + xv(ps.r) + "$ leaves (smallest index with $\\bar b_i < 0$); the minimum ratio $\\bar c_j / \\bar a_{rj} = " + ps.s.tex() + "$ brings in $" + xv(ps.p) + "$; the new value is $\\bar z = " + E.z.tex() + "$.");
+        return impacchetta(rng, lingua, giusta, sb, testo, sp, { D: dizDati(D) });
+      });
+    }
+  });
+  function DS_EN_PRE() { return DS_PRE.en; }
+
+  // ---------------------------------------------------------------- complessa: problema LP con un vincolo >= (metodo grafico)
+  function vertici3(c, R) {    // R: [a1, a2, b] per a1 x1 + a2 x2 <= b (non negatività incluse)
+    var V = [];
+    for (var i = 0; i < R.length; i++) for (var k = i + 1; k < R.length; k++) {
+      var p = R[i], s = R[k], det = p[0] * s[1] - p[1] * s[0];
+      if (det === 0) continue;
+      var x1 = new Q(p[2] * s[1] - p[1] * s[2], det), x2 = new Q(p[0] * s[2] - p[2] * s[0], det);
+      if (R.every(function (r) { return q(r[0]).mul(x1).add(q(r[1]).mul(x2)).cmp(r[2]) <= 0; }) &&
+          !V.some(function (v) { return v[0].eq(x1) && v[1].eq(x2); })) V.push([x1, x2]);
+    }
+    return V;
+  }
+  G.push({
+    id: "lp-g-grafico-misto", livello: "complessa", capitolo: "04-lp-problems", link: link("04-lp-problems", "423-metodo-grafico", "423-graphical-solution-method"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var c = [ri(rng, 1, 6), ri(rng, 1, 6)];
+        var A = [[ri(rng, 1, 4), ri(rng, 1, 4)], [ri(rng, 1, 4), ri(rng, 1, 4)], [ri(rng, 1, 3), ri(rng, 1, 3)]];
+        var b = [ri(rng, 6, 18), ri(rng, 6, 18), ri(rng, 2, 6)];
+        var R = [[A[0][0], A[0][1], b[0]], [A[1][0], A[1][1], b[1]], [-A[2][0], -A[2][1], -b[2]], [-1, 0, 0], [0, -1, 0]];
+        var V = vertici3(c, R);
+        if (V.length < 3) return null;
+        var val = function (v) { return q(c[0]).mul(v[0]).add(q(c[1]).mul(v[1])); };
+        V.sort(function (u, w) { return val(w).cmp(val(u)); });
+        if (val(V[0]).eq(val(V[1]))) return null;
+        if (V.some(function (v) { return v[0].d > 4 || v[1].d > 4; })) return null;
+        // distrattore: ottimo senza il vincolo >=
+        var V2 = vertici3(c, [R[0], R[1], R[3], R[4]]); V2.sort(function (u, w) { return val(w).cmp(val(u)); });
+        var mk = function (v) { var s = "$" + vett(v) + "$, $z = " + val(v).tex() + "$"; return opz(s, s, v[0].key() + "," + v[1].key()); };
+        var cand = [V2.length ? mk(V2[0]) : null, mk(V[1]), mk(V[V.length - 1]), V.length > 2 ? mk(V[2]) : null];
+        var sb = scegli(cand, mk(V[0]), 3);
+        if (!sb) return null;
+        var testo = L2("Si risolva con il metodo grafico (o enumerando i vertici) il problema LP " + lpTex("it", "max", c, A, ["le", "le", "ge"], b) + ". Quali sono la soluzione ottima e il valore ottimo?",
+          "Solve with the graphical method (or by enumerating the vertices) the LP problem " + lpTex("en", "max", c, A, ["le", "le", "ge"], b) + ". What are the optimal solution and the optimal value?");
+        var sp = L2("I vertici della regione sono $" + V.map(function (v) { return vett(v); }).join("$, $") + "$; il valore massimo è $" + val(V[0]).tex() + "$. Il vincolo $\\ge$ esclude l'origine.",
+          "The vertices of the region are $" + V.map(function (v) { return vett(v); }).join("$, $") + "$; the largest value is $" + val(V[0]).tex() + "$. The $\\ge$ constraint excludes the origin.");
+        return impacchetta(rng, lingua, mk(V[0]), sb, testo, sp, { c: c, A: A, b: b });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- complessa: un'iterazione del simplesso rivisto
+  G.push({
+    id: "lp-g-rivisto-iterazione", livello: "complessa", capitolo: "11-revised-simplex", link: link("11-revised-simplex", "112-pseudocodice-dellalgoritmo-del-simplesso-rivisto", "112-pseudo-code-of-the-revised-simplex-algorithm"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var L = lpGentile(rng, 2, 2, { den: 6, minPivot: 2 }); if (!L) return null;
+        var st = L.ris.storia[1]; if (!st) return null;
+        var D = st.D, p = st.p, r = st.r, t = st.t, E = pivot(D, p, r);
+        var Acompl = [[L.A[0][0], L.A[0][1], 1, 0], [L.A[1][0], L.A[1][1], 0, 1]], call = [L.c[0], L.c[1], 0, 0];
+        var mk = function (pp, rr, tt) { var s = L2("entra $" + xv(pp) + "$, esce $" + xv(rr) + "$, passo $t_m = " + tt.tex() + "$", "$" + xv(pp) + "$ enters, $" + xv(rr) + "$ leaves, step $t_m = " + tt.tex() + "$"); return opz(s.it, s.en, pp + "|" + rr + "|" + tt.key()); };
+        var altri = D.B.filter(function (i) { return i !== r; });
+        var cand = [altri.length ? mk(p, altri[0], t) : null, mk(p, r, t.mul(2)), mk(p, r, D.b[r])];
+        D.N.forEach(function (j) { if (j !== p) cand.push(mk(j, r, t)); });
+        var sb = scegli(cand, mk(p, r, t), 3);
+        if (!sb) return null;
+        var testo = L2("Simplesso rivisto (regola di Bland) per il problema in forma standard di massimo con ${\\boldsymbol A} = " + matrice(Acompl) + "$, ${\\boldsymbol b} = " + colonna(L.b) + "$, ${\\boldsymbol c} = " + vett(call) + "$. La base corrente è $\\pazocal{B} = " + insieme(D.B) + "$. Si calcolano ${\\boldsymbol y}$ con ${\\boldsymbol y}'{\\boldsymbol A}_{\\pazocal{B}} = {\\boldsymbol c}_{\\pazocal{B}}'$, i costi ridotti $\\bar c_j = c_j - {\\boldsymbol y}'{\\boldsymbol A}_j$, la colonna ${\\boldsymbol d}$ con ${\\boldsymbol A}_{\\pazocal{B}}{\\boldsymbol d} = {\\boldsymbol A}_p$ e il test dei rapporti. Quale pivot si esegue?",
+          "Revised simplex (Bland's rule) for the problem in standard maximization form with ${\\boldsymbol A} = " + matrice(Acompl) + "$, ${\\boldsymbol b} = " + colonna(L.b) + "$, ${\\boldsymbol c} = " + vett(call) + "$. The current basis is $\\pazocal{B} = " + insieme(D.B) + "$. Compute ${\\boldsymbol y}$ with ${\\boldsymbol y}'{\\boldsymbol A}_{\\pazocal{B}} = {\\boldsymbol c}_{\\pazocal{B}}'$, the reduced costs $\\bar c_j = c_j - {\\boldsymbol y}'{\\boldsymbol A}_j$, the column ${\\boldsymbol d}$ with ${\\boldsymbol A}_{\\pazocal{B}}{\\boldsymbol d} = {\\boldsymbol A}_p$ and the ratio test. Which pivot is performed?");
+        var sp = L2("Con questa base la prima variabile fuori base con $\\bar c_j > 0$ è $" + xv(p) + "$; il rapporto minimo $\\bar b_i / d_i$ è $" + t.tex() + "$ sulla riga di $" + xv(r) + "$; dopo il pivot $\\bar z = " + E.z.tex() + "$.",
+          "With this basis the first nonbasic variable with $\\bar c_j > 0$ is $" + xv(p) + "$; the minimum ratio $\\bar b_i / d_i$ is $" + t.tex() + "$ on the row of $" + xv(r) + "$; after the pivot $\\bar z = " + E.z.tex() + "$.");
+        return impacchetta(rng, lingua, mk(p, r, t), sb, testo, sp, { A: Acompl, b: L.b, c: call, B: D.B });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- complessa: iterazione primale-duale (aggiornamento di pi)
+  G.push({
+    id: "lp-g-pd-aggiorna", livello: "complessa", capitolo: "13-primal-dual", link: link("13-primal-dual", "box-2-def-rp"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var A = [[ri(rng, 1, 3), ri(rng, 0, 3), ri(rng, 0, 3), 1], [ri(rng, 0, 3), ri(rng, 1, 3), ri(rng, 0, 3), 1]];
+        var pi = [ri(rng, 0, 2), ri(rng, 0, 2)], y = [pick(rng, [1, -1]), pick(rng, [1, 0, -1])];
+        var c = [], s = [];
+        for (var j = 0; j < 4; j++) { var at = A[0][j] * pi[0] + A[1][j] * pi[1]; var sj = ri(rng, 0, 5); c.push(at + sj); s.push(sj); }
+        var J = [0, 1, 2, 3].filter(function (j) { return s[j] === 0; });
+        if (J.length < 1 || J.length > 2) return null;
+        if (J.some(function (j) { return A[0][j] * y[0] + A[1][j] * y[1] > 0; })) return null;   // y ammissibile per il duale ristretto
+        var th = null;
+        for (j = 0; j < 4; j++) { var ay = A[0][j] * y[0] + A[1][j] * y[1]; if (s[j] > 0 && ay > 0) { var v = new Q(s[j], ay); if (th === null || v.cmp(th) < 0) th = v; } }
+        if (th === null) return null;
+        var np = [q(pi[0]).add(th.mul(y[0])), q(pi[1]).add(th.mul(y[1]))];
+        var nJ = [0, 1, 2, 3].filter(function (k) { return q(c[k]).sub(np[0].mul(A[0][k])).sub(np[1].mul(A[1][k])).isZero(); });
+        var mk = function (v, JJ) { var s2 = "${\\boldsymbol \\pi} = " + vett(v) + "$, $\\pazocal{J} = " + insieme(JJ.map(function (k) { return k + 1; })) + "$"; return opz(s2, s2, chiave(v) + "|" + JJ.join(",")); };
+        var giusta = mk(np, nJ);
+        var np2 = [q(pi[0]).sub(th.mul(y[0])), q(pi[1]).sub(th.mul(y[1]))];
+        var sb = scegli([mk(np, J), mk(np2, nJ), mk([q(pi[0]).add(y[0]), q(pi[1]).add(y[1])], nJ), mk(np, nJ.concat(J.filter(function (k) { return nJ.indexOf(k) < 0; })).sort())], giusta, 3);
+        if (!sb) return null;
+        var testo = L2("Metodo primale-duale per $\\min\\{{\\boldsymbol c}'{\\boldsymbol x} : {\\boldsymbol A}{\\boldsymbol x} = {\\boldsymbol b},~ {\\boldsymbol x} \\ge {\\boldsymbol 0}\\}$ con ${\\boldsymbol A} = " + matrice(A) + "$ e ${\\boldsymbol c} = " + vett(c) + "$. La soluzione duale ammissibile è ${\\boldsymbol \\pi} = " + vett(pi) + "$, con insieme ammesso $\\pazocal{J} = \\{j : c_j - {\\boldsymbol A}_j'{\\boldsymbol \\pi} = 0\\}$, e il duale del primale ristretto dà la direzione ${\\boldsymbol y} = " + vett(y) + "$. Con il passo $\\theta$ massimo che conserva l'ammissibilità duale, quali sono la nuova ${\\boldsymbol \\pi}$ e il nuovo insieme ammesso?",
+          "Primal-dual method for $\\min\\{{\\boldsymbol c}'{\\boldsymbol x} : {\\boldsymbol A}{\\boldsymbol x} = {\\boldsymbol b},~ {\\boldsymbol x} \\ge {\\boldsymbol 0}\\}$ with ${\\boldsymbol A} = " + matrice(A) + "$ and ${\\boldsymbol c} = " + vett(c) + "$. The dual feasible solution is ${\\boldsymbol \\pi} = " + vett(pi) + "$, with admitted set $\\pazocal{J} = \\{j : c_j - {\\boldsymbol A}_j'{\\boldsymbol \\pi} = 0\\}$, and the dual of the restricted primal gives the direction ${\\boldsymbol y} = " + vett(y) + "$. With the largest step $\\theta$ keeping dual feasibility, what are the new ${\\boldsymbol \\pi}$ and the new admitted set?");
+        var sp = L2("Scarti $s = " + vett(s) + "$; $\\theta = \\min\\{s_j / {\\boldsymbol A}_j'{\\boldsymbol y} : {\\boldsymbol A}_j'{\\boldsymbol y} > 0\\} = " + th.tex() + "$; nuova ${\\boldsymbol \\pi} = " + vett(np) + "$ e si ricalcola $\\pazocal{J}$ con i nuovi scarti.",
+          "Slacks $s = " + vett(s) + "$; $\\theta = \\min\\{s_j / {\\boldsymbol A}_j'{\\boldsymbol y} : {\\boldsymbol A}_j'{\\boldsymbol y} > 0\\} = " + th.tex() + "$; new ${\\boldsymbol \\pi} = " + vett(np) + "$ and $\\pazocal{J}$ is recomputed with the new slacks.");
+        return impacchetta(rng, lingua, giusta, sb, testo, sp, { A: A, c: c, pi: pi, y: y });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- complessa: intervallo di b_k e nuovo valore ottimo
+  G.push({
+    id: "lp-g-sens-b-valore", livello: "complessa", capitolo: "14-sensitivity", link: link("14-sensitivity", "box-4-def-shadow"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var bb = [q(ri(rng, 1, 8)), q(ri(rng, 1, 8))], beta = [q(ri(rng, -3, 3)), q(ri(rng, -3, 3))], pk = q(ri(rng, 1, 5)), z = q(ri(rng, 10, 40));
+        if (beta[0].isZero() || beta[1].isZero() || beta[0].sgn() === beta[1].sgn()) return null;
+        var lo = null, hi = null;
+        for (var i = 0; i < 2; i++) { var v = bb[i].neg().div(beta[i]); if (beta[i].sgn() > 0) lo = lo === null ? v : qmax([lo, v]); else hi = hi === null ? v : qmin([hi, v]); }
+        var dlt = q(ri(rng, -3, 3)); if (dlt.cmp(lo) < 0 || dlt.cmp(hi) > 0 || dlt.isZero()) return null;
+        var nz = z.add(pk.mul(dlt));
+        var mk = function (l, h, zz) { var s = "$" + l.tex() + " \\le \\delta \\le " + h.tex() + "$; " + L2("nuovo valore ", "new value ").it + "$" + zz.tex() + "$"; var se = "$" + l.tex() + " \\le \\delta \\le " + h.tex() + "$; new value $" + zz.tex() + "$"; return opz(s, se, l.key() + ";" + h.key() + "|" + zz.key()); };
+        var giusta = mk(lo, hi, nz);
+        var sb = scegli([mk(hi.neg(), lo.neg(), nz), mk(lo, hi, z.sub(pk.mul(dlt))), mk(lo, hi, z.add(dlt)), mk(lo.sub(1), hi, nz)], giusta, 3);
+        if (!sb || lo.cmp(hi) >= 0) return null;
+        var testo = L2("Un problema in forma standard di massimo ha base ottima con valori $\\bar{\\boldsymbol b} = " + vett(bb) + "$ delle due variabili in base e valore ottimo $" + z.tex() + "$. La colonna $k$ di ${\\boldsymbol A}_{\\pazocal{B}}^{-1}$ è $" + vett(beta) + "$ e il prezzo ombra del vincolo $k$ è $\\pi_k = " + pk.tex() + "$. Per quali $\\delta$ (con $b_k \\to b_k + \\delta$) la base resta ottima, e qual è il valore ottimo per $\\delta = " + dlt.tex() + "$?",
+          "A problem in standard maximization form has an optimal basis with values $\\bar{\\boldsymbol b} = " + vett(bb) + "$ of the two basic variables and optimal value $" + z.tex() + "$. Column $k$ of ${\\boldsymbol A}_{\\pazocal{B}}^{-1}$ is $" + vett(beta) + "$ and the shadow price of constraint $k$ is $\\pi_k = " + pk.tex() + "$. For which $\\delta$ (with $b_k \\to b_k + \\delta$) does the basis stay optimal, and what is the optimal value for $\\delta = " + dlt.tex() + "$?");
+        var sp = L2("Serve $\\bar{\\boldsymbol b} + \\delta\\,(" + beta[0].tex() + ", " + beta[1].tex() + ") \\ge {\\boldsymbol 0}$: $" + lo.tex() + " \\le \\delta \\le " + hi.tex() + "$. In quell'intervallo il valore cambia di $\\pi_k \\delta$: $" + z.tex() + " + " + pk.tex() + " \\cdot " + par(dlt) + " = " + nz.tex() + "$.",
+          "We need $\\bar{\\boldsymbol b} + \\delta\\,(" + beta[0].tex() + ", " + beta[1].tex() + ") \\ge {\\boldsymbol 0}$: $" + lo.tex() + " \\le \\delta \\le " + hi.tex() + "$. In that interval the value changes by $\\pi_k \\delta$: $" + z.tex() + " + " + pk.tex() + " \\cdot " + par(dlt) + " = " + nz.tex() + "$.");
+        return impacchetta(rng, lingua, giusta, sb, testo, sp, { bb: bb.map(function (v) { return v.key(); }), beta: beta.map(function (v) { return v.key(); }), pk: pk.key(), z: z.key(), d: dlt.key() });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- complessa: trasporto bilanciato 2 x 2
+  G.push({
+    id: "lp-g-mod-trasporto", livello: "complessa", capitolo: "16-modelling", link: link("16-modelling", "164-trasporto", "164-transportation"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var o = [5 * ri(rng, 2, 8), 5 * ri(rng, 2, 8)], d1 = 5 * ri(rng, 1, 8), d = [d1, o[0] + o[1] - d1];
+        if (d[1] <= 0) return null;
+        var k = [[ri(rng, 1, 9), ri(rng, 1, 9)], [ri(rng, 1, 9), ri(rng, 1, 9)]];
+        // x11 = t, x12 = o1 - t, x21 = d1 - t, x22 = o2 - d1 + t ; 0 <= tutte
+        var lo = Math.max(0, d1 - o[1]), hi = Math.min(o[0], d1);
+        if (lo >= hi) return null;
+        var cost = function (t) { return k[0][0] * t + k[0][1] * (o[0] - t) + k[1][0] * (d1 - t) + k[1][1] * (o[1] - d1 + t); };
+        var best = Math.min(cost(lo), cost(hi)), worst = Math.max(cost(lo), cost(hi));
+        if (best === worst) return null;
+        var greedyMin = cost(Math.floor((lo + hi) / 2));
+        var sb = scegli([oV(q(worst)), oV(q(greedyMin)), oV(q(best + 5)), oV(q(k[0][0] * o[0] + k[1][1] * o[1]))], oV(q(best)), 3);
+        if (!sb) return null;
+        var testo = L2("Problema di trasporto bilanciato: due magazzini con disponibilità $o = " + vett(o) + "$, due clienti con domande $d = " + vett(d) + "$, costi unitari $k_{11} = " + k[0][0] + "$, $k_{12} = " + k[0][1] + "$, $k_{21} = " + k[1][0] + "$, $k_{22} = " + k[1][1] + "$, variabili $x_{ij} \\ge 0$ e vincoli $\\sum_j x_{ij} = o_i$, $\\sum_i x_{ij} = d_j$. Qual è il costo minimo di trasporto?",
+          "Balanced transportation problem: two warehouses with availability $o = " + vett(o) + "$, two clients with demands $d = " + vett(d) + "$, unit costs $k_{11} = " + k[0][0] + "$, $k_{12} = " + k[0][1] + "$, $k_{21} = " + k[1][0] + "$, $k_{22} = " + k[1][1] + "$, variables $x_{ij} \\ge 0$ and constraints $\\sum_j x_{ij} = o_i$, $\\sum_i x_{ij} = d_j$. What is the minimum transportation cost?");
+        var sp = L2("Con $x_{11} = t$ le altre variabili sono determinate e $t \\in [" + lo + ", " + hi + "]$; il costo è lineare in $t$, quindi il minimo è in un estremo: $" + best + "$.",
+          "With $x_{11} = t$ the other variables are determined and $t \\in [" + lo + ", " + hi + "]$; the cost is linear in $t$, so the minimum is at an endpoint: $" + best + "$.");
+        return impacchetta(rng, lingua, oV(q(best)), sb, testo, sp, { o: o, d: d, k: k });
+      });
+    }
+  });
+
+  // ---------------------------------------------------------------- complessa: duale ottimo con gli scarti complementari
+  G.push({
+    id: "lp-g-cs-duale", livello: "complessa", capitolo: "09-duality", link: link("09-duality", "93-scarti-complementari", "93-complementary-slackness"),
+    genera: function (rng, lingua) {
+      return tenta(function () {
+        var L = lpGentile(rng, 2, 2, { den: 6 }); if (!L) return null;
+        var D = L.D, x = puntoD(D, 2);
+        if (x.some(function (v) { return v.isZero(); })) return null;
+        var p = duali(D, 2, 2), z = D.z;
+        var mk = function (v, zz) { var s = "$\\tilde{\\boldsymbol \\pi} = " + vett(v) + "$, $z = " + zz.tex() + "$"; return opz(s, s, chiave(v) + "|" + zz.key()); };
+        var giusta = mk(p, z);
+        var wrong = [p[1], p[0]], tr = [D.c[3] ? D.c[3] : q(0), D.c[4] ? D.c[4] : q(0)];
+        var sb = scegli([mk(wrong, q(L.b[0]).mul(wrong[0]).add(q(L.b[1]).mul(wrong[1]))), mk(tr, z), mk(p, z.add(1)), mk([q(L.c[0]), q(L.c[1])], z)], giusta, 3);
+        if (!sb) return null;
+        var testo = L2("Il problema LP " + lpTex("it", "max", L.c, L.A, ["le", "le"], L.b) + " ha soluzione ottima $\\tilde{\\boldsymbol x} = " + vett(x) + "$, con entrambe le componenti positive. Usando gli scarti complementari ($\\tilde x_j > 0 \\Rightarrow$ vincolo duale $j$ attivo), quale soluzione ottima ha il duale $\\min\\{{\\boldsymbol b}'{\\boldsymbol \\pi} : {\\boldsymbol A}'{\\boldsymbol \\pi} \\ge {\\boldsymbol c},~ {\\boldsymbol \\pi} \\ge {\\boldsymbol 0}\\}$, e con quale valore?",
+          "The LP problem " + lpTex("en", "max", L.c, L.A, ["le", "le"], L.b) + " has optimal solution $\\tilde{\\boldsymbol x} = " + vett(x) + "$, with both components positive. Using complementary slackness ($\\tilde x_j > 0 \\Rightarrow$ dual constraint $j$ active), which optimal solution does the dual $\\min\\{{\\boldsymbol b}'{\\boldsymbol \\pi} : {\\boldsymbol A}'{\\boldsymbol \\pi} \\ge {\\boldsymbol c},~ {\\boldsymbol \\pi} \\ge {\\boldsymbol 0}\\}$ have, and with which value?");
+        var sp = L2("I due vincoli duali sono attivi: si risolve ${\\boldsymbol A}'{\\boldsymbol \\pi} = {\\boldsymbol c}$, da cui $\\tilde{\\boldsymbol \\pi} = " + vett(p) + "$; per la dualità forte ${\\boldsymbol b}'\\tilde{\\boldsymbol \\pi} = " + z.tex() + " = {\\boldsymbol c}'\\tilde{\\boldsymbol x}$.",
+          "Both dual constraints are active: solve ${\\boldsymbol A}'{\\boldsymbol \\pi} = {\\boldsymbol c}$, giving $\\tilde{\\boldsymbol \\pi} = " + vett(p) + "$; by strong duality ${\\boldsymbol b}'\\tilde{\\boldsymbol \\pi} = " + z.tex() + " = {\\boldsymbol c}'\\tilde{\\boldsymbol x}$.");
+        return impacchetta(rng, lingua, giusta, sb, testo, sp, { A: L.A, b: L.b, c: L.c });
       });
     }
   });

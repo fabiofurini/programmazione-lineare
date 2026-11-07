@@ -138,3 +138,10 @@ Le dispense e gli eserciziari in PDF, aggiornati a ogni pubblicazione del sito, 
 ### Modellazione
 
 - :material-presentation: [Capitolo 16 · Tecniche di modellazione per la programmazione lineare](pdf/slide-16-modellazione.pdf)
+
+<!-- banca-domande -->
+## Banca delle domande del quiz
+
+Tutte le domande dell'autovalutazione, divise per parte e capitolo, con la risposta corretta e la spiegazione; per le domande generate, che cambiano i numeri a ogni avvio, alcuni esempi.
+
+[:material-format-list-checks: Banca delle domande](quiz/elenco_domande.html){ .md-button }

@@ -139,14 +139,6 @@ Il metodo grafico: muovi la retta di livello verso il gradiente fino al vertice 
 
     [:octicons-arrow-right-24: Il catalogo](catalogo/index.md)
 
--   :material-language-python: **Notebook in Colab**
-
-    ---
-
-    Il codice del corso che gira nel browser, senza installare niente.
-
-    [:octicons-arrow-right-24: I notebook](notebook.md)
-
 -   :material-format-list-numbered: **Indice completo**
 
     ---

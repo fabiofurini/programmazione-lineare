@@ -20,6 +20,8 @@ associato al [DIAG](https://www.diag.uniroma1.it/), Sapienza Università di Roma
 dualità, metodi avanzati e tecniche di modellazione, con definizioni, teoremi con le loro dimostrazioni,
 esempi svolti passo per passo ed esercizi con le soluzioni.
 
+Prerequisiti: [Algebra lineare](https://fabiofurini.github.io/algebra-lineare/).
+
 [Comincia :material-arrow-right:](problemi-pl/index.md){ .md-button .md-button--primary }
 [:material-pencil: Esercizi](esercizi/index.md){ .md-button }
 [:material-gesture-tap: Laboratorio](laboratorio/index.md){ .md-button }

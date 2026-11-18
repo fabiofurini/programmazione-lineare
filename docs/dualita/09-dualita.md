@@ -238,17 +238,17 @@ title: "Teoria della dualità"
     \begin{align*}
     \sum_{j=1}^{n} c_j \; \bar x_j
     &\le \sum_{j=1}^{n} \left( \sum_{i=1}^{m} a_{ij} \; \bar \pi_i \right) \bar x_j
-    && \text{\begin{array}{l}
-    \text{(per }\eqref {\text{Cons_D}}\text{ e }\eqref {\text{NonNegCons_P}}: \\
+    && \begin{array}{l}
+    \text{(per }\eqref{Cons_D}\text{ e }\eqref{NonNegCons_P}: \\
     {\textstyle c_j \le \sum_{i=1}^{m} a_{ij} \bar \pi_i,~\bar x_j \ge 0, \forall j \in \{1,2,\dots,n\}})
-    \end{array}} \\[2ex]
+    \end{array} \\[2ex]
     &= \sum_{i=1}^{m} \left( \sum_{j=1}^{n} a_{ij} \; \bar x_j \right) \bar \pi_i
     && \\[2ex]
     &\le \sum_{i=1}^{m} b_i \; \bar \pi_i
-    && \text{\begin{array}{l}
-    \text{(per }\eqref {\text{Cons_P}}\text{ e }\eqref {\text{NonNegCons_D}}: \\
+    && \begin{array}{l}
+    \text{(per }\eqref{Cons_P}\text{ e }\eqref{NonNegCons_D}: \\
     {\textstyle \sum_{j=1}^{n} a_{ij} \bar x_j \le b_i,~ \bar \pi_i \ge 0, \forall i \in \{1,2,\dots,m\}})
-    \end{array}}
+    \end{array}
     \end{align*}
 
     <p class="qed-riga"><span class="qed">□</span></p>

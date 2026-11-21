@@ -33,9 +33,9 @@ Prerequisiti: [Algebra lineare](https://fabiofurini.github.io/algebra-lineare/).
 <!-- collana-app -->
 ## Provalo subito
 
-Il metodo grafico: muovi la retta di livello verso il gradiente fino al vertice ottimo, trascina i punti e cambia i vincoli.
+Il metodo grafico: la retta di livello è già sul vertice ottimo, l'ultimo punto della regione ammissibile che tocca andando verso il gradiente. Riporta z a zero e premi ▶ per farla scorrere, oppure cambia problema.
 
-<div class="gi" data-grafico="metodo-grafico"></div>
+<div class="gi" data-grafico="metodo-grafico" data-vetrina="P2"></div>
 
 [:material-gesture-tap: Altre app nel laboratorio](laboratorio/index.md){ .md-button }
 <!-- /collana-app -->

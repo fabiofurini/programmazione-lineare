@@ -40,7 +40,8 @@ Per citare questo materiale, vedi [`CITATION.cff`](CITATION.cff).
 
 ## Della stessa collana
 
-- [Laboratorio di Ricerca Operativa](https://fabiofurini.github.io/laboratorio-ricerca-operativa/)
+- [Modellazione PL](https://fabiofurini.github.io/modellazione-pl/)
+- [Modellazione PNL](https://fabiofurini.github.io/modellazione-pnl/)
 - [Modellazione MIP](https://fabiofurini.github.io/modellazione-mip/)
 - [Analisi Matematica 1](https://fabiofurini.github.io/analisi-matematica-1/)
 - [Algebra lineare](https://fabiofurini.github.io/algebra-lineare/)

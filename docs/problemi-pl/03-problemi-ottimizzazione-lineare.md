@@ -10,6 +10,24 @@ title: "Problemi di ottimizzazione lineare"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 1 «Funzioni lineari»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/01-funzioni-lineari/): funzioni lineari.
+
+    - Da questo modulo, [Capitolo 2 «Semispazi e poliedri»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/02-poliedri/): poliedri, definiti da disuguaglianze e uguaglianze.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - enunciare la definizione di problema LP in forma di minimo e di massimo;
+
+    - individuare i dati ${\boldsymbol A}$, ${\boldsymbol b}$, ${\boldsymbol c}$, la regione ammissibile e la funzione obiettivo;
+
+    - definire soluzioni ottime e valore ottimo, e spiegare perché una soluzione ottima può non esistere;
+
+    - usare una soluzione ammissibile come stima del valore ottimo.
+
 ## 3.1 Problemi di programmazione lineare
 
 <a id="box-1-defLP"></a>
@@ -352,6 +370,18 @@ title: "Problemi di ottimizzazione lineare"
     Il minimo di $-2\left(\frac{1}{2}x-1\right)$ e il massimo di $\frac{1}{2}x-1$ sono entrambi raggiunti in $x=5$.
 
     ![Figura 6](../img/03-problemi-ottimizzazione-lineare/fig06.svg){ .fig .ovale loading=lazy style="width:44%" }
+
+## 3.3 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Un problema LP chiede un punto di un poliedro $F$ (la regione ammissibile) che minimizza o massimizza una funzione lineare (la funzione obiettivo).
+
+    - I suoi dati sono ${\boldsymbol A}$, ${\boldsymbol b}$, ${\boldsymbol c}$ e, per ogni riga, se è una disuguaglianza o un'uguaglianza.
+
+    - Lo scopo è una soluzione ottima $\tilde{\boldsymbol x}(LP)$, non solo il valore ottimo $z(LP)$; possono essercene una, infinite o nessuna.
+
+    - Il valore di ogni soluzione ammissibile è una stima di $z(LP)$: superiore nei problemi di minimo, inferiore nei problemi di massimo.
 
 ---
 

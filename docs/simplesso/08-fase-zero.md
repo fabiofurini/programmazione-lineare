@@ -10,6 +10,26 @@ title: "Fase 0 dell'algoritmo del simplesso"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 6 «Algoritmo del simplesso»](https://fabiofurini.github.io/programmazione-lineare/simplesso/06-simplesso/): l'algoritmo del simplesso da una soluzione di base ammissibile iniziale.
+
+    - Da questo modulo, [Capitolo 7 «Condizioni di ottimalità e regole di pivot»](https://fabiofurini.github.io/programmazione-lineare/simplesso/07-ottimalita-pivot/): condizioni di ottimalità e regola di Bland.
+
+    - Da questo modulo, [Capitolo 5 «Esiti possibili e formulazioni equivalenti»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/05-esiti-equivalenze/): i problemi LP inammissibili.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - scrivere il problema ausiliario del simplesso di un problema LP con qualche $b_i < 0$;
+
+    - risolverlo, cominciando dall'operazione di pivot speciale su $x_0$;
+
+    - decidere dal suo valore ottimo se il problema LP è inammissibile, e altrimenti ottenere una soluzione di base ammissibile iniziale;
+
+    - enunciare il teorema fondamentale della programmazione lineare.
+
 ## 8.1 Il problema ausiliario del simplesso
 
 - Consideriamo un problema LP in forma standard di massimo con $n+m$ variabili non negative e $m$ vincoli lineari di uguaglianza, ottenuto da un problema LP in forma canonica di massimo con $n$ variabili non negative e $m$ vincoli lineari di minore o uguale aggiungendo $m$ variabili di scarto non negative:
@@ -558,6 +578,18 @@ title: "Fase 0 dell'algoritmo del simplesso"
     $$
 
     L'algoritmo del simplesso ne esplora un piccolo sottoinsieme, passando da una soluzione di base ammissibile a un'altra il cui valore obiettivo non è minore.
+
+## 8.7 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Quando la base delle variabili di scarto non è ammissibile, la Fase $0$ risolve il problema ausiliario del simplesso, che non è mai inammissibile né illimitato.
+
+    - La sua prima operazione di pivot porta in base $x_0$ al posto della variabile con il $b_i$ più piccolo.
+
+    - Un valore ottimo strettamente negativo prova che il problema LP è inammissibile; il valore zero dà una soluzione di base ammissibile iniziale, dopo aver riscritto la funzione obiettivo.
+
+    - Teorema fondamentale: se un problema LP ha una soluzione ottima, ne ha una di base ammissibile, fra al più $\binom{n+m}{m}$ basi.
 
 ---
 

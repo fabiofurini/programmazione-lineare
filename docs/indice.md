@@ -31,19 +31,24 @@ dispensa: sul sito e nel PDF trovi tutto allo stesso posto.
 
 1. [Funzioni lineari](problemi-pl/01-funzioni-lineari.md)
     - 1.1 Funzioni lineari
+    - 1.2 In sintesi
 2. [Semispazi e poliedri](problemi-pl/02-poliedri.md)
     - 2.1 Semispazi e iperpiani di supporto
     - 2.2 Poliedri
+    - 2.3 In sintesi
 3. [Problemi di ottimizzazione lineare](problemi-pl/03-problemi-ottimizzazione-lineare.md)
     - 3.1 Problemi di programmazione lineare
     - 3.2 Esempi e proprietà dei problemi di ottimizzazione lineare
+    - 3.3 In sintesi
 4. [Problemi di programmazione lineare](problemi-pl/04-problemi-pl.md)
     - 4.1 Forma canonica di massimo
     - 4.2 Forma standard di massimo
+    - 4.3 In sintesi
 5. [Esiti possibili e formulazioni equivalenti](problemi-pl/05-esiti-equivalenze.md)
     - 5.1 Le due forme di riferimento
     - 5.2 Problemi LP inammissibili e illimitati
     - 5.3 Riformulazioni equivalenti
+    - 5.4 In sintesi
 
 ## [L'algoritmo del simplesso](simplesso/index.md)
 
@@ -52,10 +57,12 @@ dispensa: sul sito e nel PDF trovi tutto allo stesso posto.
     - 6.2 Base del problema LP in forma standard e dizionari
     - 6.3 Operazioni di pivot
     - 6.4 Pseudocodice ad alto livello dell'algoritmo del simplesso
+    - 6.5 In sintesi
 7. [Condizioni di ottimalità e regole di pivot](simplesso/07-ottimalita-pivot.md)
     - 7.1 Condizioni sufficienti di ottimalità
     - 7.2 Condizioni necessarie di ottimalità
     - 7.3 Regole di pivot
+    - 7.4 In sintesi
 8. [Fase 0 dell'algoritmo del simplesso](simplesso/08-fase-zero.md)
     - 8.1 Il problema ausiliario del simplesso
     - 8.2 Risoluzione del problema ausiliario del simplesso
@@ -63,6 +70,7 @@ dispensa: sul sito e nel PDF trovi tutto allo stesso posto.
     - 8.4 Riconoscere i problemi LP inammissibili
     - 8.5 Pseudocodice dell'algoritmo del simplesso con la Fase $0$
     - 8.6 Il Teorema fondamentale della programmazione lineare
+    - 8.7 In sintesi
 
 ## [Dualità e simplesso duale](dualita/index.md)
 
@@ -71,6 +79,7 @@ dispensa: sul sito e nel PDF trovi tutto allo stesso posto.
     - 9.2 Problemi primale e duale: esiti possibili
     - 9.3 Scarti complementari
     - 9.4 Problema duale di un problema LP generico
+    - 9.5 In sintesi
 10. [Algoritmo del simplesso duale](dualita/10-simplesso-duale.md)
     - 10.1 Coppia di problemi primale e duale
     - 10.2 Basi primali e duali ammissibili
@@ -78,17 +87,20 @@ dispensa: sul sito e nel PDF trovi tutto allo stesso posto.
     - 10.4 Operazioni di pivot duali
     - 10.5 Pseudocodice dell'algoritmo del simplesso duale
     - 10.6 Risoluzione del problema duale con l'algoritmo del simplesso
+    - 10.7 In sintesi
 
 ## [Metodi matriciali, sensitività e geometria](metodi-avanzati/index.md)
 
 11. [Algoritmo del simplesso rivisto](metodi-avanzati/11-simplesso-rivisto.md)
     - 11.1 Operazioni di pivot con due sistemi di equazioni lineari
     - 11.2 Pseudocodice dell'algoritmo del simplesso rivisto
+    - 11.3 In sintesi
 12. [Algoritmo del simplesso duale rivisto](metodi-avanzati/12-rivisto-duale.md)
     - 12.1 Operazioni di pivot con due sistemi di equazioni lineari
     - 12.2 Aggiornamento dei costi ridotti
     - 12.3 Pseudocodice dell'algoritmo del simplesso duale rivisto
     - 12.4 Esecuzione dell'algoritmo del simplesso duale rivisto
+    - 12.5 In sintesi
 13. [Il metodo primale-duale](metodi-avanzati/13-primale-duale.md)
     - 13.1 La coppia di riferimento: problema primale e duale
     - 13.2 Il primale ristretto
@@ -96,19 +108,20 @@ dispensa: sul sito e nel PDF trovi tutto allo stesso posto.
     - 13.4 Pseudocodice del metodo primale-duale
     - 13.5 Esecuzione del metodo primale-duale
     - 13.6 Confronto con gli algoritmi del simplesso
+    - 13.7 In sintesi
 14. [Analisi di sensitività](metodi-avanzati/14-sensitivita.md)
     - 14.1 Basi ottime e le loro due condizioni
     - 14.2 Variazioni del vettore dei costi
     - 14.3 Variazioni del vettore dei termini noti
     - 14.4 Aggiunta di una nuova variabile
     - 14.5 Aggiunta di un nuovo vincolo
-    - 14.6 Riepilogo
+    - 14.6 In sintesi
 15. [La geometria della programmazione lineare](metodi-avanzati/15-geometria.md)
     - 15.1 La dimensione di un poliedro
     - 15.2 Facce, faccette e vertici
     - 15.3 Soluzioni di base ammissibili e vertici
     - 15.4 Il Teorema Fondamentale, in chiave geometrica
-    - 15.5 Riepilogo
+    - 15.5 In sintesi
 
 ## [Modellazione](modellazione/index.md)
 
@@ -120,3 +133,4 @@ dispensa: sul sito e nel PDF trovi tutto allo stesso posto.
     - 16.5 Pianificazione multi-periodo
     - 16.6 Tecniche di linearizzazione
     - 16.7 Che cosa non si può modellare con la programmazione lineare
+    - 16.8 In sintesi

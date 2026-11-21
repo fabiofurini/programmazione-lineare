@@ -10,6 +10,24 @@ title: "Analisi di sensitività"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 10 «Algoritmo del simplesso duale»](https://fabiofurini.github.io/programmazione-lineare/dualita/10-simplesso-duale/): basi ammissibili primali e duali e l'algoritmo del simplesso duale.
+
+    - Da questo modulo, [Capitolo 9 «Teoria della dualità»](https://fabiofurini.github.io/programmazione-lineare/dualita/09-dualita/): la soluzione duale e la dualità forte.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - enunciare le due condizioni che rendono ottima una base;
+
+    - calcolare l'intervallo di un coefficiente di costo, di una variabile in base o fuori base, in cui la base resta ottima;
+
+    - calcolare l'intervallo di un termine noto e interpretare i prezzi ombra come valori marginali;
+
+    - gestire l'aggiunta di una nuova variabile o di un nuovo vincolo, ripartendo dalla vecchia base ottima.
+
 ## 14.1 Basi ottime e le loro due condizioni
 
 - I dati di un problema LP sono raramente noti con esattezza: le componenti del vettore dei costi ${\boldsymbol c}$ e del vettore dei termini noti ${\boldsymbol b}$ sono stime, e possono cambiare dopo che il problema LP è stato risolto. L'<strong>analisi di sensitività</strong> studia come cambiano una soluzione ottima e il valore ottimo quando cambiano i dati.
@@ -457,7 +475,17 @@ title: "Analisi di sensitività"
 
     In viola la soluzione ottima del problema LP originale, che viola il nuovo vincolo, e in blu la soluzione ottima del nuovo problema LP, raggiunta con una sola operazione di pivot duale.
 
-## 14.6 Riepilogo
+## 14.6 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Una base ottima è ammissibile primale e duale; una modifica dei dati la lascia ottima finché valgono ancora le due condizioni.
+
+    - Una modifica di ${\boldsymbol c}$ (o una nuova variabile) può rompere solo l'ammissibilità duale: si riparte dalla vecchia base con il simplesso.
+
+    - Una modifica di ${\boldsymbol b}$ (o un nuovo vincolo) può rompere solo l'ammissibilità primale: si riparte con il simplesso duale.
+
+    - Il prezzo ombra $\pi_k$ è il valore marginale del vincolo $k$: $z(LP)$ cambia di $\delta \pi_k$ finché la base resta ottima.
 
 !!! chiave ""
 

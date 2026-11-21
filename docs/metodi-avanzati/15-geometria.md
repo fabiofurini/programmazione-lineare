@@ -10,6 +10,28 @@ title: "La geometria della programmazione lineare"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 2 «Semispazi e poliedri»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/02-poliedri/): poliedri e politopi.
+
+    - Da questo modulo, [Capitolo 7 «Condizioni di ottimalità e regole di pivot»](https://fabiofurini.github.io/programmazione-lineare/simplesso/07-ottimalita-pivot/): soluzioni di base ammissibili degeneri e operazioni di pivot.
+
+    - Da questo modulo, [Capitolo 8 «Fase 0 dell'algoritmo del simplesso»](https://fabiofurini.github.io/programmazione-lineare/simplesso/08-fase-zero/): il teorema fondamentale della programmazione lineare.
+
+    - Dal modulo <em>Algebra Lineare</em>, il capitolo [«Matrici»](https://fabiofurini.github.io/algebra-lineare/vettori-matrici/02-matrici/): indipendenza lineare e rango.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - calcolare la dimensione di un poliedro tramite il suo inviluppo affine, e riconoscere i poliedri a dimensione piena;
+
+    - definire disuguaglianze valide, facce, faccette, vertici e punti estremi;
+
+    - dimostrare che soluzioni di base ammissibili e vertici coincidono, e spiegare il ruolo della degenerazione;
+
+    - leggere il teorema fondamentale e le operazioni di pivot come enunciati su vertici e spigoli.
+
 ## 15.1 La dimensione di un poliedro
 
 - La regione ammissibile di un problema LP è un poliedro $F \subseteq \R^n$. Finora l'abbiamo descritta attraverso i suoi vincoli lineari; in questo documento ne descriviamo la struttura <strong>geometrica</strong>, e la mettiamo in relazione con le nozioni algebriche di base e di soluzione di base ammissibile.
@@ -397,7 +419,17 @@ title: "La geometria della programmazione lineare"
 
     ![Figura 3](../img/15-geometria/fig03.svg){ .fig .cornice loading=lazy style="width:56%" }
 
-## 15.5 Riepilogo
+## 15.5 In sintesi
+
+!!! chiave "In sintesi"
+
+    - La dimensione di un poliedro è quella del suo inviluppo affine; la regione ammissibile in forma standard non è mai a dimensione piena.
+
+    - Le facce sono gli insiemi in cui una disuguaglianza valida è soddisfatta all'uguaglianza; le faccette sono le facce proprie più grandi, i vertici le più piccole non vuote, e i vertici sono i punti estremi.
+
+    - Le soluzioni di base ammissibili sono esattamente i vertici; un vertice degenere ha più basi.
+
+    - Se un problema LP ha soluzione ottima e la sua regione ammissibile ha un vertice, qualche vertice è ottimo; un'operazione di pivot porta a un vertice adiacente.
 
 !!! chiave ""
 

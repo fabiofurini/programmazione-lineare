@@ -10,6 +10,26 @@ title: "Funzioni lineari"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Dal modulo <em>Algebra Lineare</em>, il capitolo [«Vettori»](https://fabiofurini.github.io/algebra-lineare/vettori-matrici/01-vettori/): vettori colonna e riga, il trasposto e il prodotto scalare ${\boldsymbol c}'{\boldsymbol x}$.
+
+    - Dallo stesso modulo, il capitolo [«Matrici»](https://fabiofurini.github.io/algebra-lineare/vettori-matrici/02-matrici/): matrici quadrate e matrice nulla.
+
+    - Dal modulo <em>Analisi Matematica 1</em>, il capitolo [«Funzione derivata»](https://fabiofurini.github.io/analisi-matematica-1/derivate/01-funzione-derivata/): le derivate, usate qui una variabile alla volta come derivate parziali.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - scrivere la funzione lineare associata a un vettore ${\boldsymbol c} \in \R^n$;
+
+    - calcolarne il gradiente e l'hessiana, e spiegare perché non dipendono dal punto;
+
+    - descrivere gli insiemi di livello come iperpiani perpendicolari al gradiente, e disegnarli nel piano;
+
+    - leggere il grafico di una funzione lineare di due variabili.
+
 ## 1.1 Funzioni lineari
 
 <a id="box-1-defXX"></a>
@@ -198,6 +218,16 @@ title: "Funzioni lineari"
     Con ${\boldsymbol c}=\begin{pmatrix} -8\\ -4 \end{pmatrix}$, abbiamo $f\left(\begin{pmatrix} x_1 \\ x_2 \\ \end{pmatrix}\right)=-8\;x_1- 4\;x_2$. Il suo grafico è:
 
     ![Figura 4](../img/01-funzioni-lineari/fig04.svg){ .fig .ovale loading=lazy style="width:59%" }
+
+## 1.2 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Una funzione lineare è $f({\boldsymbol x}) = {\boldsymbol c}'{\boldsymbol x}$, con ${\boldsymbol c} \in \R^n$.
+
+    - Il suo gradiente è lo stesso vettore ${\boldsymbol c}$ in ogni punto, e la sua hessiana è la matrice nulla.
+
+    - I suoi insiemi di livello ${\boldsymbol c}'{\boldsymbol x} = k$ sono iperpiani perpendicolari al gradiente.
 
 <!-- laboratorio-interattivo: sezione generata da interattivi.py -->
 

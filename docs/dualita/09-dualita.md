@@ -10,6 +10,28 @@ title: "Teoria della dualità"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 4 «Problemi di programmazione lineare»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/04-problemi-pl/): la forma canonica di massimo e le stime inferiori date dalle soluzioni ammissibili.
+
+    - Da questo modulo, [Capitolo 5 «Esiti possibili e formulazioni equivalenti»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/05-esiti-equivalenze/): i tre esiti di un problema LP e le riformulazioni equivalenti.
+
+    - Da questo modulo, [Capitolo 8 «Fase 0 dell'algoritmo del simplesso»](https://fabiofurini.github.io/programmazione-lineare/simplesso/08-fase-zero/): il teorema fondamentale, usato nella dimostrazione della dualità forte.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - ricavare stime superiori di $z(LP)$ da combinazioni non negative dei vincoli, e scrivere il problema duale;
+
+    - enunciare e usare la dualità debole e la dualità forte;
+
+    - elencare gli esiti possibili di una coppia di problemi primale e duale, e usarli come certificati;
+
+    - applicare le condizioni degli scarti complementari per verificare l'ottimalità;
+
+    - scrivere il problema duale di un problema LP generico.
+
 ## 9.1 Problema duale di un problema LP in forma canonica di massimo
 
 <a id="box-1-def-dual"></a>
@@ -1796,6 +1818,20 @@ title: "Teoria della dualità"
 !!! chiave ""
 
     Poiché da un problema LP in forma generica di massimo si può ottenere un problema LP equivalente in forma canonica di massimo, la dualità debole, la dualità forte e il teorema degli scarti complementari valgono anche nel caso generico.
+
+## 9.5 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Il problema duale $D(LP)$ cerca la migliore stima superiore di $z(LP)$ ottenuta da combinazioni non negative dei vincoli.
+
+    - Dualità debole: il valore di ogni soluzione ammissibile primale è al più il valore di ogni soluzione ammissibile duale. Dualità forte: se uno dei due problemi ha soluzione ottima, l'hanno entrambi, con lo stesso valore.
+
+    - Sono possibili solo quattro esiti della coppia; per esempio, se il primale è illimitato, il duale è inammissibile.
+
+    - Scarti complementari: due soluzioni ammissibili sono ottime se e solo se a ogni variabile positiva corrisponde un vincolo attivo dell'altro problema.
+
+    - I tre teoremi valgono per ogni problema LP, tramite il suo duale in forma generica.
 
 ---
 

@@ -10,6 +10,24 @@ title: "Algoritmo del simplesso duale"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 6 «Algoritmo del simplesso»](https://fabiofurini.github.io/programmazione-lineare/simplesso/06-simplesso/): dizionari e operazioni di pivot.
+
+    - Da questo modulo, [Capitolo 9 «Teoria della dualità»](https://fabiofurini.github.io/programmazione-lineare/dualita/09-dualita/): il problema duale, la dualità debole e la dualità forte.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - definire basi ammissibili primali e duali, e la soluzione duale ${\boldsymbol \pi} = {\boldsymbol c}'_{\pazocal{B}}{\boldsymbol A}_{\pazocal{B}}^{-1}$ di una base;
+
+    - trovare una base ammissibile duale iniziale;
+
+    - scegliere la riga e la colonna pivot di un'operazione di pivot duale, anche con la regola di Bland;
+
+    - riconoscere il certificato di inammissibilità, ed eseguire l'algoritmo del simplesso duale fino in fondo.
+
 ## 10.1 Coppia di problemi primale e duale
 
 - Consideriamo la forma standard di massimo del problema duale, ottenuta aggiungendo $n$ variabili di surplus non negative a un problema LP duale con $m$ variabili non negative e $n$ vincoli lineari di maggiore o uguale:
@@ -1772,6 +1790,18 @@ title: "Algoritmo del simplesso duale"
             \tilde x_4=0~~
             \text{  di valore   } -8
             $$
+
+## 10.7 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Una base è ammissibile primale se $\bar{\boldsymbol b} \ge {\boldsymbol 0}$ e ammissibile duale se $\bar{\boldsymbol c} \le {\boldsymbol 0}$, cioè se ${\boldsymbol \pi}$ è ammissibile duale; le due insieme vogliono dire ottima.
+
+    - L'algoritmo del simplesso duale mantiene una base ammissibile duale e cerca l'ammissibilità primale.
+
+    - La riga pivot è una variabile in base con valore negativo; la colonna pivot si sceglie con il rapporto minimo $\bar c_p / \bar a_{rp}$; il dizionario si aggiorna come nel simplesso.
+
+    - Se la riga pivot non ha elementi $\bar a_{rj}$ negativi, il problema è inammissibile (certificato di inammissibilità).
 
 ---
 

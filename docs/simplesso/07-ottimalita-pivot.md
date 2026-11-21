@@ -10,6 +10,22 @@ title: "Condizioni di ottimalità e regole di pivot"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 6 «Algoritmo del simplesso»](https://fabiofurini.github.io/programmazione-lineare/simplesso/06-simplesso/): dizionari, soluzioni di base ammissibili, costi ridotti e operazioni di pivot.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - dimostrare che una soluzione di base ammissibile con costi ridotti non positivi è ottima;
+
+    - riconoscere soluzioni di base ammissibili degeneri e operazioni di pivot degeneri;
+
+    - spiegare perché l'algoritmo del simplesso può ciclare solo con operazioni di pivot degeneri;
+
+    - applicare la regola di Bland, che impedisce il ciclaggio.
+
 ## 7.1 Condizioni sufficienti di ottimalità
 
 - Consideriamo un problema LP in forma standard di massimo con $n+m$ variabili non negative e $m$ vincoli lineari di uguaglianza, ottenuto da un problema LP in forma canonica di massimo con $n$ variabili non negative e $m$ vincoli lineari di minore o uguale aggiungendo $m$ variabili di scarto non negative:
@@ -758,6 +774,18 @@ title: "Condizioni di ottimalità e regole di pivot"
     In particolare,  $x_r = 0$. Ma in $D$,  $x_r$ è in base. Quindi $\bar{b}_r=0$ e, poiché $\bar{a}_{rs} > 0$, abbiamo $\frac{\bar{b}_r}{\bar{a}_{rs}} = 0 = t_m$. Quindi $x_r$ era una candidata a essere la riga pivot in $D$, e poiché $r < t$, per la regola di Bland avrebbe dovuto essere scelta al posto di $x_t$.
 
     Questa è la contraddizione che dimostra che una sequenza ciclica di dizionari non può esistere usando la regola di Bland. <span class="qed">□</span>
+
+## 7.4 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Se $\bar{\boldsymbol b} \ge {\boldsymbol 0}$ e $\bar{\boldsymbol c} \le {\boldsymbol 0}$, la soluzione di base ammissibile è ottima (condizione sufficiente).
+
+    - Una soluzione di base ammissibile è degenere quando qualche variabile in base vale $0$; allora la condizione $\bar{\boldsymbol c} \le {\boldsymbol 0}$ non è necessaria.
+
+    - Il valore obiettivo cresce in ogni operazione di pivot non degenere e resta uguale in una degenere: l'algoritmo del simplesso può ciclare solo con operazioni degeneri.
+
+    - Con la regola di Bland (indice minimo per la colonna e per la riga pivot) l'algoritmo del simplesso non cicla.
 
 ---
 

@@ -10,6 +10,26 @@ title: "Il metodo primale-duale"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 9 «Teoria della dualità»](https://fabiofurini.github.io/programmazione-lineare/dualita/09-dualita/): il problema duale e il teorema degli scarti complementari.
+
+    - Da questo modulo, [Capitolo 8 «Fase 0 dell'algoritmo del simplesso»](https://fabiofurini.github.io/programmazione-lineare/simplesso/08-fase-zero/): la Fase $0$ e il suo problema ausiliario, a cui somiglia il problema primale ristretto.
+
+    - Da questo modulo, [Capitolo 10 «Algoritmo del simplesso duale»](https://fabiofurini.github.io/programmazione-lineare/dualita/10-simplesso-duale/): l'algoritmo del simplesso duale, confrontato con il metodo.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - definire l'insieme ammesso di una soluzione duale ammissibile e il problema primale ristretto;
+
+    - decidere dal valore ottimo del problema primale ristretto se le soluzioni correnti sono ottime;
+
+    - calcolare la direzione e il passo del passo duale;
+
+    - eseguire il metodo primale-duale e confrontarlo con gli algoritmi del simplesso.
+
 ## 13.1 La coppia di riferimento: problema primale e duale
 
 - L'algoritmo del simplesso mantiene una base <strong>primale ammissibile</strong> e procede verso una base anche duale ammissibile; l'algoritmo del simplesso duale mantiene una base <strong>duale ammissibile</strong> e procede verso una base anche primale ammissibile. Il <strong>metodo primale-duale</strong> procede in modo diverso: mantiene una soluzione duale ammissibile, che <u>non</u> deve essere necessariamente una soluzione di base, e la usa per decidere quali variabili primali possono assumere un valore positivo.
@@ -429,6 +449,18 @@ title: "Il metodo primale-duale"
     La differenza tra l'algoritmo del simplesso duale e il metodo primale-duale è che il primo mantiene una <strong>base</strong> duale ammissibile, mentre il secondo mantiene una <strong>soluzione</strong> duale ammissibile, che non deve essere di base. Per questo motivo il metodo primale-duale può partire da qualunque soluzione duale ammissibile, anche una suggerita dalla struttura del problema.
 
 - L'interesse pratico del metodo primale-duale è che il primale ristretto [(13.3)](#eq-PD_RP) è spesso molto più facile del problema LP originale: ha meno variabili e, per diversi problemi di <strong>ottimizzazione combinatoria</strong> risulta essere un problema con un algoritmo combinatorio noto, come un problema di cammino minimo o di flusso massimo. In questi casi il metodo primale-duale diventa un algoritmo puramente combinatorio, ed è all'origine di molti algoritmi classici e di diversi algoritmi di approssimazione.
+
+## 13.7 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Il metodo primale-duale mantiene una soluzione duale ammissibile ${\boldsymbol \pi}$ e cerca una soluzione primale che soddisfi con essa gli scarti complementari.
+
+    - Il problema primale ristretto usa solo le variabili dell'insieme ammesso; valore ottimo zero vuol dire che le due soluzioni sono ottime.
+
+    - Altrimenti il passo duale ${\boldsymbol \pi} \leftarrow {\boldsymbol \pi} + \theta {\boldsymbol y}$ fa crescere strettamente il valore obiettivo duale.
+
+    - A differenza del simplesso duale, che mantiene una base ammissibile duale, il metodo mantiene una soluzione duale ammissibile, non necessariamente di base.
 
 ---
 

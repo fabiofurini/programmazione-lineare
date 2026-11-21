@@ -10,6 +10,24 @@ title: "Problemi di programmazione lineare"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 3 «Problemi di ottimizzazione lineare»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/03-problemi-ottimizzazione-lineare/): problemi LP, soluzioni ammissibili e ottime, valore ottimo.
+
+    - Da questo modulo, [Capitolo 1 «Funzioni lineari»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/01-funzioni-lineari/): il gradiente e gli insiemi di livello di una funzione lineare.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - scrivere un problema LP in forma canonica di massimo e in forma standard di massimo;
+
+    - descrivere la regione ammissibile e la funzione obiettivo di ciascuna forma;
+
+    - ottenere una stima inferiore del valore ottimo da una soluzione ammissibile;
+
+    - risolvere con il metodo grafico un problema LP con due o tre variabili.
+
 ## 4.1 Forma canonica di massimo
 
 <a id="box-1-defCanonical"></a>
@@ -726,6 +744,16 @@ title: "Problemi di programmazione lineare"
     cioè sul segmento che congiunge i punti $\begin{pmatrix} 2\\ 0\\ 0 \end{pmatrix}$ e $\begin{pmatrix} 0\\ 0\\ 4 \end{pmatrix}$. Prendendo per esempio la soluzione ottima $\tilde{\boldsymbol x}(\, LP \,) = \begin{pmatrix} 2\\ 0\\ 0 \end{pmatrix}$ (dove $\tilde{x}_1=2$, $\tilde{x}_2=0$ e $\tilde{x}_3=0$), il valore ottimo è: $z(\, LP \,) = 2\,\tilde{x}_1 + 2\,\tilde{x}_2 + \tilde{x}_3 = 2 \cdot 2 + 2 \cdot 0 + 0 = 4.$
 
     ![Figura 9](../img/04-problemi-pl/fig09.svg){ .fig .cornice loading=lazy style="width:59%" }
+
+## 4.3 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Forma canonica di massimo: $\max {\boldsymbol c}'{\boldsymbol x}$ con ${\boldsymbol A}{\boldsymbol x} \le {\boldsymbol b}$ e ${\boldsymbol x} \ge {\boldsymbol 0}$; forma standard di massimo: la stessa con ${\boldsymbol A}{\boldsymbol x} = {\boldsymbol b}$.
+
+    - Ogni soluzione ammissibile $\bar{\boldsymbol x}$ dà la stima inferiore $LB(\bar{\boldsymbol x}) \le z(LP)$.
+
+    - Il metodo grafico sposta un insieme di livello della funzione obiettivo nella direzione del gradiente, finché incontra la regione ammissibile.
 
 ---
 

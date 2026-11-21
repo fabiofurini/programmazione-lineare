@@ -10,6 +10,24 @@ title: "Semispazi e poliedri"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 1 «Funzioni lineari»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/01-funzioni-lineari/): funzioni lineari, insiemi di livello e iperpiani.
+
+    - Dal modulo <em>Algebra Lineare</em>, il capitolo [«Matrici»](https://fabiofurini.github.io/algebra-lineare/vettori-matrici/02-matrici/): una matrice ${\boldsymbol A} \in \R^{m \times n}$ e il prodotto ${\boldsymbol A}{\boldsymbol x}$.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - definire un semispazio e il suo iperpiano di supporto, e disegnarli nel piano;
+
+    - scrivere un poliedro come ${\boldsymbol A}{\boldsymbol x} \le {\boldsymbol b}$, anche con vincoli di uguaglianza;
+
+    - decidere se un poliedro è limitato, e riconoscere un politopo;
+
+    - verificare, su un esempio, che un punto o un segmento fra due punti appartiene a un poliedro.
+
 ## 2.1 Semispazi e iperpiani di supporto
 
 <a id="box-1-defXX"></a>
@@ -236,6 +254,16 @@ title: "Semispazi e poliedri"
     La sua rappresentazione tridimensionale corrisponde all'iperpiano mostrato in figura.
 
     ![Figura 4](../img/02-poliedri/fig04.svg){ .fig .ovale loading=lazy style="width:47%" }
+
+## 2.3 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Un semispazio è $\{{\boldsymbol x} : {\boldsymbol a}{\boldsymbol x} \le b\}$; il suo iperpiano di supporto è $\{{\boldsymbol x} : {\boldsymbol a}{\boldsymbol x} = b\}$.
+
+    - Un poliedro è l'intersezione di un numero finito di semispazi, $\{{\boldsymbol x} : {\boldsymbol A}{\boldsymbol x} \le {\boldsymbol b}\}$; un iperpiano è l'intersezione di due semispazi opposti.
+
+    - Un poliedro è limitato se ogni coordinata dei suoi punti è limitata; un poliedro limitato è un politopo.
 
 ---
 

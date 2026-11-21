@@ -10,6 +10,24 @@ title: "Algoritmo del simplesso duale rivisto"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 10 «Algoritmo del simplesso duale»](https://fabiofurini.github.io/programmazione-lineare/dualita/10-simplesso-duale/): l'algoritmo del simplesso duale.
+
+    - Da questo modulo, [Capitolo 11 «Algoritmo del simplesso rivisto»](https://fabiofurini.github.io/programmazione-lineare/metodi-avanzati/11-simplesso-rivisto/): l'algoritmo del simplesso rivisto e i suoi due sistemi di equazioni lineari.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - calcolare la riga pivot del simplesso duale con un sistema in cui ${\boldsymbol A}_{\pazocal{B}}$ sta a destra del vettore incognito;
+
+    - aggiornare i costi ridotti dopo un'operazione di pivot duale;
+
+    - eseguire l'algoritmo del simplesso duale rivisto con il suo pseudocodice;
+
+    - confrontare i due algoritmi rivisti, e ottenere alla fine la soluzione duale ottima.
+
 ## 12.1 Operazioni di pivot con due sistemi di equazioni lineari
 
 - Consideriamo un problema LP in forma standard di massimo con $n+m$ variabili non negative e $m$ vincoli lineari di uguaglianza:
@@ -430,6 +448,16 @@ title: "Algoritmo del simplesso duale rivisto"
         $$
 
         cioè $\tilde{\boldsymbol \pi}(\, D(LP) \,) = \left(\frac{7}{6}~~\frac{1}{6}~~0\right)'$, il cui valore obiettivo è ${\boldsymbol b}' \tilde{\boldsymbol \pi} = -8 = z(\, LP \,)$, in accordo con il teorema della dualità forte.
+
+## 12.5 In sintesi
+
+!!! chiave "In sintesi"
+
+    - L'algoritmo del simplesso duale rivisto risolve due sistemi con ${\boldsymbol A}_{\pazocal{B}}$ per iterazione: uno dà $\bar{\boldsymbol b}$, l'altro la riga pivot.
+
+    - Aggiorna solo la partizione e i costi ridotti, con $\bar c_j \leftarrow \bar c_j - (\bar c_p / \bar a_{rp})\, \bar a_{rj}$.
+
+    - I due algoritmi rivisti sono simmetrici; la soluzione duale ottima costa un sistema in più, risolto una volta alla fine.
 
 ---
 

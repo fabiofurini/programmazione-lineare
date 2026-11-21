@@ -10,6 +10,26 @@ title: "Algoritmo del simplesso"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 5 «Esiti possibili e formulazioni equivalenti»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/05-esiti-equivalenze/): la forma standard di massimo e le variabili di scarto.
+
+    - Dal modulo <em>Algebra Lineare</em>, il capitolo [«Inversione di matrici»](https://fabiofurini.github.io/algebra-lineare/vettori-matrici/04-matrice-inversa/): l'inversa di una matrice quadrata.
+
+    - Dallo stesso modulo, il capitolo [«Sistemi di equazioni lineari»](https://fabiofurini.github.io/algebra-lineare/sistemi/01-sistemi-lineari/): i sistemi di equazioni lineari e il rango di una matrice.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - definire una base, le variabili in base e fuori base e il dizionario di un problema LP in forma standard;
+
+    - calcolare una soluzione di base ammissibile e i suoi costi ridotti;
+
+    - scegliere la colonna pivot e la riga pivot, e riconoscere il certificato di illimitatezza;
+
+    - aggiornare il dizionario con un'operazione di pivot, ed eseguire l'algoritmo del simplesso dalla base delle variabili di scarto.
+
 ## 6.1 La forma standard di un problema LP in forma canonica di massimo
 
 - Consideriamo un problema LP in forma standard di massimo con $n+m$ variabili non negative e $m$ vincoli lineari di uguaglianza ottenuto da un problema LP in forma canonica di massimo con $n$ variabili non negative e $m$ vincoli lineari di minore o uguale aggiungendo $m$ variabili di scarto non negative:
@@ -1812,6 +1832,18 @@ Nello stesso dizionario anche $\bar{c}_2 = 2 > 0$, quindi anche $x_2$ può esser
     In blu tratteggiato, le curve di livello $5\,x_1 + 2\,x_2 = 0$, $5\,x_1 + 2\,x_2 = \frac{40}{3}$ e $5\,x_1 + 2\,x_2 = 32$ della funzione obiettivo associate ai valori assunti nei tre vertici.
 
 Alla prima iterazione la colonna pivot $x_1$ è stata scelta tra le due variabili fuori base con costo ridotto positivo. Scegliendo invece $x_2$, l'algoritmo del simplesso raggiunge la stessa soluzione ottima dopo tre operazioni di pivot, visitando i vertici $(0,4)$ e $\left(\frac{12}{5},\frac{24}{5}\right)$: la variazione della scelta della colonna pivot cambia il percorso sul poliedro e il numero di iterazioni (si veda l'esercizio <em>Algoritmo del simplesso con una diversa colonna pivot</em>, problema $P10$).
+
+## 6.5 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Una base ${\boldsymbol A}_{\pazocal{B}}$ scrive le variabili in base e $z$ in funzione di quelle fuori base: è il dizionario.
+
+    - Ponendo a $0$ le variabili fuori base si ottiene la soluzione di base ${\boldsymbol x}_{\pazocal{B}} = {\boldsymbol A}_{\pazocal{B}}^{-1}{\boldsymbol b}$; se ${\boldsymbol b} \ge {\boldsymbol 0}$, le variabili di scarto danno una soluzione di base ammissibile iniziale.
+
+    - La colonna pivot ha costo ridotto positivo; la riga pivot si sceglie con il rapporto minimo, così la nuova soluzione resta ammissibile.
+
+    - Se la colonna pivot non ha elementi $\bar a_{ip}$ positivi, il problema è illimitato (certificato di illimitatezza).
 
 ---
 

@@ -10,6 +10,26 @@ title: "Algoritmo del simplesso rivisto"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 6 «Algoritmo del simplesso»](https://fabiofurini.github.io/programmazione-lineare/simplesso/06-simplesso/): l'algoritmo del simplesso sui dizionari.
+
+    - Da questo modulo, [Capitolo 10 «Algoritmo del simplesso duale»](https://fabiofurini.github.io/programmazione-lineare/dualita/10-simplesso-duale/): la soluzione duale ${\boldsymbol \pi}$ associata a una base.
+
+    - Dal modulo <em>Algebra Lineare</em>, il capitolo [«Sistemi di equazioni lineari»](https://fabiofurini.github.io/algebra-lineare/sistemi/01-sistemi-lineari/): la risoluzione dei sistemi di equazioni lineari.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - spiegare perché l'algoritmo del simplesso rivisto non calcola l'inversa ${\boldsymbol A}_{\pazocal{B}}^{-1}$ né l'intero dizionario;
+
+    - calcolare i costi ridotti risolvendo il sistema per il vettore riga ${\boldsymbol \pi}$;
+
+    - calcolare la colonna pivot risolvendo il sistema per un vettore colonna, e poi la riga pivot;
+
+    - eseguire l'algoritmo del simplesso rivisto con il suo pseudocodice.
+
 <a id="box-1-ex-rsimplex-1"></a>
 
 !!! esempio "Esempio 11.1: un problema LP in forma canonica e la sua forma standard"
@@ -662,6 +682,16 @@ title: "Algoritmo del simplesso rivisto"
     $$
 
     è una soluzione ottima del problema LP e ${\bar{z}} = 32$ è il valore ottimo.
+
+## 11.3 In sintesi
+
+!!! chiave "In sintesi"
+
+    - L'algoritmo del simplesso rivisto mantiene solo la base e i valori delle variabili in base, non l'intero dizionario.
+
+    - A ogni iterazione risolve due sistemi con la matrice ${\boldsymbol A}_{\pazocal{B}}$: uno per il vettore riga ${\boldsymbol \pi}$ (costi ridotti) e uno per la colonna pivot.
+
+    - Non calcola mai ${\boldsymbol A}_{\pazocal{B}}^{-1}$; le scelte della colonna e della riga pivot sono quelle del simplesso.
 
 ---
 

@@ -10,6 +10,24 @@ title: "Tecniche di modellazione per la programmazione lineare"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 5 «Esiti possibili e formulazioni equivalenti»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/05-esiti-equivalenze/): problemi LP generici e le loro riformulazioni equivalenti, con variabili libere.
+
+    - Da questo modulo, [Capitolo 4 «Problemi di programmazione lineare»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/04-problemi-pl/): il metodo grafico, usato per verificare modelli piccoli.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - scrivere un modello LP da una descrizione: variabili decisionali con le loro unità, funzione obiettivo, vincoli;
+
+    - modellare problemi di pianificazione della produzione, miscelazione, trasporto e pianificazione multi-periodo;
+
+    - linearizzare obiettivi min-max, valori assoluti e vincoli con rapporti;
+
+    - riconoscere i requisiti che richiedono variabili intere.
+
 ## 16.1 Dalla descrizione di un problema a un modello LP
 
 - Un <strong>modello</strong> di un problema di ottimizzazione è una descrizione matematica delle sue soluzioni ammissibili e della quantità da ottimizzare. Scrivere un modello richiede tre passi, sempre in questo ordine.
@@ -359,6 +377,18 @@ title: "Tecniche di modellazione per la programmazione lineare"
 - Un errore frequente è scrivere un costo fisso come termine non lineare della funzione obiettivo, oppure imporre una quantità minima positiva con il vincolo $x_j \ge q$: quest'ultimo esclude la soluzione $x_j = 0$, che invece deve restare ammissibile.
 
 - Ogni volta che i requisiti di un problema sono del tipo elencato sopra, il modello LP ottenuto ignorandoli resta utile: è un <strong>rilassamento</strong> del modello corretto, e quindi il suo valore ottimo è un upper bound sul valore ottimo del modello corretto, per un problema di massimo, e un lower bound per un problema di minimo.
+
+## 16.8 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Un modello LP si costruisce in tre passi: variabili decisionali (con unità e domini), funzione obiettivo, vincoli.
+
+    - Gli errori più frequenti sono i vincoli di non negatività dimenticati, i vincoli non coerenti nelle unità di misura, e le variabili usate nella funzione obiettivo senza essere state definite.
+
+    - Produzione, miscelazione, trasporto e pianificazione multi-periodo seguono schemi tipici, con vincoli di bilancio che legano i periodi.
+
+    - Obiettivi min-max, valori assoluti e rapporti diventano lineari con una variabile ausiliaria o moltiplicando per un denominatore positivo; quantità indivisibili e condizioni logiche richiedono variabili intere.
 
 ---
 

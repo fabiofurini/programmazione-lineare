@@ -10,6 +10,22 @@ title: "Esiti possibili e formulazioni equivalenti"
 
 </div>
 
+!!! nota "Prerequisiti"
+
+    - Da questo modulo, [Capitolo 4 «Problemi di programmazione lineare»](https://fabiofurini.github.io/programmazione-lineare/problemi-pl/04-problemi-pl/): le forme canonica e standard di massimo, e il metodo grafico.
+
+!!! chiave "Obiettivi"
+
+    Alla fine di questo capitolo sarai in grado di:
+
+    - riconoscere problemi LP inammissibili e illimitati, e problemi LP con più soluzioni ottime;
+
+    - enunciare i tre esiti possibili di un problema LP;
+
+    - riscrivere un problema LP generico in forma canonica e standard di massimo, con variabili di scarto, di surplus, non positive e libere;
+
+    - trasformare dati razionali in dati interi con il minimo comune denominatore.
+
 ## 5.1 Le due forme di riferimento
 
 - In tutto questo documento facciamo riferimento alle due forme di un problema LP introdotte nel documento precedente. Dati un vettore dei costi ${\boldsymbol c} \in \R^{n}$, una matrice dei vincoli ${\boldsymbol A} \in \R^{m \times n }$ e un vettore dei termini noti ${\boldsymbol b} \in \R^{m}$, esse si scrivono come segue.
@@ -93,7 +109,7 @@ title: "Esiti possibili e formulazioni equivalenti"
 
 ## 5.2 Problemi LP inammissibili e illimitati
 
-- I problemi LP dell'<span style="color:#1971c2">[Esempio 5.1](#box-1-ex-oe-1)</span>, dell'<span style="color:#1971c2">[Esempio 5.2](#box-2-ex-oe-2)</span> e dell'<span style="color:#1971c2">[Esempio 5.3](#box-3-ex-oe-3)</span> ammettono una soluzione ottima. Non è sempre così: un problema LP può <u>non avere alcuna soluzione ammissibile</u>, oppure può avere soluzioni ammissibili <u>di valore obiettivo arbitrariamente grande</u>.
+- I problemi LP dell'<span style="color:#1971c2">[Esempio 5.1](#box-1-ex-oe-1)</span>, dell'<span style="color:#1971c2">[Esempio 5.2](#box-2-ex-oe-2)</span> e dell'<span style="color:#1971c2">[Esempio 5.3](#box-3-ex-oe-3)</span> ammettono una soluzione ottima. Non è sempre così: esistono problemi LP che <u>non hanno</u> soluzioni ammissibili, e problemi LP con soluzioni ammissibili <u>di valore obiettivo arbitrariamente grande</u>.
 
 <a id="box-4-defInfeasible"></a>
 
@@ -662,6 +678,18 @@ title: "Esiti possibili e formulazioni equivalenti"
     & {x_1,} &  & {x_2,} &  & {x_3,} &  & {x_4,} &  & {x_5} & { \ge} & { 0 }
     \end{array}
     $$
+
+## 5.4 In sintesi
+
+!!! chiave "In sintesi"
+
+    - Un problema LP è esattamente uno fra: inammissibile, illimitato, o con soluzione ottima; una regione ammissibile illimitata non rende illimitato il problema.
+
+    - Problemi equivalenti hanno le stesse soluzioni ottime; passare da min a max cambia il segno del valore ottimo.
+
+    - Le variabili di scarto e di surplus trasformano le disuguaglianze in uguaglianze; una variabile non positiva si sostituisce con la sua opposta, una libera con la differenza di due non negative.
+
+    - Ogni problema LP si può scrivere in forma canonica e standard di massimo, e con dati interi.
 
 ---
 

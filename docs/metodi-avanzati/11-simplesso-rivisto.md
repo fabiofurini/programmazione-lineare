@@ -36,7 +36,7 @@ title: "Algoritmo del simplesso rivisto"
 
     <div class="minipage" style="width:41%" markdown>
 
-    Consideriamo il seguente problema LP in forma canonica di massimo con $n=2$ variabili e $m=3$ vincoli:
+    Consideriamo il seguente problema LP (l'esempio della produzione di vernici del capitolo 4) in forma canonica di massimo con $n=2$ variabili e $m=3$ vincoli:
 
     $$
     \begin{array}{rrrrrrrrrrrrr}

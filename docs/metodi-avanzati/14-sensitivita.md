@@ -68,7 +68,7 @@ title: "Analisi di sensitività"
 
 !!! esempio "Esempio 14.1: base ottima"
 
-    Consideriamo il seguente problema LP in forma canonica di massimo con $n=2$ variabili non negative e $m=3$ vincoli lineari di minore o uguale:
+    Consideriamo il seguente problema LP (l'esempio della produzione di vernici del capitolo 4) in forma canonica di massimo con $n=2$ variabili non negative e $m=3$ vincoli lineari di minore o uguale:
 
     $$
     \begin{array}{rrrrrrrrrrrrr}

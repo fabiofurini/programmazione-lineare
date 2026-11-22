@@ -761,7 +761,7 @@
    },
    "corretta": 0,
    "it": {
-    "testo": "Per il problema LP $\\max\\{5x_1 + 2x_2 : -x_1 + 3x_2 \\le 12,~ x_1 + 2x_2 \\le 12,~ 3x_1 - 2x_2 \\le 8,~ x_1, x_2 \\ge 0\\}$, quale lower bound $LB(\\bar{\\boldsymbol x})$ sul valore ottimo dà il punto $\\bar{\\boldsymbol x} = (0, 4)$?",
+    "testo": "Per il problema LP dell'esempio della produzione di vernici $\\max\\{5x_1 + 2x_2 : -x_1 + 3x_2 \\le 12,~ x_1 + 2x_2 \\le 12,~ 3x_1 - 2x_2 \\le 8,~ x_1, x_2 \\ge 0\\}$, quale lower bound $LB(\\bar{\\boldsymbol x})$ sul valore ottimo dà il punto $\\bar{\\boldsymbol x} = (0, 4)$?",
     "opzioni": [
      "$LB(\\bar{\\boldsymbol x}) = 8$",
      "$LB(\\bar{\\boldsymbol x}) = 20$",
@@ -771,7 +771,7 @@
     "spiegazione": "$(0,4)$ soddisfa i vincoli ($12 \\le 12$, $8 \\le 12$, $-8 \\le 8$) e $LB = 5 \\cdot 0 + 2 \\cdot 4 = 8 \\le z(LP)$."
    },
    "en": {
-    "testo": "For the LP problem $\\max\\{5x_1 + 2x_2 : -x_1 + 3x_2 \\le 12,~ x_1 + 2x_2 \\le 12,~ 3x_1 - 2x_2 \\le 8,~ x_1, x_2 \\ge 0\\}$, which lower bound $LB(\\bar{\\boldsymbol x})$ on the optimal value does the point $\\bar{\\boldsymbol x} = (0, 4)$ give?",
+    "testo": "For the LP problem of the paint production example $\\max\\{5x_1 + 2x_2 : -x_1 + 3x_2 \\le 12,~ x_1 + 2x_2 \\le 12,~ 3x_1 - 2x_2 \\le 8,~ x_1, x_2 \\ge 0\\}$, which lower bound $LB(\\bar{\\boldsymbol x})$ on the optimal value does the point $\\bar{\\boldsymbol x} = (0, 4)$ give?",
     "opzioni": [
      "$LB(\\bar{\\boldsymbol x}) = 8$",
      "$LB(\\bar{\\boldsymbol x}) = 20$",
@@ -5141,7 +5141,7 @@
    },
    "corretta": 3,
    "it": {
-    "testo": "Il problema LP $\\max\\{5x_1 + 2x_2 : -x_1 + 3x_2 \\le 12,~ x_1 + 2x_2 \\le 12,~ 3x_1 - 2x_2 \\le 8,~ x_1, x_2 \\ge 0\\}$ ha soluzione ottima $(5, \\frac{7}{2})$. Nella forma standard con le variabili di scarto $x_3, x_4, x_5$ dei tre vincoli, quanto valgono $(x_3, x_4, x_5)$ in questa soluzione?",
+    "testo": "Il problema LP dell'esempio della produzione di vernici $\\max\\{5x_1 + 2x_2 : -x_1 + 3x_2 \\le 12,~ x_1 + 2x_2 \\le 12,~ 3x_1 - 2x_2 \\le 8,~ x_1, x_2 \\ge 0\\}$ ha soluzione ottima $(5, \\frac{7}{2})$. Nella forma standard con le variabili di scarto $x_3, x_4, x_5$ dei tre vincoli, quanto valgono $(x_3, x_4, x_5)$ in questa soluzione?",
     "opzioni": [
      "$(0, 0, 0)$",
      "$(-\\frac{13}{2}, 0, 0)$",
@@ -5151,7 +5151,7 @@
     "spiegazione": "$x_{2+i} = b_i - \\sum_j a_{ij} x_j$: $x_3 = 12 - (-5 + \\frac{21}{2}) = \\frac{13}{2}$, $x_4 = 12 - 12 = 0$, $x_5 = 8 - 8 = 0$. Il valore $\\frac{11}{2}$ è il primo membro $-x_1 + 3x_2$, non lo scarto."
    },
    "en": {
-    "testo": "The LP problem $\\max\\{5x_1 + 2x_2 : -x_1 + 3x_2 \\le 12,~ x_1 + 2x_2 \\le 12,~ 3x_1 - 2x_2 \\le 8,~ x_1, x_2 \\ge 0\\}$ has optimal solution $(5, \\frac{7}{2})$. In the standard form with the slack variables $x_3, x_4, x_5$ of the three constraints, what are $(x_3, x_4, x_5)$ at this solution?",
+    "testo": "The LP problem of the paint production example $\\max\\{5x_1 + 2x_2 : -x_1 + 3x_2 \\le 12,~ x_1 + 2x_2 \\le 12,~ 3x_1 - 2x_2 \\le 8,~ x_1, x_2 \\ge 0\\}$ has optimal solution $(5, \\frac{7}{2})$. In the standard form with the slack variables $x_3, x_4, x_5$ of the three constraints, what are $(x_3, x_4, x_5)$ at this solution?",
     "opzioni": [
      "$(0, 0, 0)$",
      "$(-\\frac{13}{2}, 0, 0)$",
@@ -5951,7 +5951,7 @@
    },
    "corretta": 3,
    "it": {
-    "testo": "Il problema LP $\\max\\{5x_1 + 2x_2 : -x_1 + 3x_2 \\le 12,~ x_1 + 2x_2 \\le 12,~ 3x_1 - 2x_2 \\le 8,~ x_1, x_2 \\ge 0\\}$ ha soluzione ottima $\\tilde{\\boldsymbol x} = (5, \\frac{7}{2})$. Si aggiunge il vincolo $x_1 + x_2 \\le 6$, con variabile di scarto $x_6$, e si estende la base ottima con $x_6$. Che cosa si conclude?",
+    "testo": "Il problema LP dell'esempio della produzione di vernici $\\max\\{5x_1 + 2x_2 : -x_1 + 3x_2 \\le 12,~ x_1 + 2x_2 \\le 12,~ 3x_1 - 2x_2 \\le 8,~ x_1, x_2 \\ge 0\\}$ ha soluzione ottima $\\tilde{\\boldsymbol x} = (5, \\frac{7}{2})$. Si aggiunge il vincolo $x_1 + x_2 \\le 6$, con variabile di scarto $x_6$, e si estende la base ottima con $x_6$. Che cosa si conclude?",
     "opzioni": [
      "$x_6 = \\frac{5}{2}$: la base estesa resta ottima",
      "$x_6 = 6$: la base estesa resta ottima",
@@ -5961,7 +5961,7 @@
     "spiegazione": "$x_6 = 6 - (5 + \\frac{7}{2}) = -\\frac{5}{2} < 0$: la base estesa resta duale ammissibile (i costi ridotti non cambiano) ma non è primale ammissibile, quindi si usa il simplesso duale."
    },
    "en": {
-    "testo": "The LP problem $\\max\\{5x_1 + 2x_2 : -x_1 + 3x_2 \\le 12,~ x_1 + 2x_2 \\le 12,~ 3x_1 - 2x_2 \\le 8,~ x_1, x_2 \\ge 0\\}$ has optimal solution $\\tilde{\\boldsymbol x} = (5, \\frac{7}{2})$. The constraint $x_1 + x_2 \\le 6$ is added, with slack variable $x_6$, and the optimal basis is extended with $x_6$. What is concluded?",
+    "testo": "The LP problem of the paint production example $\\max\\{5x_1 + 2x_2 : -x_1 + 3x_2 \\le 12,~ x_1 + 2x_2 \\le 12,~ 3x_1 - 2x_2 \\le 8,~ x_1, x_2 \\ge 0\\}$ has optimal solution $\\tilde{\\boldsymbol x} = (5, \\frac{7}{2})$. The constraint $x_1 + x_2 \\le 6$ is added, with slack variable $x_6$, and the optimal basis is extended with $x_6$. What is concluded?",
     "opzioni": [
      "$x_6 = \\frac{5}{2}$: the extended basis remains optimal",
      "$x_6 = 6$: the extended basis remains optimal",

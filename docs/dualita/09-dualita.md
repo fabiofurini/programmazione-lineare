@@ -64,7 +64,7 @@ title: "Teoria della dualità"
 
 !!! esempio "Esempio 9.1: coppia di problemi primale e duale"
 
-    Consideriamo il seguente problema primale $LP$ in forma canonica di massimo con $n=2$ variabili non negative e $m=3$ vincoli lineari di minore o uguale (<span style="color:#1971c2">[Esempio 9.1](#box-2-ex-dual-1)</span>):
+    Consideriamo il seguente problema primale $LP$ (l'esempio della produzione di vernici del capitolo 4) in forma canonica di massimo con $n=2$ variabili non negative e $m=3$ vincoli lineari di minore o uguale (<span style="color:#1971c2">[Esempio 9.1](#box-2-ex-dual-1)</span>):
 
     $$
     \begin{array}{rrrrrrrrrrrrr}

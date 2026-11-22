@@ -100,7 +100,17 @@ title: "Problemi di programmazione lineare"
 
 <a id="box-2-exLPCanonical"></a>
 
-!!! esempio "Esempio 4.1: Problema LP in forma canonica di massimo"
+!!! esempio "Esempio 4.1: Problema LP in forma canonica di massimo: l'esempio della produzione di vernici"
+
+    <strong>L'esempio della produzione di vernici.</strong> Questo problema LP è l'esempio guida del modulo. Un'azienda produce due vernici, una per esterni e una per interni: $x_1$ e $x_2$ sono le tonnellate di vernice per esterni e per interni prodotte in un giorno, numeri reali perché la vernice è divisibile.
+
+    - Il profitto è $5$ per una tonnellata di vernice per esterni e $2$ per una tonnellata di vernice per interni (in migliaia di euro): l'obiettivo massimizza il profitto totale $5x_1+2x_2$.
+
+    - Primo vincolo (mercato): il triplo della vernice per interni può superare la vernice per esterni di al più $12$ tonnellate, cioè $-x_1+3x_2 \le 12$.
+
+    - Secondo vincolo: l'impianto di miscelazione è disponibile per $12$ ore al giorno; una tonnellata di vernice per esterni richiede $1$ ora e una di vernice per interni $2$.
+
+    - Terzo vincolo (mercato): il triplo della vernice per esterni può superare il doppio della vernice per interni di al più $8$ tonnellate, cioè $3x_1-2x_2 \le 8$.
 
     Consideriamo i seguenti dati di un problema LP con $n=2$ e $m=3$:
 
@@ -146,6 +156,8 @@ title: "Problemi di programmazione lineare"
     & {x_1,} &  & {x_2} & { \ge} & {0}
     \end{array}
     $$
+
+    La costruzione di modelli a partire da problemi reali è l'argomento del modulo [«Modellazione PL»](https://fabiofurini.github.io/modellazione-pl/modellazione/).
 
 <a id="box-3-ex-lp-2"></a>
 
@@ -390,6 +402,8 @@ title: "Problemi di programmazione lineare"
     $$
     z(\, LP \,)= 5\; \tilde{x}_1 + 2 \; \tilde{x}_2= 5 \cdot 5 + 2 \cdot \frac{7}{2} = 32
     $$
+
+    Nell'esempio della produzione di vernici, l'azienda produce $5$ tonnellate di vernice per esterni e $\frac{7}{2}$ tonnellate di vernice per interni al giorno, con un profitto di $32$ migliaia di euro: una quantità frazionaria di vernice è una risposta naturale.
 
     ![Figura 4](../img/04-problemi-pl/fig04.svg){ .fig .cornice loading=lazy style="width:88%" }
 

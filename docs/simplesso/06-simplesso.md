@@ -141,7 +141,7 @@ title: "Algoritmo del simplesso"
 
 !!! esempio "Esempio 6.1: forma standard di massimo di problemi LP in forma canonica di massimo"
 
-    Consideriamo il seguente problema LP in forma canonica di massimo con $n=2$ variabili e $m=3$ vincoli:
+    Consideriamo il seguente problema LP (l'esempio della produzione di vernici del capitolo 4) in forma canonica di massimo con $n=2$ variabili e $m=3$ vincoli:
 
     $$
     \begin{array}{rrrrrrrrrrrrr}

@@ -72,7 +72,7 @@ title: "La geometria della programmazione lineare"
 
 !!! esempio "Esempio 15.1: dimensione di un poliedro"
 
-    - La regione ammissibile del problema LP in forma canonica di massimo
+    - La regione ammissibile del problema LP (l'esempio della produzione di vernici del capitolo 4) in forma canonica di massimo
 
         $$
         \begin{array}{rrrrrrrrrrrrr}

@@ -60,7 +60,7 @@ title: "Esiti possibili e formulazioni equivalenti"
 
 !!! esempio "Esempio 5.1: problema LP guida in forma canonica di massimo"
 
-    Il primo esempio guida è il seguente problema LP in forma canonica di massimo con $n=2$ variabili non negative e $m=3$ vincoli lineari di minore o uguale:
+    Il primo esempio guida è l'esempio della produzione di vernici del capitolo 4, il seguente problema LP in forma canonica di massimo con $n=2$ variabili non negative e $m=3$ vincoli lineari di minore o uguale:
 
     $$
     \begin{array}{rrrrrrrrrrrrr}

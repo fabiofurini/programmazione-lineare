@@ -30,7 +30,6 @@ window.QUIZ_GEN = window.QUIZ_GEN || {};
     "13-primal-dual": ["metodi-avanzati/13-primale-duale/", "advanced-methods/13-primal-dual/"],
     "14-sensitivity": ["metodi-avanzati/14-sensitivita/", "advanced-methods/14-sensitivity/"],
     "15-geometry": ["metodi-avanzati/15-geometria/", "advanced-methods/15-geometry/"],
-    "16-modelling": ["modellazione/16-modellazione/", "modelling/16-modelling/"]
   };
   function link(cap, ancIt, ancEn) {
     if (ancEn === undefined) ancEn = ancIt;
@@ -1185,40 +1184,6 @@ window.QUIZ_GEN = window.QUIZ_GEN || {};
 
   // ======================================================================
   // 20. Modelli: numero di variabili e di vincoli (cap. 16)
-  G.push({
-    id: "lp-g-modelli-dimensioni", livello: "facile", capitolo: "16-modelling",
-    link: link("16-modelling", "161-dalla-descrizione-di-un-problema-a-un-modello-lp", "161-from-a-problem-description-to-an-lp-model"),
-    genera: function (rng, lingua) {
-      return tenta(function () {
-        var tipo = pick(rng, ["trasporto", "multi", "produzione"]);
-        var corr, d, testo, spieg, parametri;
-        if (tipo === "trasporto") {
-          var s = ri(rng, 2, 6), r = ri(rng, 2, 7); if (s === r) return null;
-          corr = [s * r, s + r]; parametri = [s, r]; d = [[s + r, s * r], [s * r, s * r], [s * r, 2 * (s + r)]];
-          testo = { it: "Un'azienda spedisce un prodotto da $s = " + s + "$ magazzini, ciascuno con una disponibilità, a $r = " + r + "$ clienti, ciascuno con una domanda da soddisfare, con un costo unitario per ogni coppia magazzino-cliente. Nel modello LP di trasporto, con una variabile per la quantità spedita da ogni magazzino a ogni cliente, quante variabili e quanti vincoli (esclusi quelli di non negatività) ci sono?",
-                    en: "A company ships a product from $s = " + s + "$ warehouses, each with an availability, to $r = " + r + "$ clients, each with a demand to satisfy, with a unit cost for every warehouse-client pair. In the LP transportation model, with one variable for the quantity shipped from every warehouse to every client, how many variables and how many constraints (excluding non-negativity) are there?" };
-          spieg = { it: "Una variabile $x_{ij}$ per ogni coppia magazzino-cliente: $s \\cdot r = " + (s * r) + "$. Un vincolo di disponibilità per magazzino e un vincolo di domanda per cliente: $s + r = " + (s + r) + "$.",
-                    en: "One variable $x_{ij}$ for each warehouse-client pair: $s \\cdot r = " + (s * r) + "$. One availability constraint per warehouse and one demand constraint per client: $s + r = " + (s + r) + "$." };
-        } else if (tipo === "multi") {
-          var n = ri(rng, 3, 12);
-          corr = [2 * n, 2 * n]; parametri = [n]; d = [[n, 2 * n], [2 * n, n], [2 * n + 1, 2 * n]];
-          testo = { it: "Un'azienda deve soddisfare la domanda $d_t$ di un prodotto in $n = " + n + "$ periodi, con produzione massima $p_t$ in ogni periodo. Nel modello LP multi-periodo, con variabili $x_t$ (produzione del periodo $t$) e $y_t$ (scorta a fine periodo $t$, con $y_0 = 0$ dato), un vincolo di bilancio delle scorte e un vincolo di capacità per periodo, quante variabili e quanti vincoli (esclusi quelli di non negatività) ci sono?",
-                    en: "A company has to satisfy the demand $d_t$ of a product over $n = " + n + "$ periods, with maximum production $p_t$ in every period. In the multi-period LP model, with variables $x_t$ (production of period $t$) and $y_t$ (inventory at the end of period $t$, with $y_0 = 0$ given), one inventory balance constraint and one capacity constraint per period, how many variables and how many constraints (excluding non-negativity) are there?" };
-          spieg = { it: "Le variabili sono $x_t$ e $y_t$ per $t = 1, \\dots, n$: $2n = " + (2 * n) + "$ ($y_0 = 0$ è un dato). I vincoli sono $n$ di bilancio delle scorte e $n$ di capacità: $2n = " + (2 * n) + "$.",
-                    en: "The variables are $x_t$ and $y_t$ for $t = 1, \\dots, n$: $2n = " + (2 * n) + "$ ($y_0 = 0$ is a datum). The constraints are $n$ inventory balance constraints and $n$ capacity constraints: $2n = " + (2 * n) + "$." };
-        } else {
-          var rr = ri(rng, 2, 7), ss = ri(rng, 2, 7); if (rr === ss) return null;
-          corr = [rr, ss]; parametri = [rr, ss]; d = [[ss, rr], [rr * ss, ss], [rr, rr + ss]];
-          testo = { it: "Un'azienda fabbrica $r = " + rr + "$ prodotti, ciascuno con un profitto unitario, usando $s = " + ss + "$ risorse disponibili in quantità limitata; ogni unità di prodotto consuma una quantità nota di ogni risorsa. Nel modello LP di pianificazione della produzione, con una variabile per la quantità prodotta di ogni prodotto, quante variabili e quanti vincoli (esclusi quelli di non negatività) ci sono?",
-                    en: "A company makes $r = " + rr + "$ products, each with a unit profit, using $s = " + ss + "$ resources available in limited quantity; every unit of product consumes a known quantity of every resource. In the LP production planning model, with one variable for the quantity produced of every product, how many variables and how many constraints (excluding non-negativity) are there?" };
-          spieg = { it: "Una variabile $x_j$ per prodotto: $r = " + rr + "$. Un vincolo per risorsa (consumo non superiore alla disponibilità): $s = " + ss + "$.",
-                    en: "One variable $x_j$ per product: $r = " + rr + "$. One constraint per resource (consumption not exceeding availability): $s = " + ss + "$." };
-        }
-        var mk = function (p) { return opz("$" + p[0] + "$ variabili e $" + p[1] + "$ vincoli", "$" + p[0] + "$ variables and $" + p[1] + "$ constraints", p.join(",")); };
-        return impacchetta(rng, lingua, mk(corr), d.map(mk), testo, spieg, { tipo: tipo, parametri: parametri });
-      });
-    }
-  });
 
   // ======================================================================
   // 21. (complessa) Simplesso completo (cap. 6)
@@ -1963,36 +1928,6 @@ window.QUIZ_GEN = window.QUIZ_GEN || {};
 
   // ----------------------------------------------------------------------
   // 36. Modello di pianificazione della produzione da una tabella di dati (cap. 16)
-  G.push({
-    id: "lp-g-modello-produzione", livello: "media", capitolo: "16-modelling",
-    link: link("16-modelling", "162-pianificazione-della-produzione", "162-production-planning"),
-    genera: function (rng, lingua) {
-      return tenta(function () {
-        var c = [ri(rng, 2, 9), ri(rng, 2, 9)], A = [[ri(rng, 1, 5), ri(rng, 1, 5)], [ri(rng, 1, 5), ri(rng, 1, 5)]], b = [ri(rng, 10, 40), ri(rng, 10, 40)];
-        if (c[0] === c[1] || A[0][1] === A[1][0] || A[0][0] === A[1][1] && A[0][1] === A[1][0]) return null;
-        if (!righeBuone(A)) return null;
-        var At = [[A[0][0], A[1][0]], [A[0][1], A[1][1]]];
-        var mod = function (lang, senso, cc, M, verso) { return lpTex(lang, senso, cc, M, [verso, verso], b); };
-        var mk = function (senso, cc, M, verso) { return opz(mod("it", senso, cc, M, verso), mod("en", senso, cc, M, verso), JSON.stringify([senso, cc, M, verso])); };
-        var giusta = mk("max", c, A, "le");
-        var cand = [mk("max", c, At, "le"), mk("min", c, A, "ge"), mk("max", [c[1], c[0]], A, "le"), mk("max", c, A, "ge")];
-        var sb = scegli(cand, giusta, 3); if (!sb) return null;
-        var tab = function (lang) {
-          var R = lang === "it" ? ["profitto unitario", "risorsa 1 per unità", "risorsa 2 per unità"] : ["unit profit", "resource 1 per unit", "resource 2 per unit"];
-          return "$\\begin{array}{l|cc} & \\text{" + (lang === "it" ? "prodotto 1" : "product 1") + "} & \\text{" + (lang === "it" ? "prodotto 2" : "product 2") + "} \\\\ \\hline \\text{" + R[0] + "} & " + c[0] + " & " + c[1] + " \\\\ \\text{" + R[1] + "} & " + A[0][0] + " & " + A[0][1] + " \\\\ \\text{" + R[2] + "} & " + A[1][0] + " & " + A[1][1] + " \\end{array}$";
-        };
-        var testo = {
-          it: "Un'azienda fabbrica due prodotti usando due risorse, disponibili in quantità $" + b[0] + "$ (risorsa 1) e $" + b[1] + "$ (risorsa 2). Profitti e consumi per unità di prodotto sono: " + tab("it") + ". Con $x_j \\ge 0$ unità del prodotto $j$, quale modello LP massimizza il profitto totale?",
-          en: "A company makes two products using two resources, available in quantities $" + b[0] + "$ (resource 1) and $" + b[1] + "$ (resource 2). Profits and consumptions per unit of product are: " + tab("en") + ". With $x_j \\ge 0$ units of product $j$, which LP model maximizes the total profit?"
-        };
-        var spieg = {
-          it: "Funzione obiettivo: profitto totale $" + lin(c, ["x_1", "x_2"]) + "$ da massimizzare. Un vincolo per risorsa: il consumo $\\sum_j a_{ij} x_j$ (riga $i$ della tabella, non colonna) non supera la disponibilità $b_i$.",
-          en: "Objective function: total profit $" + lin(c, ["x_1", "x_2"]) + "$ to maximize. One constraint per resource: the consumption $\\sum_j a_{ij} x_j$ (row $i$ of the table, not column) does not exceed the availability $b_i$."
-        };
-        return impacchetta(rng, lingua, giusta, sb, testo, spieg, { c: c, A: A, b: b });
-      });
-    }
-  });
   // ====================================================================== copertura dettagliata (7 novembre 2026)
   // 19 generatori nuovi; gemelli in verifica/verifica_generatori.py (sezione «copertura dettagliata»)
   function L2(it, en) { return { it: it, en: en }; }
@@ -2120,74 +2055,6 @@ window.QUIZ_GEN = window.QUIZ_GEN || {};
     }
   });
 
-  // ---------------------------------------------------------------- 16. modellazione: min-max, rapporti, scorte
-  G.push({
-    id: "lp-g-mod-minmax", livello: "facile", capitolo: "16-modelling", link: link("16-modelling", "1661-funzioni-obiettivo-min-max-e-max-min", "1661-min-max-and-max-min-objective-functions"),
-    genera: function (rng, lingua) {
-      return tenta(function () {
-        var f = [[ri(rng, 1, 5), ri(rng, -3, 4)], [ri(rng, -3, 4), ri(rng, 1, 5)]];
-        if (!righeBuone(f)) return null;
-        var mm = rng() < 0.5;   // true: min max; false: max min
-        var e1 = lin(f[0], xs(2)), e2 = lin(f[1], xs(2));
-        var mk = function (senso, verso, v) {
-          var s = "$\\" + senso + "\\ w$, $w " + verso + " " + e1 + "$, $w " + verso + " " + e2 + "$";
-          return opz(s, s, v);
-        };
-        var giusta = mm ? mk("min", "\\ge", "min-ge") : mk("max", "\\le", "max-le");
-        var sb = mm ? [mk("min", "\\le", "min-le"), mk("max", "\\ge", "max-ge"), mk("max", "\\le", "max-le")] : [mk("max", "\\ge", "max-ge"), mk("min", "\\le", "min-le"), mk("min", "\\ge", "min-ge")];
-        var obj = mm ? "\\min\\ \\max\\{" + e1 + ",~ " + e2 + "\\}" : "\\max\\ \\min\\{" + e1 + ",~ " + e2 + "\\}";
-        var testo = L2("In un modello LP con ${\\boldsymbol x} \\ge {\\boldsymbol 0}$ e altri vincoli lineari, la funzione obiettivo è $" + obj + "$. Con una nuova variabile libera $w$, quale formulazione lineare è equivalente?",
-          "In an LP model with ${\\boldsymbol x} \\ge {\\boldsymbol 0}$ and other linear constraints, the objective is $" + obj + "$. With a new free variable $w$, which linear formulation is equivalent?");
-        var sp = L2(mm ? "$w$ non deve essere minore di nessuna delle due funzioni; minimizzandolo vale il loro massimo." : "$w$ non deve superare nessuna delle due funzioni; massimizzandolo vale il loro minimo.",
-          mm ? "$w$ must not be less than either function; minimizing it gives their maximum." : "$w$ must not exceed either function; maximizing it gives their minimum.");
-        return impacchetta(rng, lingua, giusta, sb, testo, sp, { mm: mm ? 1 : 0, f: f });
-      });
-    }
-  });
-  G.push({
-    id: "lp-g-mod-rapporto", livello: "facile", capitolo: "16-modelling", link: link("16-modelling", "1663-rapporti-e-percentuali", "1663-ratios-and-percentages"),
-    genera: function (rng, lingua) {
-      return tenta(function () {
-        var n = 3, k = ri(rng, 1, 3), g = new Q(ri(rng, 1, 4), 10);
-        var corr = [], d1 = [], d2 = [];
-        for (var j = 1; j <= n; j++) { var aj = q(j === k ? 1 : 0); corr.push(aj.sub(g)); d1.push(aj.add(g)); d2.push(aj.mul(g).sub(1)); }
-        var d3 = []; for (var j2 = 1; j2 <= n; j2++) d3.push(q(j2 === k ? 1 : 0).sub(j2 === k ? g : q(0)));
-        var mk = function (v, verso) { var s = "$" + lin(v, xs(n)) + " " + verso + " 0$"; return opz(s, s, chiave(v) + "|" + verso); };
-        var giusta = mk(corr, "\\le");
-        var sb = scegli([mk(d1, "\\le"), mk(d3, "\\le"), mk(corr, "\\ge"), mk(d2, "\\le")], giusta, 3);
-        if (!sb) return null;
-        var pct = g.mul(100).tex();
-        var testo = L2("In un modello di miscelazione con quantità $x_1, x_2, x_3 \\ge 0$ e $x_1 + x_2 + x_3 > 0$, il materiale $" + k + "$ deve essere al più il $" + pct + "\\%$ del totale: $\\frac{x_{" + k + "}}{x_1 + x_2 + x_3} \\le " + g.tex() + "$. Quale vincolo lineare è equivalente?",
-          "In a blending model with quantities $x_1, x_2, x_3 \\ge 0$ and $x_1 + x_2 + x_3 > 0$, material $" + k + "$ must be at most $" + pct + "\\%$ of the total: $\\frac{x_{" + k + "}}{x_1 + x_2 + x_3} \\le " + g.tex() + "$. Which linear constraint is equivalent?");
-        var sp = L2("Si moltiplica per il denominatore positivo: $x_{" + k + "} - " + g.tex() + "(x_1 + x_2 + x_3) \\le 0$.",
-          "Multiply by the positive denominator: $x_{" + k + "} - " + g.tex() + "(x_1 + x_2 + x_3) \\le 0$.");
-        return impacchetta(rng, lingua, giusta, sb, testo, sp, { k: k, g: g.key() });
-      });
-    }
-  });
-  G.push({
-    id: "lp-g-mod-scorte", livello: "facile", capitolo: "16-modelling", link: link("16-modelling", "165-pianificazione-multi-periodo", "165-multi-period-planning"),
-    genera: function (rng, lingua) {
-      return tenta(function () {
-        var T = 3, d = [], x = [], y = [], y0 = ri(rng, 0, 10), cur = y0, sbagliato = [], cum = [], cc = 0;
-        for (var t = 0; t < T; t++) {
-          d.push(5 * ri(rng, 2, 8)); x.push(5 * ri(rng, 1, 9));
-          cur = cur + x[t] - d[t]; y.push(cur);
-          sbagliato.push(x[t] - d[t]); cc += x[t]; cum.push(cc);
-        }
-        if (y.some(function (v) { return v < 0; })) return null;
-        var mk = function (v) { var s = "$" + vett(v) + "$"; return opz(s, s, v.join(",")); };
-        var alt = y.map(function (v, t) { return v + d[t]; });
-        var sb = scegli([mk(sbagliato), mk(cum), mk(alt), mk(y.map(function (v) { return v - y0; }))], mk(y), 3);
-        if (!sb) return null;
-        var testo = L2("In un modello multi-periodo con $3$ periodi, $x_t$ è la produzione e $y_t$ la scorta a fine periodo $t$, con scorta iniziale $y_0 = " + y0 + "$ e bilancio $y_{t-1} + x_t = d_t + y_t$. Con domande $d = " + vett(d) + "$ e produzioni $x = " + vett(x) + "$, quanto valgono $(y_1, y_2, y_3)$?",
-          "In a multi-period model with $3$ periods, $x_t$ is the production and $y_t$ the inventory at the end of period $t$, with initial inventory $y_0 = " + y0 + "$ and balance $y_{t-1} + x_t = d_t + y_t$. With demands $d = " + vett(d) + "$ and productions $x = " + vett(x) + "$, what are $(y_1, y_2, y_3)$?");
-        var sp = L2("$y_t = y_{t-1} + x_t - d_t$, partendo da $y_0 = " + y0 + "$: si ottiene $" + vett(y) + "$.",
-          "$y_t = y_{t-1} + x_t - d_t$, starting from $y_0 = " + y0 + "$: we get $" + vett(y) + "$.");
-        return impacchetta(rng, lingua, mk(y), sb, testo, sp, { d: d, x: x, y0: y0 });
-      });
-    }
-  });
 
   // ---------------------------------------------------------------- 13. passo duale del metodo primale-duale
   G.push({
@@ -2263,25 +2130,6 @@ window.QUIZ_GEN = window.QUIZ_GEN || {};
   });
 
   // ---------------------------------------------------------------- media: valori assoluti (mediana)
-  G.push({
-    id: "lp-g-mod-assoluti", livello: "media", capitolo: "16-modelling", link: link("16-modelling", "1662-valori-assoluti", "1662-absolute-values"),
-    genera: function (rng, lingua) {
-      return tenta(function () {
-        var a = ord([ri(rng, 0, 20), ri(rng, 0, 20), ri(rng, 0, 20)]);
-        if (a[0] === a[1] || a[1] === a[2]) return null;
-        var opt = a[2] - a[0], media = (a[0] + a[1] + a[2]) / 3;
-        if (media !== Math.floor(media)) return null;
-        var fm = Math.abs(media - a[0]) + Math.abs(media - a[1]) + Math.abs(media - a[2]);
-        var sb = scegli([oV(fm), oV(q(0)), oV(q(a[2] - a[1])), oV(q(opt + a[1] - a[0]))], oV(q(opt)), 3);
-        if (!sb) return null;
-        var testo = L2("Si vuole $\\min\\ |x - " + a[0] + "| + |x - " + a[1] + "| + |x - " + a[2] + "|$ con $x$ reale, linearizzando ogni termine con $w_i \\ge x - a_i$, $w_i \\ge a_i - x$ e $\\min\\ w_1 + w_2 + w_3$. Qual è il valore ottimo del modello LP?",
-          "We want $\\min\\ |x - " + a[0] + "| + |x - " + a[1] + "| + |x - " + a[2] + "|$ with real $x$, linearizing each term with $w_i \\ge x - a_i$, $w_i \\ge a_i - x$ and $\\min\\ w_1 + w_2 + w_3$. What is the optimal value of the LP model?");
-        var sp = L2("All'ottimo $w_i = |x - a_i|$; la somma delle distanze è minima nella mediana $x = " + a[1] + "$: valore $" + opt + "$ (nella media $x = " + media + "$ vale $" + fm + "$).",
-          "At the optimum $w_i = |x - a_i|$; the sum of distances is minimal at the median $x = " + a[1] + "$: value $" + opt + "$ (at the mean $x = " + media + "$ it is $" + fm + "$).");
-        return impacchetta(rng, lingua, oV(q(opt)), sb, testo, sp, { a: a });
-      });
-    }
-  });
 
   // ---------------------------------------------------------------- media: un pivot duale completo
   G.push({
@@ -2432,30 +2280,6 @@ window.QUIZ_GEN = window.QUIZ_GEN || {};
   });
 
   // ---------------------------------------------------------------- complessa: trasporto bilanciato 2 x 2
-  G.push({
-    id: "lp-g-mod-trasporto", livello: "complessa", capitolo: "16-modelling", link: link("16-modelling", "164-trasporto", "164-transportation"),
-    genera: function (rng, lingua) {
-      return tenta(function () {
-        var o = [5 * ri(rng, 2, 8), 5 * ri(rng, 2, 8)], d1 = 5 * ri(rng, 1, 8), d = [d1, o[0] + o[1] - d1];
-        if (d[1] <= 0) return null;
-        var k = [[ri(rng, 1, 9), ri(rng, 1, 9)], [ri(rng, 1, 9), ri(rng, 1, 9)]];
-        // x11 = t, x12 = o1 - t, x21 = d1 - t, x22 = o2 - d1 + t ; 0 <= tutte
-        var lo = Math.max(0, d1 - o[1]), hi = Math.min(o[0], d1);
-        if (lo >= hi) return null;
-        var cost = function (t) { return k[0][0] * t + k[0][1] * (o[0] - t) + k[1][0] * (d1 - t) + k[1][1] * (o[1] - d1 + t); };
-        var best = Math.min(cost(lo), cost(hi)), worst = Math.max(cost(lo), cost(hi));
-        if (best === worst) return null;
-        var greedyMin = cost(Math.floor((lo + hi) / 2));
-        var sb = scegli([oV(q(worst)), oV(q(greedyMin)), oV(q(best + 5)), oV(q(k[0][0] * o[0] + k[1][1] * o[1]))], oV(q(best)), 3);
-        if (!sb) return null;
-        var testo = L2("Problema di trasporto bilanciato: due magazzini con disponibilità $o = " + vett(o) + "$, due clienti con domande $d = " + vett(d) + "$, costi unitari $k_{11} = " + k[0][0] + "$, $k_{12} = " + k[0][1] + "$, $k_{21} = " + k[1][0] + "$, $k_{22} = " + k[1][1] + "$, variabili $x_{ij} \\ge 0$ e vincoli $\\sum_j x_{ij} = o_i$, $\\sum_i x_{ij} = d_j$. Qual è il costo minimo di trasporto?",
-          "Balanced transportation problem: two warehouses with availability $o = " + vett(o) + "$, two clients with demands $d = " + vett(d) + "$, unit costs $k_{11} = " + k[0][0] + "$, $k_{12} = " + k[0][1] + "$, $k_{21} = " + k[1][0] + "$, $k_{22} = " + k[1][1] + "$, variables $x_{ij} \\ge 0$ and constraints $\\sum_j x_{ij} = o_i$, $\\sum_i x_{ij} = d_j$. What is the minimum transportation cost?");
-        var sp = L2("Con $x_{11} = t$ le altre variabili sono determinate e $t \\in [" + lo + ", " + hi + "]$; il costo è lineare in $t$, quindi il minimo è in un estremo: $" + best + "$.",
-          "With $x_{11} = t$ the other variables are determined and $t \\in [" + lo + ", " + hi + "]$; the cost is linear in $t$, so the minimum is at an endpoint: $" + best + "$.");
-        return impacchetta(rng, lingua, oV(q(best)), sb, testo, sp, { o: o, d: d, k: k });
-      });
-    }
-  });
 
   // ---------------------------------------------------------------- complessa: duale ottimo con gli scarti complementari
   G.push({

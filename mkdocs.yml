@@ -56,6 +56,12 @@ not_in_nav: |
 plugins:
   - search:
       lang: it
+  # 22/11/2026: la parte 5 «Modellazione» è passata al corso Modellazione PL: i vecchi indirizzi portano lì
+  - redirects:
+      redirect_maps:
+        modellazione/index.md: https://fabiofurini.github.io/modellazione-pl/modellazione/
+        modellazione/16-modellazione.md: https://fabiofurini.github.io/modellazione-pl/tecniche/
+        esercizi/es-16-modellazione.md: https://fabiofurini.github.io/modellazione-pl/tecniche/#esercizi
 
 extra:
   social:
@@ -178,9 +184,6 @@ nav:
       - "13. Il metodo primale-duale": metodi-avanzati/13-primale-duale.md
       - "14. Analisi di sensitività": metodi-avanzati/14-sensitivita.md
       - "15. La geometria della programmazione lineare": metodi-avanzati/15-geometria.md
-  - Modellazione:
-      - modellazione/index.md
-      - "16. Tecniche di modellazione per la programmazione lineare": modellazione/16-modellazione.md
   - Esercizi:
       - esercizi/index.md
       - "2. Semispazi e poliedri": esercizi/es-02-poliedri.md
@@ -197,7 +200,6 @@ nav:
       - "13. Il metodo primale-duale": esercizi/es-13-primale-duale.md
       - "14. Analisi di sensitività": esercizi/es-14-sensitivita.md
       - "15. La geometria della programmazione lineare": esercizi/es-15-geometria.md
-      - "16. Tecniche di modellazione per la programmazione lineare": esercizi/es-16-modellazione.md
   - Quiz: autovalutazione.md
   - Laboratorio: laboratorio/index.md
   - Catalogo:

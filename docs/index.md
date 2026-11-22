@@ -17,10 +17,12 @@ Materiale didattico ideato e sviluppato da **[Fabio Furini](https://fabiofurini.
 associato al [DIAG](https://www.diag.uniroma1.it/), Sapienza Università di Roma.
 
 **Le dispense del corso, online**: problemi di programmazione lineare, poliedri, algoritmo del simplesso,
-dualità, metodi avanzati e tecniche di modellazione, con definizioni, teoremi con le loro dimostrazioni,
+dualità e metodi avanzati, con definizioni, teoremi con le loro dimostrazioni,
 esempi svolti passo per passo ed esercizi con le soluzioni.
 
 Prerequisiti: [Algebra lineare](https://fabiofurini.github.io/algebra-lineare/).
+
+La modellazione — dalla descrizione di un problema al modello di programmazione lineare — è nel corso [Modellazione PL](https://fabiofurini.github.io/modellazione-pl/modellazione/).
 
 [Comincia :material-arrow-right:](problemi-pl/index.md){ .md-button .md-button--primary }
 [:material-pencil: Esercizi](esercizi/index.md){ .md-button }
@@ -83,16 +85,6 @@ Il metodo grafico: la retta di livello è già sul vertice ottimo, l'ultimo punt
     11\. Algoritmo del simplesso rivisto · 12\. Algoritmo del simplesso duale rivisto · 13\. Il metodo primale-duale · 14\. Analisi di sensitività · 15\. La geometria della programmazione lineare
 
     [:octicons-arrow-right-24: I capitoli](metodi-avanzati/index.md)
-
--   :material-lightbulb-on-outline: **5 · Modellazione**
-
-    ---
-
-    Le tecniche per scrivere un modello di programmazione lineare a partire dalla descrizione di un problema (produzione, miscelazione, trasporto, pianificazione multi-periodo, linearizzazioni), con esempi svolti. I modelli completi sono nell'eserciziario 5.
-
-    16\. Tecniche di modellazione per la programmazione lineare
-
-    [:octicons-arrow-right-24: I capitoli](modellazione/index.md)
 
 </div>
 

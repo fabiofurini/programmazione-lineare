@@ -27,7 +27,7 @@ Pagine, figure e PDF sono generati in locale dai sorgenti LaTeX (privati) delle 
 questo repository contiene il sito generato (`docs/`, `mkdocs.yml`). Per vederlo in locale:
 
 ```bash
-python3 -m pip install mkdocs-material
+python3 -m pip install mkdocs-material mkdocs-redirects
 python3 -m mkdocs serve            # anteprima su http://127.0.0.1:8000
 ```
 

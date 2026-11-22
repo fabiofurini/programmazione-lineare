@@ -123,14 +123,4 @@ dispensa: sul sito e nel PDF trovi tutto allo stesso posto.
     - 15.4 Il Teorema Fondamentale, in chiave geometrica
     - 15.5 In sintesi
 
-## [Modellazione](modellazione/index.md)
-
-16. [Tecniche di modellazione per la programmazione lineare](modellazione/16-modellazione.md)
-    - 16.1 Dalla descrizione di un problema a un modello LP
-    - 16.2 Pianificazione della produzione
-    - 16.3 Miscelazione
-    - 16.4 Trasporto
-    - 16.5 Pianificazione multi-periodo
-    - 16.6 Tecniche di linearizzazione
-    - 16.7 Che cosa non si può modellare con la programmazione lineare
-    - 16.8 In sintesi
+La modellazione — dalla descrizione di un problema al modello di programmazione lineare — è nel corso [Modellazione PL](https://fabiofurini.github.io/modellazione-pl/modellazione/).

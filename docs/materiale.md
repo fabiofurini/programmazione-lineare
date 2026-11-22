@@ -42,14 +42,6 @@ Le dispense e gli eserciziari in PDF, aggiornati a ogni pubblicazione del sito, 
 
     [:octicons-download-24: dispensa-4-metodi-avanzati.pdf](pdf/dispensa-4-metodi-avanzati.pdf)
 
--   :material-book-open-variant: **Dispensa, volume 5 · Modellazione**
-
-    ---
-
-    Le tecniche per scrivere un modello di programmazione lineare a partire dalla descrizione di un problema (produzione, miscelazione, trasporto, pianificazione multi-periodo, linearizzazioni), con esempi svolti. I modelli completi sono nell'eserciziario 5.
-
-    [:octicons-download-24: dispensa-5-modellazione.pdf](pdf/dispensa-5-modellazione.pdf)
-
 -   :material-book-open-variant: **Catalogo dei problemi · Catalogo dei problemi**
 
     ---
@@ -96,14 +88,6 @@ Le dispense e gli eserciziari in PDF, aggiornati a ogni pubblicazione del sito, 
 
     [:octicons-download-24: esercizi-4-metodi-avanzati.pdf](pdf/esercizi-4-metodi-avanzati.pdf)
 
--   :material-pencil-box-multiple: **Esercizi, volume 5 · Modelli di programmazione lineare**
-
-    ---
-
-    Modelli di programmazione lineare svolti: modelli simbolici con la loro istanza, una soluzione ammissibile e un bound duale, e modelli numerici.
-
-    [:octicons-download-24: esercizi-5-modellazione.pdf](pdf/esercizi-5-modellazione.pdf)
-
 </div>
 
 ## Slide
@@ -134,10 +118,6 @@ Le dispense e gli eserciziari in PDF, aggiornati a ogni pubblicazione del sito, 
 - :material-presentation: [Capitolo 13 · Il metodo primale-duale](pdf/slide-13-primale-duale.pdf)
 - :material-presentation: [Capitolo 14 · Analisi di sensitività](pdf/slide-14-sensitivita.pdf)
 - :material-presentation: [Capitolo 15 · La geometria della programmazione lineare](pdf/slide-15-geometria.pdf)
-
-### Modellazione
-
-- :material-presentation: [Capitolo 16 · Tecniche di modellazione per la programmazione lineare](pdf/slide-16-modellazione.pdf)
 
 <!-- banca-domande -->
 ## Banca delle domande del quiz

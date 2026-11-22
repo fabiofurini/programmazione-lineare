@@ -38,10 +38,4 @@ Esercizi con le **soluzioni svolte**, capitolo per capitolo, come negli esercizi
     - [14. Analisi di sensitività](es-14-sensitivita.md) · 4 esercizi
     - [15. La geometria della programmazione lineare](es-15-geometria.md) · 3 esercizi
 
--   **Modellazione**
-
-    ---
-
-    - [16. Tecniche di modellazione per la programmazione lineare](es-16-modellazione.md) · 8 esercizi
-
 </div>

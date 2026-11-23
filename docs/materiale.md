@@ -42,14 +42,6 @@ Le dispense e gli eserciziari in PDF, aggiornati a ogni pubblicazione del sito, 
 
     [:octicons-download-24: dispensa-4-metodi-avanzati.pdf](pdf/dispensa-4-metodi-avanzati.pdf)
 
--   :material-book-open-variant: **Catalogo dei problemi · Catalogo dei problemi**
-
-    ---
-
-    I problemi di programmazione lineare usati negli esempi e negli esercizi di tutto il corso, citati con la loro sigla P0--P86: problemi con due e tre variabili, divisi in quattro tipi (A: termini noti non negativi; B: simplesso duale; C: serve la Fase 0; D: problemi illimitati, inammissibili o con ottimi multipli). Per ciascuno il problema e la figura della regione ammissibile.
-
-    [:octicons-download-24: catalogo-problemi.pdf](pdf/catalogo-problemi.pdf)
-
 </div>
 
 ## Esercizi
@@ -119,8 +111,22 @@ Le dispense e gli eserciziari in PDF, aggiornati a ogni pubblicazione del sito, 
 - :material-presentation: [Capitolo 14 · Analisi di sensitività](pdf/slide-14-sensitivita.pdf)
 - :material-presentation: [Capitolo 15 · La geometria della programmazione lineare](pdf/slide-15-geometria.pdf)
 
+## Altri documenti
+
+<div class="grid cards" markdown>
+
+-   :material-file-document-outline: **Catalogo dei problemi · Catalogo dei problemi**
+
+    ---
+
+    I problemi di programmazione lineare usati negli esempi e negli esercizi di tutto il corso, citati con la loro sigla P0--P86: problemi con due e tre variabili, divisi in quattro tipi (A: termini noti non negativi; B: simplesso duale; C: serve la Fase 0; D: problemi illimitati, inammissibili o con ottimi multipli). Per ciascuno il problema e la figura della regione ammissibile.
+
+    [:octicons-download-24: catalogo-problemi.pdf](pdf/catalogo-problemi.pdf)
+
+</div>
+
 <!-- banca-domande -->
-## Banca delle domande del quiz
+## Banca delle domande
 
 Tutte le domande dell'autovalutazione, divise per parte e capitolo, con la risposta corretta e la spiegazione; per le domande generate, che cambiano i numeri a ogni avvio, alcuni esempi.
 

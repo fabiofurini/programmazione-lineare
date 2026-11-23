@@ -21,8 +21,6 @@ lineare con i loro esiti possibili; l'algoritmo del simplesso con la fase 0; la 
 e il simplesso duale; il simplesso rivisto, il metodo primale-duale, l'analisi di sensitività e la
 geometria della programmazione lineare.
 
-Ogni capitolo ha definizioni, teoremi con dimostrazione, esempi svolti passo per passo ed esercizi con le soluzioni.
-
 Prerequisiti: [Algebra lineare](https://fabiofurini.github.io/algebra-lineare/).
 
 La modellazione — dalla descrizione di un problema al modello di programmazione lineare — è nel corso [Modellazione PL](https://fabiofurini.github.io/modellazione-pl/modellazione/).

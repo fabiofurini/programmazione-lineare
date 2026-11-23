@@ -16,9 +16,12 @@ hide:
 Materiale didattico ideato e sviluppato da **[Fabio Furini](https://fabiofurini.github.io/)**, professore
 associato al [DIAG](https://www.diag.uniroma1.it/), Sapienza Università di Roma.
 
-**Le dispense del corso, online**: problemi di programmazione lineare, poliedri, algoritmo del simplesso,
-dualità e metodi avanzati, con definizioni, teoremi con le loro dimostrazioni,
-esempi svolti passo per passo ed esercizi con le soluzioni.
+Il corso presenta la programmazione lineare: funzioni lineari, poliedri e problemi di programmazione
+lineare con i loro esiti possibili; l'algoritmo del simplesso con la fase 0; la teoria della dualità
+e il simplesso duale; il simplesso rivisto, il metodo primale-duale, l'analisi di sensitività e la
+geometria della programmazione lineare.
+
+Ogni capitolo ha definizioni, teoremi con dimostrazione, esempi svolti passo per passo ed esercizi con le soluzioni.
 
 Prerequisiti: [Algebra lineare](https://fabiofurini.github.io/algebra-lineare/).
 

@@ -15,7 +15,8 @@
  *
  * Notazione dei dizionari come nelle dispense (06_SIMPLEX_ALGORITHM):
  *   x_i = b̄_i − Σ_{j∈N} ā_ij x_j  (i ∈ B),    z = z̄ + Σ_{j∈N} c̄_j x_j.
- * Colori come nelle dispense: regione ammissibile rossa, vertici visitati e
+ * Colori come nelle dispense: regione ammissibile rossa (20%, bordo rosso), rette
+ * dei vincoli rosse continue, vertici di F neri, vertici visitati e
  * cammino del simplesso viola, vertice ottimo blu; la colonna pivot ha il colore
  * del cursore (arancio), la riga pivot il secondo colore (verde acqua). Nessuna
  * etichetta di testo sul grafico: valori e spiegazioni stanno nelle letture e
@@ -64,6 +65,7 @@
       rosso: pr("ammissibile", "#E03131", "#FF6B6B"), blu: pr("ottimo", "#1971C2", "#4DABF7"),
       viola: pr("locale", "#9C36B5", "#DA77F2"), grigio: pr("orig", "#9aa5b1", "#6b7b8f"),
       a: pr("a", "#D9480F", "#FF8A4C"), b: pr("b", "#0E7490", "#3BC9DB"),
+      nero: scuro() ? "#E9ECEF" : "#212529",
     };
   };
   const tinta = (c, html) => `<strong style="color:${c}">${html}</strong>`;
@@ -236,7 +238,8 @@
       const C = COL(st);
       return [
         [C.rosso, T("regione ammissibile \\(F\\)", "feasible region \\(F\\)"), "pieno"],
-        [C.grigio, T("rette dei vincoli", "constraint lines"), "dashed"],
+        [C.rosso, T("rette dei vincoli", "constraint lines"), ""],
+        [C.nero, T("vertici di \\(F\\)", "vertices of \\(F\\)"), "punto"],
         [C.viola, T("cammino del simplesso", "simplex path"), ""],
         [C.viola, T("vertici visitati", "visited vertices"), "punto"],
         [C.a, T("prossimo pivot", "next pivot"), "dashed"],
@@ -255,9 +258,12 @@
         if (ax.y) ax.y.defaultTicks.setAttribute({ label: { offset: [-11, 0], anchorX: "right", anchorY: "middle" } });
       } catch (e) { /* assi senza tacche: niente da spostare */ }
       if (S.poli.length) GI.spezzata(board, () => S.poli.concat([S.poli[0]]), {
-        strokeColor: C.rosso, strokeWidth: 2, fillColor: C.rosso, fillOpacity: 0.18, fixed: true,
+        strokeColor: C.rosso, strokeWidth: 3, fillColor: C.rosso, fillOpacity: 0.2, fixed: true,
       });
-      for (const v of S.V) if (!v.segno) retta(board, v, { strokeColor: C.grigio, strokeWidth: 1.2, dash: 2 });
+      for (const v of S.V) if (!v.segno) retta(board, v, { strokeColor: C.rosso, strokeWidth: 1.5, strokeOpacity: 0.75 });
+      // i vertici di F, neri e piccoli, come nelle dispense
+      const vF = (S.P.vertici || []).map((v) => v.map((q) => Frazione.da(q).valore()));
+      GI.nuvola(board, 12, () => vF, { size: 3, fillColor: C.nero, strokeColor: C.nero });
       // il cammino percorso fino all'iterazione k
       GI.spezzata(board, () => S.passi.slice(0, k() + 1).map(pt), { strokeColor: C.viola, strokeWidth: 4, fixed: true });
       // il prossimo spigolo (se c'è un pivot da fare)

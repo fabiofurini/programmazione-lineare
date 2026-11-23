@@ -11,8 +11,9 @@
  * Dati: i problemi del catalogo (CATALOGO di catalogo_pl.js, frazioni esatte
  * "num/den"), solo quelli con n = 2; tutti i conti che si leggono (vertici,
  * ottimo duale, intervalli, prezzi ombra) sono fatti in frazioni esatte.
- * Colori come nelle dispense: regioni ammissibili rosse, ottimi e rette di
- * livello blu, punti ammissibili non ottimi e basi non più ottime viola.
+ * Colori come nelle dispense: regioni ammissibili rosse (20%, bordo rosso), rette
+ * dei vincoli rosse continue, ottimi, gradiente e rette di livello blu (queste
+ * tratteggiate), vertici neri, punti ammissibili non ottimi e basi non più ottime viola.
  * Nessuna etichetta di testo nei grafici: i valori sono nelle letture.
  */
 (function () {
@@ -311,7 +312,7 @@
   function disegnaLato(bd, st, S, nome, regione, obiettivo, verso, ottimo) {
     const C = COL(st);
     const R = regione();
-    bd.create("curve", [[0], [0]], { strokeColor: C.rosso, strokeWidth: 2, fillColor: C.rosso, fillOpacity: 0.16, highlight: false, fixed: true })
+    bd.create("curve", [[0], [0]], { strokeColor: C.rosso, strokeWidth: 3, fillColor: C.rosso, fillOpacity: 0.2, highlight: false, fixed: true })
       .updateDataArray = function () {
         const b = bd.getBoundingBox(), L = b[2] - b[0];
         const P = ritaglio(R.Gn, R.hn, [b[0] - L, b[1] + L, b[2] + L, b[3] - L]);
@@ -324,7 +325,7 @@
     const g = obiettivo.map(fl);
     // retta di livello per il punto: g'y = g'(punto)
     bd.create("line", [() => -(g[0] * S[nome][0] + g[1] * S[nome][1]), g[0], g[1]], {
-      strokeColor: C.blu, strokeWidth: 1.6, dash: 2, highlight: false, fixed: true,
+      strokeColor: C.blu, strokeWidth: 2.4, dash: 2, highlight: false, fixed: true,
     });
     // direzione di miglioramento: c (max) per il primale, -b (min) per il duale
     const L = () => { const bb = bd.getBoundingBox(); return 0.16 * (bb[2] - bb[0]) / Math.hypot(g[0], g[1]); };
@@ -550,8 +551,8 @@
     stessaScala: true,
     legenda: (st) => [
       ["ammissibile", T("regione ammissibile \\(F\\)", "feasible region \\(F\\)"), "pieno"],
-      ["orig", modoS(st) === "c" ? T("rette dei vincoli attivi nella base ottima", "lines of the constraints active in the optimal basis")
-        : T("\\(F\\) con il \\(b_1\\) originale", "\\(F\\) with the original \\(b_1\\)"), "dashed"],
+      modoS(st) === "c" ? ["ammissibile", T("rette dei vincoli attivi nella base ottima", "lines of the constraints active in the optimal basis"), ""]
+        : ["orig", T("\\(F\\) con il \\(b_1\\) originale", "\\(F\\) with the original \\(b_1\\)"), "dashed"],
       ["ottimo", T("retta di livello ottima \\(\\boldsymbol c'\\boldsymbol x = z^*\\)", "optimal level line \\(\\boldsymbol c'\\boldsymbol x = z^*\\)"), "dashed"],
       ["ottimo", T("\\(\\boldsymbol c\\)", "\\(\\boldsymbol c\\)"), ""],
       ["ottimo", T("vertice ottimo", "optimal vertex"), "punto"],
@@ -568,16 +569,16 @@
       s.att.forEach((r) => {
         const g = s.G[r].map(fl);
         board.create("line", [() => -fl(cur().h[r]), g[0], g[1]], {
-          strokeColor: C.grigio, strokeWidth: 1.3, dash: 2, highlight: false, fixed: true, visible: () => modoS(st) === "c",
+          strokeColor: C.rosso, strokeWidth: 1.5, strokeOpacity: 0.75, highlight: false, fixed: true, visible: () => modoS(st) === "c",
         });
       });
       // regione corrente
-      GI_spezzata(board, () => ritaglio(cur().Gn, cur().hn, bb()), { strokeColor: C.rosso, strokeWidth: 2, fillColor: C.rosso, fillOpacity: 0.16 });
+      GI_spezzata(board, () => ritaglio(cur().Gn, cur().hn, bb()), { strokeColor: C.rosso, strokeWidth: 3, fillColor: C.rosso, fillOpacity: 0.2 });
       // spigolo ottimo (ottimi multipli agli estremi dell'intervallo)
       GI_spezzata(board, () => (cur().ott.length > 1 ? cur().ott.map((v) => v.map(fl)) : []), { strokeColor: C.blu, strokeWidth: 5, strokeOpacity: 0.8 });
       // retta di livello ottima e vettore c dal vertice ottimo
       board.create("line", [() => (cur().z ? -fl(cur().z) : NaN), () => fl(cur().c[0]), () => fl(cur().c[1])], {
-        strokeColor: C.blu, strokeWidth: 1.8, dash: 2, highlight: false, fixed: true, visible: () => !!cur().z,
+        strokeColor: C.blu, strokeWidth: 2.5, dash: 2, highlight: false, fixed: true, visible: () => !!cur().z,
       });
       const o = () => (cur().ott[0] ? cur().ott[0].map(fl) : [NaN, NaN]);
       const Lc = () => { const b = board.getBoundingBox(); const c = cur().c.map(fl); return 0.16 * (b[2] - b[0]) / (Math.hypot(c[0], c[1]) || 1); };

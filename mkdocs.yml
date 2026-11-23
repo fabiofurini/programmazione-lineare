@@ -125,7 +125,7 @@ extra_css:
   - stylesheets/collana.css
   - stylesheets/extra.css?v=d60085bd58
   - https://cdn.jsdelivr.net/npm/jsxgraph@1.10.1/distrib/jsxgraph.css
-  - stylesheets/interattivi.css?v=5d53d6f224
+  - stylesheets/interattivi.css?v=734e0dc7c8
   - stylesheets/quiz.css?v=9e3792b41c
 
 markdown_extensions:
@@ -154,9 +154,9 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/jsxgraph@1.10.1/distrib/jsxgraphcore.js
   - javascripts/interattivi.js?v=21dd4bf4df
   - javascripts/catalogo_pl.js?v=3aed29e2e0
-  - javascripts/gi-cap1-5.js?v=778e56e4b0
-  - javascripts/gi-cap6-8.js?v=ecd6f0e348
-  - javascripts/gi-cap9-14.js?v=379a5b9c26
+  - javascripts/gi-cap1-5.js?v=0e488ca74e
+  - javascripts/gi-cap6-8.js?v=a40c0b0070
+  - javascripts/gi-cap9-14.js?v=5790239f96
   - javascripts/quiz.js?v=be7fae2b85
 
 nav:

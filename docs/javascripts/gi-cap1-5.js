@@ -12,10 +12,12 @@
  * si ricalcolano in aritmetica intera esatta (intersezioni di due rette e
  * verifica di tutti i vincoli) e si confrontano con quelli del catalogo.
  *
- * Colori come nelle dispense: regione ammissibile rossa, ottimi (vertice o
- * segmento ottimo) blu, gradiente c blu, rette dei vincoli grigie tratteggiate,
- * retta di livello c'x = z del colore del suo cursore. Nessuna etichetta di
- * testo sul grafico: valori e spiegazioni stanno nelle letture e nella legenda.
+ * Colori come nelle figure delle dispense: regione ammissibile rossa (riempimento
+ * al 20% e bordo rosso), rette dei vincoli rosse continue, rette di livello
+ * c'x = k blu tratteggiate (anche quella che scorre, c'x = z; il suo cursore è
+ * blu, --gi-livello), gradiente c freccia blu, vertice ottimo (o lato ottimo) blu,
+ * altri vertici neri. Nessuna etichetta di testo sul grafico: valori e
+ * spiegazioni stanno nelle letture e nella legenda.
  */
 (function () {
   "use strict";
@@ -38,6 +40,12 @@
     };
   };
   const tinta = (c, html) => `<strong style="color:${c}">${html}</strong>`;
+  // stili delle figure delle dispense (TikZ): vincoli rossi continui, regione rossa al 20%,
+  // rette di livello blu tratteggiate, vertici neri (l'ottimo blu)
+  const ST_VINCOLO = (C) => ({ strokeColor: C.rosso, strokeWidth: 1.5, strokeOpacity: 0.75 });
+  const ST_REGIONE = (C) => ({ strokeColor: C.rosso, strokeWidth: 3, fillColor: C.rosso, fillOpacity: 0.2, fixed: true });
+  const ST_LIVELLO = (C) => ({ strokeColor: C.blu, strokeWidth: 2.5, dash: 2 });
+  const ST_VERTICE = (C) => ({ size: 3.5, fillColor: C.nero, strokeColor: C.nero });
 
   // ------------------------------------------------------------ frazioni esatte
   const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a || 1; };
@@ -180,7 +188,7 @@
   // 1. Funzione lineare: rette di livello e gradiente (cap. 1)
   // ================================================================
   const PASSI = [0.25, 0.5, 1, 2, 2.5, 5, 10];
-  // passo fra i livelli delle rette grigie: le rette distano circa 1
+  // passo fra i livelli delle rette di livello sottili: le rette distano circa 1
   const passoLivelli = (n) => PASSI.reduce((m, v) => (Math.abs(Math.log(v / n)) < Math.abs(Math.log(m / n)) ? v : m), 1);
   const par = (v, c) => (v < 0 ? `(${num(v, c)})` : num(v, c));
 
@@ -199,8 +207,8 @@
     legenda: (st) => {
       const C = COL(st);
       return [
-        [C.grigio, T("rette di livello \\(\\boldsymbol c'\\boldsymbol x = k\\)", "level lines \\(\\boldsymbol c'\\boldsymbol x = k\\)"), "dashed"],
-        [C.verde, T("retta di livello per \\(\\boldsymbol x\\)", "level line through \\(\\boldsymbol x\\)"), ""],
+        [C.blu, T("rette di livello \\(\\boldsymbol c'\\boldsymbol x = k\\) (sottili)", "level lines \\(\\boldsymbol c'\\boldsymbol x = k\\) (thin)"), "dashed"],
+        [C.blu, T("retta di livello per \\(\\boldsymbol x\\) (spessa)", "level line through \\(\\boldsymbol x\\) (thick)"), "dashed"],
         [C.blu, T("gradiente \\(\\boldsymbol c\\) applicato in \\(\\boldsymbol x\\)", "gradient \\(\\boldsymbol c\\) drawn at \\(\\boldsymbol x\\)"), ""],
         [C.nero, T("il punto \\(\\boldsymbol x\\) (trascinabile)", "the point \\(\\boldsymbol x\\) (draggable)"), "punto"],
       ];
@@ -213,14 +221,14 @@
       const passo = () => passoLivelli(nc() || 1);
       for (let j = -24; j <= 24; j++) {
         board.create("line", [() => -j * passo(), () => c()[0], () => c()[1]], {
-          strokeColor: C.grigio, strokeWidth: 1, dash: 2, fixed: true, highlight: false, withLabel: false,
+          strokeColor: C.blu, strokeWidth: 1.2, strokeOpacity: 0.45, dash: 2, fixed: true, highlight: false, withLabel: false,
           visible: () => nc() > 0,
         });
       }
       const fx = () => c()[0] * D.x[0] + c()[1] * D.x[1];
-      board.create("line", [() => -fx(), () => c()[0], () => c()[1]], {
-        strokeColor: C.verde, strokeWidth: 3, fixed: true, highlight: false, withLabel: false, visible: () => nc() > 0,
-      });
+      board.create("line", [() => -fx(), () => c()[0], () => c()[1]], Object.assign(ST_LIVELLO(C), {
+        strokeWidth: 3, fixed: true, highlight: false, withLabel: false, visible: () => nc() > 0,
+      }));
       board.create("arrow", [[() => D.x[0], () => D.x[1]], [() => D.x[0] + c()[0], () => D.x[1] + c()[1]]], {
         strokeColor: C.blu, strokeWidth: 3.5, fixed: true, highlight: false, withLabel: false,
         lastArrow: { type: 2, size: 5 }, visible: () => nc() > 0,
@@ -246,17 +254,17 @@
       }
       r += T(`${tinta(C.blu, "Gradiente")} \\(\\nabla f(\\boldsymbol x) = \\boldsymbol c = ${coppia(num(p.c1, 1), num(p.c2, 1))}\\), lo stesso in ogni punto.<br>`,
         `${tinta(C.blu, "Gradient")} \\(\\nabla f(\\boldsymbol x) = \\boldsymbol c = ${coppia(num(p.c1, 1), num(p.c2, 1))}\\), the same at every point.<br>`);
-      r += T(`${tinta(C.verde, "Retta di livello")} per \\(\\boldsymbol x\\): \\(\\{\\boldsymbol x \\in \\R^2 : \\boldsymbol c'\\boldsymbol x = ${num(f, 2)}\\}\\), perpendicolare a \\(\\boldsymbol c\\).<br>`,
-        `${tinta(C.verde, "Level line")} through \\(\\boldsymbol x\\): \\(\\{\\boldsymbol x \\in \\R^2 : \\boldsymbol c'\\boldsymbol x = ${num(f, 2)}\\}\\), perpendicular to \\(\\boldsymbol c\\).<br>`);
+      r += T(`${tinta(C.blu, "Retta di livello")} (spessa) per \\(\\boldsymbol x\\): \\(\\{\\boldsymbol x \\in \\R^2 : \\boldsymbol c'\\boldsymbol x = ${num(f, 2)}\\}\\), perpendicolare a \\(\\boldsymbol c\\).<br>`,
+        `${tinta(C.blu, "Level line")} (thick) through \\(\\boldsymbol x\\): \\(\\{\\boldsymbol x \\in \\R^2 : \\boldsymbol c'\\boldsymbol x = ${num(f, 2)}\\}\\), perpendicular to \\(\\boldsymbol c\\).<br>`);
       const d = passoLivelli(nc);
-      r += T(`Rette grigie: i livelli \\(k = 0, \\pm ${num(d, 2)}, \\pm ${num(2 * d, 2)}, \\dots\\); \\(f\\) cresce nel verso di \\(\\boldsymbol c\\).`,
-        `Grey lines: the levels \\(k = 0, \\pm ${num(d, 2)}, \\pm ${num(2 * d, 2)}, \\dots\\); \\(f\\) increases in the direction of \\(\\boldsymbol c\\).`);
+      r += T(`Rette tratteggiate sottili: i livelli \\(k = 0, \\pm ${num(d, 2)}, \\pm ${num(2 * d, 2)}, \\dots\\); \\(f\\) cresce nel verso di \\(\\boldsymbol c\\).`,
+        `Thin dashed lines: the levels \\(k = 0, \\pm ${num(d, 2)}, \\pm ${num(2 * d, 2)}, \\dots\\); \\(f\\) increases in the direction of \\(\\boldsymbol c\\).`);
       if (p.c1 === 0) r += T("<br>Con \\(c_1 = 0\\) le rette di livello sono orizzontali: \\(f\\) dipende solo da \\(x_2\\).", "<br>With \\(c_1 = 0\\) the level lines are horizontal: \\(f\\) depends only on \\(x_2\\).");
       else if (p.c2 === 0) r += T("<br>Con \\(c_2 = 0\\) le rette di livello sono verticali: \\(f\\) dipende solo da \\(x_1\\).", "<br>With \\(c_2 = 0\\) the level lines are vertical: \\(f\\) depends only on \\(x_1\\).");
       return r;
     },
-    domanda: T("Metti \\(c_1 = 0\\): come diventano le rette di livello, e da quale variabile dipende \\(f\\)? Poi cambia il segno di entrambe le componenti (\\(\\boldsymbol c \\to -\\boldsymbol c\\)): le rette cambiano? E il verso in cui \\(f\\) cresce? Trascina \\(\\boldsymbol x\\) lungo la retta verde: che cosa resta costante?",
-      "Set \\(c_1 = 0\\): what do the level lines become, and on which variable does \\(f\\) depend? Then change the sign of both components (\\(\\boldsymbol c \\to -\\boldsymbol c\\)): do the lines change? And the direction in which \\(f\\) increases? Drag \\(\\boldsymbol x\\) along the green line: what stays constant?"),
+    domanda: T("Metti \\(c_1 = 0\\): come diventano le rette di livello, e da quale variabile dipende \\(f\\)? Poi cambia il segno di entrambe le componenti (\\(\\boldsymbol c \\to -\\boldsymbol c\\)): le rette cambiano? E il verso in cui \\(f\\) cresce? Trascina \\(\\boldsymbol x\\) lungo la retta di livello spessa: che cosa resta costante?",
+      "Set \\(c_1 = 0\\): what do the level lines become, and on which variable does \\(f\\) depend? Then change the sign of both components (\\(\\boldsymbol c \\to -\\boldsymbol c\\)): do the lines change? And the direction in which \\(f\\) increases? Drag \\(\\boldsymbol x\\) along the thick level line: what stays constant?"),
   };
 
   // ================================================================
@@ -338,26 +346,24 @@
       const C = COL(st);
       return [
         [C.rosso, T("poliedro", "polyhedron"), "pieno"],
-        [C.grigio, T("rette dei vincoli", "constraint lines"), "dashed"],
-        [st.colore("e"), T("retta del vincolo scelto", "line of the chosen constraint"), "dashed"],
-        [C.blu, T("vertici", "vertices"), "punto"],
+        [C.rosso, T("rette dei vincoli", "constraint lines"), ""],
+        [C.rosso, T("retta del vincolo scelto (spessa)", "line of the chosen constraint (thick)"), ""],
+        [C.nero, T("vertici", "vertices"), "punto"],
       ];
     },
     monta(board, st) {
       const C = COL(st), D = () => datiPoliedro(st);
       scriviCursori(st, D());
       disegnaControlliPoliedro(st);
-      GI.spezzata(board, () => { const P = poligono(vincoliPoliedro(D()), 80); return P.length ? P.concat([P[0]]) : []; }, {
-        strokeColor: C.rosso, strokeWidth: 2, fillColor: C.rosso, fillOpacity: 0.18, fixed: true,
-      });
+      GI.spezzata(board, () => { const P = poligono(vincoliPoliedro(D()), 80); return P.length ? P.concat([P[0]]) : []; }, ST_REGIONE(C));
       for (let i = 0; i < 4; i++) {
         const v = () => { const d = D(); return i < d.A.length ? { a: d.A[i], b: d.b[i] } : { a: [0, 1], b: 0 }; };
         const ok = () => i < D().A.length && (D().A[i][0] !== 0 || D().A[i][1] !== 0);
-        retta(board, v, { strokeColor: C.grigio, strokeWidth: 1.3, dash: 2, visible: () => ok() && i !== D().sel });
-        retta(board, v, { strokeColor: st.colore("e"), strokeWidth: 2.2, dash: 2, visible: () => ok() && i === D().sel });
+        retta(board, v, Object.assign(ST_VINCOLO(C), { visible: () => ok() && i !== D().sel }));
+        retta(board, v, { strokeColor: C.rosso, strokeWidth: 3.5, visible: () => ok() && i === D().sel });
       }
       GI.nuvola(board, 10, () => verticiEsatti(vincoliPoliedro(D())).map((p) => [Qv(p[0]), Qv(p[1])]),
-        { size: 4, fillColor: C.blu, strokeColor: C.blu });
+        Object.assign(ST_VERTICE(C), { size: 4 }));
     },
     aggiorna(board, st) {
       const D = datiPoliedro(st), p = st.p();
@@ -373,7 +379,7 @@
       const D = datiPoliedro(st), C = COL(st), V = vincoliPoliedro(D), { tipo, vert } = classifica(V);
       const righe = D.A.map((a, i) => {
         const t = `${lin([Q(a[0]), Q(a[1])])} \\le ${D.b[i]}`;
-        return i === D.sel ? `{\\color{${st.colore("e")}}{${t}}}` : t;
+        return i === D.sel ? `{\\color{${C.rosso}}{\\boldsymbol{${t}}}}` : t;
       });
       if (D.nonneg) righe.push("x_1,\\ x_2 \\ge 0");
       let r = `\\(\\begin{array}{l}${righe.join(" \\\\ ")}\\end{array}\\)<br>`;
@@ -386,7 +392,7 @@
         ? T(`Il poliedro è ${tinta(C.rosso, "limitato")} (un politopo).`, `The polyhedron is ${tinta(C.rosso, "bounded")} (a polytope).`)
         : T(`Il poliedro è ${tinta(C.rosso, "illimitato")}: contiene punti lontani quanto si vuole.`, `The polyhedron is ${tinta(C.rosso, "unbounded")}: it contains points as far away as we like.`);
       r += "<br>" + (vert.length
-        ? T(`${tinta(C.blu, vert.length === 1 ? "1 vertice" : vert.length + " vertici")}: `, `${tinta(C.blu, vert.length === 1 ? "1 vertex" : vert.length + " vertices")}: `) +
+        ? T(`${tinta(C.nero, vert.length === 1 ? "1 vertice" : vert.length + " vertici")}: `, `${tinta(C.nero, vert.length === 1 ? "1 vertex" : vert.length + " vertices")}: `) +
           vert.map((v) => `\\(${coppiaQ(v)}\\)`).join(", ")
         : T("Nessun vertice: il poliedro contiene un'intera retta.", "No vertex: the polyhedron contains a whole line."));
       return r;
@@ -455,20 +461,20 @@
 
   // gli oggetti comuni: regione, rette dei vincoli, gradiente, retta di livello e suo tratto in F
   const disegnaProblema = (board, st) => {
-    const A = analisi(st.chiave()), C = COL(st), zc = st.colore("a");
-    if (A.poli.length) GI.spezzata(board, () => A.poli.concat([A.poli[0]]), {
-      strokeColor: C.rosso, strokeWidth: 2, fillColor: C.rosso, fillOpacity: 0.18, fixed: true,
-    });
-    for (const v of A.V) if (!v.segno) retta(board, () => v, { strokeColor: C.grigio, strokeWidth: 1.2, dash: 2 });
+    const A = analisi(st.chiave()), C = COL(st);
+    if (A.poli.length) GI.spezzata(board, () => A.poli.concat([A.poli[0]]), ST_REGIONE(C));
+    for (const v of A.V) if (!v.segno) retta(board, () => v, ST_VINCOLO(C));
     // il gradiente: solo la direzione (lunghezza 1,5), applicato nell'origine
     const nc = Math.hypot(...A.c) || 1, s = 1.5 / nc;
     board.create("arrow", [[0, 0], [A.c[0] * s, A.c[1] * s]], {
-      strokeColor: C.blu, strokeWidth: 3.5, fixed: true, highlight: false, withLabel: false, lastArrow: { type: 2, size: 5 },
+      strokeColor: C.blu, strokeWidth: 3, fixed: true, highlight: false, withLabel: false, lastArrow: { type: 2, size: 5 },
     });
-    retta(board, () => ({ a: A.c, b: st.p().z }), { strokeColor: zc, strokeWidth: 2 });
-    GI.spezzata(board, () => (A.poli.length ? trattoRetta(A.poli, A.c, st.p().z) || [] : []), {
-      strokeColor: zc, strokeWidth: 6, strokeOpacity: 0.85, fixed: true,
-    });
+    // la retta di livello c'x = z (blu tratteggiata, come nelle dispense) e il suo tratto in F, più spesso
+    retta(board, () => ({ a: A.c, b: st.p().z }), ST_LIVELLO(C));
+    GI.spezzata(board, () => (A.poli.length ? trattoRetta(A.poli, A.c, st.p().z) || [] : []),
+      Object.assign(ST_LIVELLO(C), { strokeWidth: 5.5, fixed: true }));
+    // i vertici di F, neri (l'ottimo, blu, lo disegna la ricetta sopra)
+    GI.nuvola(board, 12, () => A.vert.map((v) => [Qv(v[0]), Qv(v[1])]), ST_VERTICE(C));
     return A;
   };
   const formulaZ = (p, st) => {
@@ -477,7 +483,7 @@
   };
   // dove sta la retta rispetto a F
   const statoRetta = (p, st) => {
-    const A = analisi(st.chiave()), C = COL(st), z = num(p.z, 2), zc = st.colore("a");
+    const A = analisi(st.chiave()), C = COL(st), z = num(p.z, 2), zc = C.blu;
     if (!A.vert.length && A.P.esito === "inf") return T("La retta non incontra mai \\(F\\), per nessun \\(z\\): \\(F = \\emptyset\\).", "The line never meets \\(F\\), for any \\(z\\): \\(F = \\emptyset\\).");
     const t = trattoRetta(A.poli, A.c, p.z);
     if (A.zs !== undefined && Math.abs(p.z - A.zs) <= tolZ(A)) {
@@ -492,7 +498,7 @@
     if (A.zs !== undefined && p.z > A.zs) return T(`Con \\(z = ${z}\\) nessun punto di \\(F\\) sta sulla retta: \\(z > z(LP)\\).`, `With \\(z = ${z}\\) no point of \\(F\\) is on the line: \\(z > z(LP)\\).`);
     return T(`Con \\(z = ${z}\\) la retta non incontra \\(F\\): sali con \\(z\\).`, `With \\(z = ${z}\\) the line does not meet \\(F\\): increase \\(z\\).`);
   };
-  const parametroZ = (descr) => [{ k: "z", nome: "z", min: 0, max: 20, step: 0.01, val: 0, colore: "a", cifre: 2, descr }];
+  const parametroZ = (descr) => [{ k: "z", nome: "z", min: 0, max: 20, step: 0.01, val: 0, colore: "livello", cifre: 2, descr }];
 
   const PROB_GRAFICO = ["P0", "P2", "P3", "P4", "P8", "P10"];
   // ------------------------------------------------------------ vetrina (home della collana)
@@ -556,9 +562,10 @@
       const C = COL(st);
       return [
         [C.rosso, T("regione ammissibile \\(F\\)", "feasible region \\(F\\)"), "pieno"],
-        [C.grigio, T("rette dei vincoli", "constraint lines"), "dashed"],
-        [st.colore("a"), T("retta \\(\\boldsymbol c'\\boldsymbol x = z\\)", "line \\(\\boldsymbol c'\\boldsymbol x = z\\)"), ""],
+        [C.rosso, T("rette dei vincoli", "constraint lines"), ""],
+        [C.blu, T("retta di livello \\(\\boldsymbol c'\\boldsymbol x = z\\)", "level line \\(\\boldsymbol c'\\boldsymbol x = z\\)"), "dashed"],
         [C.blu, T("direzione di \\(\\boldsymbol c\\)", "direction of \\(\\boldsymbol c\\)"), ""],
+        [C.nero, T("vertici", "vertices"), "punto"],
         [C.blu, T("vertice ottimo", "optimal vertex"), "punto"],
       ];
     },
@@ -625,9 +632,10 @@
       const C = COL(st), P = CAT()[st.chiave()];
       const v = [
         ...(P.esito === "inf" ? [] : [[C.rosso, T("regione ammissibile \\(F\\)", "feasible region \\(F\\)"), "pieno"]]),
-        [C.grigio, T("rette dei vincoli", "constraint lines"), "dashed"],
-        [st.colore("a"), T("retta \\(\\boldsymbol c'\\boldsymbol x = z\\)", "line \\(\\boldsymbol c'\\boldsymbol x = z\\)"), ""],
+        [C.rosso, T("rette dei vincoli", "constraint lines"), ""],
+        [C.blu, T("retta di livello \\(\\boldsymbol c'\\boldsymbol x = z\\)", "level line \\(\\boldsymbol c'\\boldsymbol x = z\\)"), "dashed"],
         [C.blu, T("direzione di \\(\\boldsymbol c\\)", "direction of \\(\\boldsymbol c\\)"), ""],
+        ...(P.esito === "inf" ? [] : [[C.nero, T("vertici", "vertices"), "punto"]]),
       ];
       if (P.esito === "opt") v.push(P.multipli ? [C.blu, T("soluzioni ottime", "optimal solutions"), ""] : [C.blu, T("vertice ottimo", "optimal vertex"), "punto"]);
       if (P.esito === "unb") v.push([C.verde, T("raggio: direzione di crescita", "ray: direction of increase"), ""]);

@@ -23,8 +23,6 @@ geometria della programmazione lineare.
 
 Prerequisiti: [Algebra lineare](https://fabiofurini.github.io/algebra-lineare/).
 
-La modellazione — dalla descrizione di un problema al modello di programmazione lineare — è nel corso [Modellazione PL](https://fabiofurini.github.io/modellazione-pl/modellazione/).
-
 [Comincia :material-arrow-right:](problemi-pl/index.md){ .md-button .md-button--primary }
 [:material-pencil: Esercizi](esercizi/index.md){ .md-button }
 [:material-gesture-tap: Laboratorio](laboratorio/index.md){ .md-button }

@@ -577,7 +577,7 @@
   };
   const formulaZ = (p, st) => {
     const A = analisi(st.chiave());
-    return `\\boldsymbol c'\\boldsymbol x = ${lin(A.cq)} = ${st.col("z", `k = ${num(p.z, 2)}`)}`;
+    return `${lin(A.cq)} = ${st.col("z", num(p.z, 2))}`;
   };
   // dove sta la retta rispetto a F
   const statoRetta = (p, st) => {

@@ -624,8 +624,8 @@
       const A = analisi(st.chiave()), C = COL(st);
       let r = `\\(${sistema(A.P)}\\)<br>` + statoRetta(p, st);
       if (mostraOttimo(st)) {
-        r += "<br>" + T(`${tinta(C.blu, "Ottimo")}: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\), \\(z(LP) = ${Qtex(A.zq)}\\)`,
-          `${tinta(C.blu, "Optimum")}: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\), \\(z(LP) = ${Qtex(A.zq)}\\)`) +
+        r += "<br>" + T(`${tinta(C.blu, "Soluzione ottima")}: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\), valore ottimo \\(z(LP) = ${Qtex(A.zq)}\\)`,
+          `${tinta(C.blu, "Optimal solution")}: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\), optimal value \\(z(LP) = ${Qtex(A.zq)}\\)`) +
           (A.verificato ? T(" (dal catalogo; coincide con il massimo di \\(\\boldsymbol c'\\boldsymbol x\\) sui vertici).", " (from the catalogue; it equals the maximum of \\(\\boldsymbol c'\\boldsymbol x\\) over the vertices).") : ".");
       }
       return r;
@@ -714,11 +714,11 @@
           `<strong>Unbounded</strong>: along the ${tinta(C.verde, "ray")} \\(\\boldsymbol d = ${coppiaQ(d)}\\) we stay in the feasible region \\(F\\) and \\(\\boldsymbol c'\\boldsymbol d = ${Qtex(cd)} > 0\\): \\(\\boldsymbol c'\\boldsymbol x\\) grows without limit, \\(z(LP) = +\\infty\\).`);
       } else if (P.multipli) {
         const [u, w] = A.ottimi;
-        esito = T(`<strong>Ottimi multipli</strong>: \\(z(LP) = ${Qtex(A.zq)}\\), raggiunto in ${tinta(C.blu, "tutti i punti")} del lato da \\(${coppiaQ(u)}\\) a \\(${coppiaQ(w)}\\)${A.poli.some((q) => Math.abs(q[0]) > 40 || Math.abs(q[1]) > 40) ? " (qui la regione ammissibile \\(F\\) è illimitata, ma \\(\\boldsymbol c'\\boldsymbol x\\) no)" : ""}.`,
-          `<strong>Multiple optima</strong>: \\(z(LP) = ${Qtex(A.zq)}\\), attained at ${tinta(C.blu, "every point")} of the edge from \\(${coppiaQ(u)}\\) to \\(${coppiaQ(w)}\\)${A.poli.some((q) => Math.abs(q[0]) > 40 || Math.abs(q[1]) > 40) ? " (here the feasible region \\(F\\) is unbounded, but \\(\\boldsymbol c'\\boldsymbol x\\) is not)" : ""}.`);
+        esito = T(`<strong>Ottimi multipli</strong>: valore ottimo \\(z(LP) = ${Qtex(A.zq)}\\), raggiunto in ${tinta(C.blu, "tutti i punti")} del lato da \\(${coppiaQ(u)}\\) a \\(${coppiaQ(w)}\\)${A.poli.some((q) => Math.abs(q[0]) > 40 || Math.abs(q[1]) > 40) ? " (qui la regione ammissibile \\(F\\) è illimitata, ma \\(\\boldsymbol c'\\boldsymbol x\\) no)" : ""}.`,
+          `<strong>Multiple optima</strong>: optimal value \\(z(LP) = ${Qtex(A.zq)}\\), attained at ${tinta(C.blu, "every point")} of the edge from \\(${coppiaQ(u)}\\) to \\(${coppiaQ(w)}\\)${A.poli.some((q) => Math.abs(q[0]) > 40 || Math.abs(q[1]) > 40) ? " (here the feasible region \\(F\\) is unbounded, but \\(\\boldsymbol c'\\boldsymbol x\\) is not)" : ""}.`);
       } else {
-        esito = T(`<strong>Ottimo unico</strong>: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\), \\(z(LP) = ${Qtex(A.zq)}\\).`,
-          `<strong>Unique optimum</strong>: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\), \\(z(LP) = ${Qtex(A.zq)}\\).`);
+        esito = T(`<strong>Ottimo unico</strong>: soluzione ottima \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\), valore ottimo \\(z(LP) = ${Qtex(A.zq)}\\).`,
+          `<strong>Unique optimum</strong>: optimal solution \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\), optimal value \\(z(LP) = ${Qtex(A.zq)}\\).`);
       }
       // l'esito si legge quando la retta ha finito di scorrere (o subito, se non c'è un ultimo contatto)
       const fine = P.esito !== "opt" || mostraOttimo(st);

@@ -609,8 +609,8 @@
       const k = correnti(st), s = k.s, P = k.P;
       const B = `\\pazocal{B} = \\{${s.base.join(",\\ ")}\\}`;
       const ivTex = `${estremo(k.lo, -1)} \\le \\delta \\le ${estremo(k.hi, 1)}`;
-      let r = T(`Base ottima del problema dato: \\(${B}\\), con \\(\\tilde{\\boldsymbol x} = ${coppiaQ(s.xt)}\\) e \\(z(LP) = ${fr(P.z)}\\).<br>`,
-        `Optimal basis of the given problem: \\(${B}\\), with \\(\\tilde{\\boldsymbol x} = ${coppiaQ(s.xt)}\\) and \\(z(LP) = ${fr(P.z)}\\).<br>`);
+      let r = T(`Base ottima del problema dato: \\(${B}\\), con \\(\\tilde{\\boldsymbol x}(LP) = ${coppiaQ(s.xt)}\\) e \\(z(LP) = ${fr(P.z)}\\).<br>`,
+        `Optimal basis of the given problem: \\(${B}\\), with \\(\\tilde{\\boldsymbol x}(LP) = ${coppiaQ(s.xt)}\\) and \\(z(LP) = ${fr(P.z)}\\).<br>`);
       if (k.mc) {
         const c1lo = k.lo ? fr(add(P.c[0], k.lo)) : "-\\infty", c1hi = k.hi ? fr(add(P.c[0], k.hi)) : "+\\infty";
         r += T(`Intervallo di ottimalità (ammissibilità duale, \\(\\bar{\\boldsymbol c} \\le \\boldsymbol 0\\)): \\(${ivTex}\\), cioè \\(${c1lo} \\le c_1 \\le ${c1hi}\\).<br>`,
@@ -618,8 +618,8 @@
         if (k.dentroI) {
           r += T(`\\(\\delta = ${num(p.d, 2)}\\) è nell'intervallo: ${tinta(st, "blu", "la base resta ottima")} e la soluzione ottima non cambia; \\(z^* = z(LP) + \\delta\\,\\tilde x_1 = ${fr(P.z)} + (${num(p.d, 2)}) \\cdot ${fr(s.xt[0])} = ${fr(k.z)}\\).`,
             `\\(\\delta = ${num(p.d, 2)}\\) is in the interval: ${tinta(st, "blu", "the basis stays optimal")} and the optimal solution does not change; \\(z^* = z(LP) + \\delta\\,\\tilde x_1 = ${fr(P.z)} + (${num(p.d, 2)}) \\cdot ${fr(s.xt[0])} = ${fr(k.z)}\\).`);
-          if (k.bordo) r += T(" Siamo a un estremo: le rette di livello sono parallele a uno dei due spigoli per \\(\\tilde{\\boldsymbol x}\\), e tutto lo spigolo è ottimo.",
-            " We are at an endpoint: the level lines are parallel to one of the two edges through \\(\\tilde{\\boldsymbol x}\\), and the whole edge is optimal.");
+          if (k.bordo) r += T(" Siamo a un estremo: le rette di livello sono parallele a uno dei due spigoli per \\(\\tilde{\\boldsymbol x}(LP)\\), e tutto lo spigolo è ottimo.",
+            " We are at an endpoint: the level lines are parallel to one of the two edges through \\(\\tilde{\\boldsymbol x}(LP)\\), and the whole edge is optimal.");
         } else {
           r += T(`\\(\\delta = ${num(p.d, 2)}\\) è fuori dall'intervallo: un costo ridotto è positivo, ${tinta(st, "viola", "la base non è più ottima")}. Nuovo vertice ottimo \\(${coppiaQ(k.ott[0])}\\), con \\(z^* = ${fr(k.z)}\\).`,
             `\\(\\delta = ${num(p.d, 2)}\\) is outside the interval: a reduced cost is positive, ${tinta(st, "viola", "the basis is no longer optimal")}. New optimal vertex \\(${coppiaQ(k.ott[0])}\\), with \\(z^* = ${fr(k.z)}\\).`);
@@ -635,8 +635,8 @@
       if (k.dentroI) {
         r += T(`${tinta(st, "blu", "La base resta ottima")}: il vertice ottimo si sposta in \\(${coppiaQ(k.xB)}\\) e \\(z^* = z(LP) + \\delta\\,\\pi_1 = ${fr(P.z)} + (${num(p.d, 2)}) \\cdot ${fr(s.pi1)} = ${fr(k.z)}\\), lineare in \\(\\delta\\).`,
           `${tinta(st, "blu", "The basis stays optimal")}: the optimal vertex moves to \\(${coppiaQ(k.xB)}\\) and \\(z^* = z(LP) + \\delta\\,\\pi_1 = ${fr(P.z)} + (${num(p.d, 2)}) \\cdot ${fr(s.pi1)} = ${fr(k.z)}\\), linear in \\(\\delta\\).`);
-        if (!s.pi1.n) r += T(" Il vincolo 1 non è attivo in \\(\\tilde{\\boldsymbol x}\\): il suo prezzo ombra è nullo e né il vertice né \\(z^*\\) cambiano.",
-          " Constraint 1 is not active at \\(\\tilde{\\boldsymbol x}\\): its shadow price is zero and neither the vertex nor \\(z^*\\) change.");
+        if (!s.pi1.n) r += T(" Il vincolo 1 non è attivo in \\(\\tilde{\\boldsymbol x}(LP)\\): il suo prezzo ombra è nullo e né il vertice né \\(z^*\\) cambiano.",
+          " Constraint 1 is not active at \\(\\tilde{\\boldsymbol x}(LP)\\): its shadow price is zero and neither the vertex nor \\(z^*\\) change.");
       } else {
         r += T(`Fuori dall'intervallo la soluzione di base \\(${coppiaQ(k.xB)}\\) ${tinta(st, "viola", "non è più ammissibile")}: cambia base, il nuovo vertice ottimo è \\(${coppiaQ(k.ott[0])}\\) con \\(z^* = ${fr(k.z)}\\) (la formula lineare darebbe \\(${fr(add(P.z, mul(k.dq, s.pi1)))}\\)).`,
           `Outside the interval the basic solution \\(${coppiaQ(k.xB)}\\) ${tinta(st, "viola", "is no longer feasible")}: the basis changes, the new optimal vertex is \\(${coppiaQ(k.ott[0])}\\) with \\(z^* = ${fr(k.z)}\\) (the linear formula would give \\(${fr(add(P.z, mul(k.dq, s.pi1)))}\\)).`);

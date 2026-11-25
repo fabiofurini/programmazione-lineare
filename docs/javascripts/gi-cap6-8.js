@@ -295,8 +295,8 @@
         `Basic solution (\\(\\boldsymbol x_{\\mathcal N} = \\boldsymbol 0\\)): \\(${sol}\\), of value \\(\\bar z = ${s.z.tex()}\\).<br>`);
       if (s.esito === "ottimo") {
         const cn = s.N.map((j) => `\\bar c_{${j + 1}} = ${s.c[j].tex()}`).join("\\), \\(");
-        r += T(`Costi ridotti \\(${cn}\\): ${tinta(C.blu, "nessuno è positivo")}, STOP. La soluzione di base è ottima: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(s.vertice)}\\), \\(z^* = ${s.z.tex()}\\)`,
-          `Reduced costs \\(${cn}\\): ${tinta(C.blu, "none is positive")}, STOP. The basic solution is optimal: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(s.vertice)}\\), \\(z^* = ${s.z.tex()}\\)`);
+        r += T(`Costi ridotti \\(${cn}\\): ${tinta(C.blu, "nessuno è positivo")}, STOP. La soluzione di base è ottima: \\(\\tilde{\\boldsymbol x}(LP) = ${coppiaQ(s.vertice)}\\), \\(z^* = ${s.z.tex()}\\)`,
+          `Reduced costs \\(${cn}\\): ${tinta(C.blu, "none is positive")}, STOP. The basic solution is optimal: \\(\\tilde{\\boldsymbol x}(LP) = ${coppiaQ(s.vertice)}\\), \\(z^* = ${s.z.tex()}\\)`);
         r += S.verificato
           ? T(` (coincide con il catalogo), dopo \\(${S.K}\\) pivot.`, ` (it matches the catalogue), after \\(${S.K}\\) pivots.`)
           : ".";

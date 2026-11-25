@@ -154,9 +154,9 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/jsxgraph@1.10.1/distrib/jsxgraphcore.js
   - javascripts/interattivi.js?v=21dd4bf4df
   - javascripts/catalogo_pl.js?v=3aed29e2e0
-  - javascripts/gi-cap1-5.js?v=eb7133b338
-  - javascripts/gi-cap6-8.js?v=a370b07b1d
-  - javascripts/gi-cap9-14.js?v=c29b830d42
+  - javascripts/gi-cap1-5.js?v=51a41a397b
+  - javascripts/gi-cap6-8.js?v=e718758202
+  - javascripts/gi-cap9-14.js?v=eff258dadf
   - javascripts/quiz.js?v=be7fae2b85
 
 nav:

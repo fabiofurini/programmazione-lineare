@@ -83,7 +83,7 @@
     board.create("segment", [[x, 0], [x, y]], tr);
     board.create("segment", [[0, y], [x, y]], tr);
     const st0 = Object.assign({ fixed: true, highlight: false, fontSize: 14, visible: vis }, TXT_BLU);
-    board.create("text", [x, 0, Qtxt(A.xs[0])], Object.assign({ anchorX: "middle", anchorY: "top", offset: [0, -6] }, st0));
+    board.create("text", [x, 0, Qtxt(A.xs[0])], Object.assign({ anchorX: "middle", anchorY: "top", offset: [0, -20] }, st0));
     board.create("text", [0, y, Qtxt(A.xs[1])], Object.assign({ anchorX: "right", anchorY: "middle", offset: [-6, 0] }, st0));
   };
 
@@ -527,7 +527,14 @@
     if (A.poli.length) GI.spezzata(board, () => A.poli.concat([A.poli[0]]), ST_REGIONE(C));
     // la lettera F dentro la regione ammissibile (Fabio, 25/11/2026)
     if (A.poli.length > 2) {
-      const cx = A.poli.reduce((t, q) => t + q[0], 0) / A.poli.length, cy = A.poli.reduce((t, q) => t + q[1], 0) / A.poli.length;
+      // baricentro dell'area del poligono
+      let ar = 0, cx = 0, cy = 0;
+      A.poli.forEach((p, i) => {
+        const q = A.poli[(i + 1) % A.poli.length], w = p[0] * q[1] - q[0] * p[1];
+        ar += w; cx += (p[0] + q[0]) * w; cy += (p[1] + q[1]) * w;
+      });
+      if (Math.abs(ar) > 1e-12) { cx /= 3 * ar; cy /= 3 * ar; }
+      else { cx = A.poli.reduce((t, q) => t + q[0], 0) / A.poli.length; cy = A.poli.reduce((t, q) => t + q[1], 0) / A.poli.length; }
       board.create("text", [cx, cy, "F"], { fixed: true, highlight: false, anchorX: "middle", anchorY: "middle", fontSize: 22,
         cssStyle: "font-style:italic;font-family:serif", ...TXT_ROSSO });
     }
@@ -577,7 +584,7 @@
   };
   const formulaZ = (p, st) => {
     const A = analisi(st.chiave());
-    return `${lin(A.cq)} = ${st.col("z", num(p.z, 2))}`;
+    return `${lin(A.cq)} = ${st.col("z", `\\underbrace{${num(p.z, 2)}}_{k}`)}`;
   };
   // dove sta la retta rispetto a F
   const statoRetta = (p, st) => {
@@ -687,8 +694,8 @@
       const A = analisi(st.chiave()), C = COL(st);
       let r = `\\(${sistema(A.P)}\\)<br>` + statoRetta(p, st);
       if (mostraOttimo(st)) {
-        r += "<br>" + T(`${tinta(C.blu, "Soluzione ottima")}: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Valore ottimo")}: \\(z(LP) = ${Qtex(A.zq)}\\)`,
-          `${tinta(C.blu, "Optimal solution")}: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Optimal value")}: \\(z(LP) = ${Qtex(A.zq)}\\)`) +
+        r += "<br>" + T(`${tinta(C.blu, "Soluzione ottima")}: \\(\\tilde{\\boldsymbol x}(LP) = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Valore ottimo")}: \\(z(LP) = ${Qtex(A.zq)}\\)`,
+          `${tinta(C.blu, "Optimal solution")}: \\(\\tilde{\\boldsymbol x}(LP) = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Optimal value")}: \\(z(LP) = ${Qtex(A.zq)}\\)`) +
           ".";
       }
       return r;
@@ -781,8 +788,8 @@
         esito = T(`<strong>Ottimi multipli</strong><br>${tinta(C.blu, "Valore ottimo")}: \\(z(LP) = ${Qtex(A.zq)}\\), raggiunto in ${tinta(C.blu, "tutti i punti")} del lato da \\(${coppiaQ(u)}\\) a \\(${coppiaQ(w)}\\)${A.poli.some((q) => Math.abs(q[0]) > 40 || Math.abs(q[1]) > 40) ? " (qui la regione ammissibile \\(F\\) è illimitata, ma \\(\\boldsymbol c'\\boldsymbol x\\) no)" : ""}.`,
           `<strong>Multiple optima</strong><br>${tinta(C.blu, "Optimal value")}: \\(z(LP) = ${Qtex(A.zq)}\\), attained at ${tinta(C.blu, "every point")} of the edge from \\(${coppiaQ(u)}\\) to \\(${coppiaQ(w)}\\)${A.poli.some((q) => Math.abs(q[0]) > 40 || Math.abs(q[1]) > 40) ? " (here the feasible region \\(F\\) is unbounded, but \\(\\boldsymbol c'\\boldsymbol x\\) is not)" : ""}.`);
       } else {
-        esito = T(`<strong>Ottimo unico</strong><br>${tinta(C.blu, "Soluzione ottima")}: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Valore ottimo")}: \\(z(LP) = ${Qtex(A.zq)}\\).`,
-          `<strong>Unique optimum</strong><br>${tinta(C.blu, "Optimal solution")}: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Optimal value")}: \\(z(LP) = ${Qtex(A.zq)}\\).`);
+        esito = T(`<strong>Ottimo unico</strong><br>${tinta(C.blu, "Soluzione ottima")}: \\(\\tilde{\\boldsymbol x}(LP) = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Valore ottimo")}: \\(z(LP) = ${Qtex(A.zq)}\\).`,
+          `<strong>Unique optimum</strong><br>${tinta(C.blu, "Optimal solution")}: \\(\\tilde{\\boldsymbol x}(LP) = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Optimal value")}: \\(z(LP) = ${Qtex(A.zq)}\\).`);
       }
       // l'esito si legge quando la retta ha finito di scorrere (o subito, se non c'è un ultimo contatto)
       const fine = P.esito !== "opt" || mostraOttimo(st);

@@ -759,7 +759,7 @@
       const A = analisi(st.chiave()), C = COL(st);
       let r = `\\(${sistema(A.P)}\\)<br>` + statoRetta(p, st);
       if (mostraOttimo(st)) {
-        r += "<br>" + T(`${tinta(C.blu, "Soluzione ottima")}: \\(\\tilde{\\boldsymbol x}(LP) = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Valore ottimo")}: \\(z(LP) = ${Qtex(A.zq)}\\)`,
+        r += '<span style="display:block;height:.7em"></span>' + T(`${tinta(C.blu, "Soluzione ottima")}: \\(\\tilde{\\boldsymbol x}(LP) = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Valore ottimo")}: \\(z(LP) = ${Qtex(A.zq)}\\)`,
           `${tinta(C.blu, "Optimal solution")}: \\(\\tilde{\\boldsymbol x}(LP) = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Optimal value")}: \\(z(LP) = ${Qtex(A.zq)}\\)`) +
           ".";
       }

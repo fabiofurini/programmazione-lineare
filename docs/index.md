@@ -85,6 +85,14 @@ Il metodo grafico: la retta di livello è già sul vertice ottimo, l'ultimo punt
 
     [:octicons-arrow-right-24: I capitoli](metodi-avanzati/index.md)
 
+-   :material-chart-line: **Modellazione PL**
+
+    ---
+
+    Dalla descrizione di un problema al modello di programmazione lineare, risolto con Python e Gurobi: tecniche di modellazione e casi di studio. È un modulo a parte della collana.
+
+    [:octicons-arrow-right-24: Il modulo Modellazione PL](https://fabiofurini.github.io/modellazione-pl/)
+
 </div>
 
 <!-- collana-da-non-perdere -->

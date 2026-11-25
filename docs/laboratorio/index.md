@@ -5,7 +5,7 @@ hide:
 
 # Laboratorio interattivo
 
-Qui la programmazione lineare si tocca con mano. Scegli un'app: si apre a tutta pagina.
+Ogni app illustra un argomento del corso. Scegli un'app: si apre a tutta pagina.
 Trascina i punti e muovi i cursori; il pulsante ▶ accanto a un parametro lo fa muovere da solo.
 I problemi vengono dal [catalogo](../catalogo/index.md), con i numeri in frazioni esatte.
 

@@ -701,7 +701,7 @@ title: "Esiti possibili e formulazioni equivalenti"
 
 ## Laboratorio interattivo { #laboratorio-interattivo }
 
-Le idee del capitolo, da toccare con mano: muovi i cursori e trascina i punti.
+Le app di questo capitolo: muovi i cursori e trascina i punti.
 Ogni app si apre anche a tutta pagina nel [laboratorio interattivo](../laboratorio/index.md): [Gli esiti di un problema](../laboratorio/esiti.md).
 
 <div class="gi" data-grafico="esiti"></div>

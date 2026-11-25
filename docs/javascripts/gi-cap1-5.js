@@ -535,7 +535,36 @@
       });
       if (Math.abs(ar) > 1e-12) { cx /= 3 * ar; cy /= 3 * ar; }
       else { cx = A.poli.reduce((t, q) => t + q[0], 0) / A.poli.length; cy = A.poli.reduce((t, q) => t + q[1], 0) / A.poli.length; }
-      board.create("text", [cx, cy, "F"], { fixed: true, highlight: false, anchorX: "middle", anchorY: "middle", fontSize: 22,
+      // la F si sposta nel punto della regione più lontano dalla retta di livello (e dai lati), per non coprirsi con la scritta
+      const xs = A.poli.map((q) => q[0]), ys = A.poli.map((q) => q[1]);
+      const bx0 = Math.min(...xs), bx1 = Math.max(...xs), by0 = Math.min(...ys), by1 = Math.max(...ys);
+      const dentroPoli = (px, py) => {
+        let d = false;
+        for (let i = 0, j = A.poli.length - 1; i < A.poli.length; j = i++) {
+          const [xi, yi] = A.poli[i], [xj, yj] = A.poli[j];
+          if ((yi > py) !== (yj > py) && px < ((xj - xi) * (py - yi)) / (yj - yi) + xi) d = !d;
+        }
+        return d;
+      };
+      const dLati = (px, py) => Math.min(...A.poli.map((p, i) => {
+        const q = A.poli[(i + 1) % A.poli.length], vx = (q[0] - p[0]) * board.unitX, vy = (q[1] - p[1]) * board.unitY;
+        const wx = (px - p[0]) * board.unitX, wy = (py - p[1]) * board.unitY, L = vx * vx + vy * vy || 1;
+        const t = Math.max(0, Math.min(1, (wx * vx + wy * vy) / L));
+        return Math.hypot(wx - t * vx, wy - t * vy);
+      }));
+      const posF = () => {
+        const nc = Math.hypot(A.c[0] * board.unitX, A.c[1] * board.unitY) || 1, k = st.p().z;
+        let m = [cx, cy], ms = -Infinity;
+        for (let a = 1; a < 12; a++) for (let b = 1; b < 12; b++) {
+          const px = bx0 + (a / 12) * (bx1 - bx0), py = by0 + (b / 12) * (by1 - by0);
+          if (!dentroPoli(px, py)) continue;
+          const dl = Math.abs(A.c[0] * px + A.c[1] * py - k) * board.unitX * board.unitY / nc;
+          const sc = Math.min(dl, 70) + Math.min(dLati(px, py), 30) - Math.hypot((px - cx) * board.unitX, (py - cy) * board.unitY) * 0.05;
+          if (sc > ms) { ms = sc; m = [px, py]; }
+        }
+        return m;
+      };
+      board.create("text", [() => posF()[0], () => posF()[1], "F"], { fixed: true, highlight: false, anchorX: "middle", anchorY: "middle", fontSize: 22,
         cssStyle: "font-style:italic;font-family:serif", ...TXT_ROSSO });
     }
     for (const v of A.V) if (!v.segno) retta(board, () => v, ST_VINCOLO(C));
@@ -572,16 +601,27 @@
         }
         return dentro ? 0 : d;
       };
-      let best = null, bestS = -Infinity;
-      for (let t = 0.05; t <= 0.951; t += 0.01) {
+      // candidati da destra a sinistra: il primo che va bene (fuori dalla regione, dentro la figura, lontano da assi
+      // e vincoli); se nessuno va bene, il più lontano dalla regione fra quelli dentro la figura
+      const cand = [];
+      for (let t = 0.04; t <= 0.961; t += 0.01) {
         const x = a0[0] + t * (b0[0] - a0[0]), y = a0[1] + t * (b0[1] - a0[1]);
         const dR = dPoli(x * ux, y * uy);
         const dB = Math.min((x - x0) * ux, (x1 - x) * ux, (y - y0) * uy, (y1 - y) * uy);
         const dAx = Math.min(Math.abs(x) * ux, Math.abs(y) * uy);
-        const sc = Math.min(dR, 140) * 2 + Math.min(dB - 70, 0) * 3 + Math.min(dAx - 25, 0);
-        if (sc > bestS) { bestS = sc; best = [x, y]; }
+        const dV = Math.min(400, ...A.V.filter((v) => !v.segno).map((v) => {
+          const na = Math.hypot(v.a[0] * ux, v.a[1] * uy) || 1;
+          return Math.abs(v.a[0] * x + v.a[1] * y - v.b) * ux * uy / na;
+        }));
+        cand.push({ x, y, dR, dB, dAx, dV });
       }
-      return best;
+      cand.sort((p, q) => q.x - p.x);
+      const ok = cand.find((c) => c.dR > 45 && c.dB > 75 && c.dAx > 45 && c.dV > 30);
+      if (ok) return [ok.x, ok.y];
+      const dentro = cand.filter((c) => c.dB > 75);
+      const pool = dentro.length ? dentro : cand;
+      const best = pool.reduce((m, c) => (c.dR + Math.min(c.dV, 40) > m.dR + Math.min(m.dV, 40) ? c : m), pool[0]);
+      return [best.x, best.y];
     };
     // spostata di 14 px dalla retta, dal lato verso cui cresce la funzione obiettivo, e ruotata come la retta
     const nc0 = Math.hypot(A.c[0], A.c[1]) || 1;
@@ -591,7 +631,7 @@
     };
     const scritta = board.create("text", [() => accanto()[0], () => accanto()[1], () => `${linTxt(A.cq)} = ${num(st.p().z, 2)}`],
       Object.assign({ fixed: true, highlight: false, fontSize: 14, anchorX: "middle", anchorY: "middle",
-        cssStyle: "font-weight:700;white-space:nowrap" }, TXT_BLU));
+        cssStyle: "font-weight:700;white-space:nowrap;background:var(--gi-card);padding:0 4px;border-radius:4px;opacity:.92" }, TXT_BLU));
     const ruota = () => {
       const n = scritta.rendNode;
       if (!n) return;

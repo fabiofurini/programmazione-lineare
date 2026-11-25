@@ -60,6 +60,32 @@
   const SEP = () => (GI.EN ? ",\\ " : ";\\ ");
   const coppia = (a, b) => `\\big(${a}${SEP()}${b}\\big)`;
   const coppiaQ = (p) => coppia(Qtex(p[0]), Qtex(p[1]));
+  // le coordinate del vertice ottimo scritte accanto al punto blu, in frazioni (Fabio, 25/11/2026)
+  const Qtxt = (q) => (q.d === 1 ? String(q.n) : `${q.n}/${q.d}`);
+  const etichettaPunto = (p) => `(${Qtxt(p[0])}, ${Qtxt(p[1])})`;
+  const TXT_BLU = { cssClass: "JXGtext gi-txt-blu", highlightCssClass: "JXGtext gi-txt-blu" };
+  const TXT_ROSSO = { cssClass: "JXGtext gi-txt-rosso", highlightCssClass: "JXGtext gi-txt-rosso" };
+  const PEDICI = ["\u2081", "\u2082", "\u2083"];
+  // a_1 x_1 + a_2 x_2 = k in testo semplice (per le scritte dentro la figura)
+  const linTxt = (qs) => {
+    let t = "";
+    qs.forEach((q, i) => {
+      if (q.n === 0) return;
+      const neg = q.n < 0, abs = Q(Math.abs(q.n), q.d), coef = abs.n === 1 && abs.d === 1 ? "" : Qtxt(abs);
+      t += (t ? (neg ? " \u2212 " : " + ") : neg ? "\u2212" : "") + coef + "x" + PEDICI[i];
+    });
+    return t || "0";
+  };
+  // il vertice ottimo: tratteggi fino agli assi e i valori delle coordinate sugli assi
+  const proiezioniOttimo = (board, A, st, C) => {
+    const x = Qv(A.xs[0]), y = Qv(A.xs[1]), vis = () => mostraOttimo(st);
+    const tr = { strokeColor: C.blu, strokeWidth: 1.5, dash: 2, fixed: true, highlight: false, visible: vis };
+    board.create("segment", [[x, 0], [x, y]], tr);
+    board.create("segment", [[0, y], [x, y]], tr);
+    const st0 = Object.assign({ fixed: true, highlight: false, fontSize: 14, visible: vis }, TXT_BLU);
+    board.create("text", [x, 0, Qtxt(A.xs[0])], Object.assign({ anchorX: "middle", anchorY: "top", offset: [0, -6] }, st0));
+    board.create("text", [0, y, Qtxt(A.xs[1])], Object.assign({ anchorX: "right", anchorY: "middle", offset: [-6, 0] }, st0));
+  };
 
   // a_1 x_1 + a_2 x_2 con coefficienti frazione (0, 1, -1 trattati a parte)
   const lin = (qs, vars = ["x_1", "x_2"]) => {
@@ -499,6 +525,12 @@
   const disegnaProblema = (board, st) => {
     const A = analisi(st.chiave()), C = COL(st);
     if (A.poli.length) GI.spezzata(board, () => A.poli.concat([A.poli[0]]), ST_REGIONE(C));
+    // la lettera F dentro la regione ammissibile (Fabio, 25/11/2026)
+    if (A.poli.length > 2) {
+      const cx = A.poli.reduce((t, q) => t + q[0], 0) / A.poli.length, cy = A.poli.reduce((t, q) => t + q[1], 0) / A.poli.length;
+      board.create("text", [cx, cy, "F"], { fixed: true, highlight: false, anchorX: "middle", anchorY: "middle", fontSize: 22,
+        cssStyle: "font-style:italic;font-family:serif", ...TXT_ROSSO });
+    }
     for (const v of A.V) if (!v.segno) retta(board, () => v, ST_VINCOLO(C));
     // il gradiente: solo la direzione (lunghezza 1,5), applicato nell'origine
     const nc = Math.hypot(...A.c) || 1, s = 1.5 / nc;
@@ -509,6 +541,19 @@
     retta(board, () => ({ a: A.c, b: st.p().z }), ST_LIVELLO(C));
     GI.spezzata(board, () => (A.poli.length ? trattoRetta(A.poli, A.c, st.p().z) || [] : []),
       Object.assign(ST_LIVELLO(C), { strokeWidth: 5.5, fixed: true }));
+    // l'equazione della retta di livello, scritta in blu accanto alla retta e aggiornata con k
+    const puntoScritta = () => {
+      const [x0, y1, x1, y0] = board.getBoundingBox(), k = st.p().z, [c1, c2] = A.c, P = [];
+      if (Math.abs(c2) > 1e-12) for (const x of [x0, x1]) { const y = (k - c1 * x) / c2; if (y >= y0 && y <= y1) P.push([x, y]); }
+      if (Math.abs(c1) > 1e-12) for (const y of [y0, y1]) { const x = (k - c2 * y) / c1; if (x >= x0 && x <= x1) P.push([x, y]); }
+      if (P.length < 2) return [NaN, NaN];
+      P.sort((p, q) => p[0] - q[0] || p[1] - q[1]);
+      const a0 = P[0], b0 = P[P.length - 1], t = 0.8;
+      return [a0[0] + t * (b0[0] - a0[0]), a0[1] + t * (b0[1] - a0[1])];
+    };
+    board.create("text", [() => puntoScritta()[0], () => puntoScritta()[1], () => `${linTxt(A.cq)} = ${num(st.p().z, 2)}`],
+      Object.assign({ fixed: true, highlight: false, fontSize: 14, anchorX: "right", anchorY: "bottom", offset: [-8, 12],
+        cssStyle: "font-weight:700" }, TXT_BLU));
     // i vertici di F, neri (l'ottimo, blu, lo disegna la ricetta sopra)
     GI.nuvola(board, 12, () => A.vert.map((v) => [Qv(v[0]), Qv(v[1])]), ST_VERTICE(C));
     return A;
@@ -612,6 +657,7 @@
         name: "", fixed: true, size: 6, fillColor: C.blu, strokeColor: C.blu, showInfobox: false, highlight: false,
         visible: () => mostraOttimo(st),
       });
+      proiezioniOttimo(board, A, st, C);
       // home della collana: data-vetrina="problema" (una voce), la retta di livello sul vertice ottimo
       vetrina(st, (v) => {
         scegliVoce(st, v.trim());
@@ -690,6 +736,7 @@
           name: "", fixed: true, size: 6, fillColor: C.blu, strokeColor: C.blu, showInfobox: false, highlight: false,
           visible: () => mostraOttimo(st),
         });
+        proiezioniOttimo(board, A, st, C);
       } else if (P.esito === "unb") {
         // il raggio a partire dal vertice di valore massimo
         let v0 = A.vert[0];

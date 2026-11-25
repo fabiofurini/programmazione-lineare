@@ -520,19 +520,19 @@
   // dove sta la retta rispetto a F
   const statoRetta = (p, st) => {
     const A = analisi(st.chiave()), C = COL(st), z = num(p.z, 2), zc = C.blu;
-    if (!A.vert.length && A.P.esito === "inf") return T("La retta non incontra mai \\(F\\), per nessun \\(k\\): \\(F = \\emptyset\\).", "The line never meets \\(F\\), for any \\(k\\): \\(F = \\emptyset\\).");
+    if (!A.vert.length && A.P.esito === "inf") return T("La retta non incontra mai la regione ammissibile \\(F\\), per nessun \\(k\\): \\(F = \\emptyset\\).", "The line never meets the feasible region \\(F\\), for any \\(k\\): \\(F = \\emptyset\\).");
     const t = trattoRetta(A.poli, A.c, p.z);
     if (A.zs !== undefined && Math.abs(p.z - A.zs) <= tolZ(A)) {
       return A.P.multipli
-        ? T(`Con \\(k = ${z}\\) la retta tocca \\(F\\) lungo ${tinta(C.blu, "un intero lato")}: è l'ultimo contatto, \\(k = z(LP)\\).`, `With \\(k = ${z}\\) the line touches \\(F\\) along ${tinta(C.blu, "a whole edge")}: it is the last contact, \\(k = z(LP)\\).`)
-        : T(`Con \\(k = ${z}\\) la retta tocca \\(F\\) ${tinta(C.blu, "in un solo vertice")}: è l'ultimo contatto, \\(k = z(LP)\\).`, `With \\(k = ${z}\\) the line touches \\(F\\) ${tinta(C.blu, "at a single vertex")}: it is the last contact, \\(k = z(LP)\\).`);
+        ? T(`Con \\(k = ${z}\\) la retta tocca la regione ammissibile \\(F\\) lungo ${tinta(C.blu, "un intero lato")}: è l'ultimo contatto, \\(k = z(LP)\\).`, `With \\(k = ${z}\\) the line touches the feasible region \\(F\\) along ${tinta(C.blu, "a whole edge")}: it is the last contact, \\(k = z(LP)\\).`)
+        : T(`Con \\(k = ${z}\\) la retta tocca la regione ammissibile \\(F\\) ${tinta(C.blu, "in un solo vertice")}: è l'ultimo contatto, \\(k = z(LP)\\).`, `With \\(k = ${z}\\) the line touches the feasible region \\(F\\) ${tinta(C.blu, "at a single vertex")}: it is the last contact, \\(k = z(LP)\\).`);
     }
-    if (t && Math.hypot(t[1][0] - t[0][0], t[1][1] - t[0][1]) < 1e-6) return T(`Con \\(k = ${z}\\) la retta tocca \\(F\\) in un solo vertice, ma non è l'ultimo contatto: aumenta \\(k\\).`,
-      `With \\(k = ${z}\\) the line touches \\(F\\) at a single vertex, but it is not the last contact: increase \\(k\\).`);
-    if (t) return T(`Con \\(k = ${z}\\) la retta taglia \\(F\\) (${tinta(zc, "tratto spesso")}): ci sono soluzioni ammissibili di valore \\(${z}\\), quindi \\(z(LP) \\ge ${z}\\). Si può salire.`,
-      `With \\(k = ${z}\\) the line cuts \\(F\\) (${tinta(zc, "thick part")}): there are feasible solutions of value \\(${z}\\), so \\(z(LP) \\ge ${z}\\). We can go higher.`);
-    if (A.zs !== undefined && p.z > A.zs) return T(`Con \\(k = ${z}\\) nessun punto di \\(F\\) sta sulla retta: \\(k > z(LP)\\).`, `With \\(k = ${z}\\) no point of \\(F\\) is on the line: \\(k > z(LP)\\).`);
-    return T(`Con \\(k = ${z}\\) la retta non incontra \\(F\\): sali con \\(k\\).`, `With \\(k = ${z}\\) the line does not meet \\(F\\): increase \\(k\\).`);
+    if (t && Math.hypot(t[1][0] - t[0][0], t[1][1] - t[0][1]) < 1e-6) return T(`Con \\(k = ${z}\\) la retta tocca la regione ammissibile \\(F\\) in un solo vertice, ma non è l'ultimo contatto: aumenta \\(k\\).`,
+      `With \\(k = ${z}\\) the line touches the feasible region \\(F\\) at a single vertex, but it is not the last contact: increase \\(k\\).`);
+    if (t) return T(`Con \\(k = ${z}\\) la retta taglia la regione ammissibile \\(F\\) (${tinta(zc, "tratto spesso")}): ci sono soluzioni ammissibili di valore \\(${z}\\), quindi \\(z(LP) \\ge ${z}\\). Si può salire.`,
+      `With \\(k = ${z}\\) the line cuts the feasible region \\(F\\) (${tinta(zc, "thick part")}): there are feasible solutions of value \\(${z}\\), so \\(z(LP) \\ge ${z}\\). We can go higher.`);
+    if (A.zs !== undefined && p.z > A.zs) return T(`Con \\(k = ${z}\\) nessun punto della regione ammissibile \\(F\\) sta sulla retta: \\(k > z(LP)\\).`, `With \\(k = ${z}\\) no point of the feasible region \\(F\\) is on the line: \\(k > z(LP)\\).`);
+    return T(`Con \\(k = ${z}\\) la retta non incontra la regione ammissibile \\(F\\): sali con \\(k\\).`, `With \\(k = ${z}\\) the line does not meet the feasible region \\(F\\): increase \\(k\\).`);
   };
   const parametroZ = (descr) => [{ k: "z", nome: "k", min: 0, max: 20, step: 0.01, val: 0, colore: "livello", cifre: 2, descr }];
 
@@ -585,8 +585,8 @@
 
   window.GI_RICETTE["metodo-grafico"] = {
     titolo: T("Il metodo grafico", "The graphical method"),
-    sottotitolo: T("la retta \\(\\boldsymbol c'\\boldsymbol x = k\\) scorre verso \\(\\boldsymbol c\\) finché tocca ancora \\(F\\)",
-      "the line \\(\\boldsymbol c'\\boldsymbol x = k\\) slides along \\(\\boldsymbol c\\) as long as it still touches \\(F\\)"),
+    sottotitolo: T("la retta \\(\\boldsymbol c'\\boldsymbol x = k\\) scorre verso \\(\\boldsymbol c\\) finché tocca ancora la regione ammissibile \\(F\\)",
+      "the line \\(\\boldsymbol c'\\boldsymbol x = k\\) slides along \\(\\boldsymbol c\\) as long as it still touches the feasible region \\(F\\)"),
     funzioni: voci(PROB_GRAFICO),
     iniziale: "P2",
     etichettaFunzioni: T("Problema (catalogo)", "Problem (catalogue)"),
@@ -630,8 +630,8 @@
       }
       return r;
     },
-    domanda: T("Premi ▶: in quale direzione si muove la retta quando \\(k\\) cresce, rispetto alla freccia \\(\\boldsymbol c\\)? Fermati quando la retta tocca \\(F\\) in un solo punto: è un vertice? Cambia problema: l'ultimo punto toccato è sempre un vertice?",
-      "Press ▶: in which direction does the line move as \\(k\\) grows, compared with the arrow \\(\\boldsymbol c\\)? Stop when the line touches \\(F\\) at a single point: is it a vertex? Change problem: is the last point touched always a vertex?"),
+    domanda: T("Premi ▶: in quale direzione si muove la retta quando \\(k\\) cresce, rispetto alla freccia \\(\\boldsymbol c\\)? Fermati quando la retta tocca la regione ammissibile \\(F\\) in un solo punto: è un vertice? Cambia problema: l'ultimo punto toccato è sempre un vertice?",
+      "Press ▶: in which direction does the line move as \\(k\\) grows, compared with the arrow \\(\\boldsymbol c\\)? Stop when the line touches the feasible region \\(F\\) at a single point: is it a vertex? Change problem: is the last point touched always a vertex?"),
     sfida: {
       testo: T("Trova il valore di \\(k\\) per cui la retta \\(\\boldsymbol c'\\boldsymbol x = k\\) tocca <strong>l'ultimo punto</strong> della regione ammissibile.",
         "Find the value of \\(k\\) for which the line \\(\\boldsymbol c'\\boldsymbol x = k\\) touches the <strong>last point</strong> of the feasible region."),
@@ -645,10 +645,10 @@
         const A = analisi(st.chiave());
         if (vinta(p, st)) return T("Ci sei: la retta tocca solo il vertice ottimo.", "You are there: the line touches only the optimal vertex.");
         return trattoRetta(A.poli, A.c, p.z)
-          ? T("La retta taglia ancora \\(F\\): c'è spazio, aumenta \\(k\\).", "The line still cuts \\(F\\): there is room, increase \\(k\\).")
+          ? T("La retta taglia ancora la regione ammissibile \\(F\\): c'è spazio, aumenta \\(k\\).", "The line still cuts the feasible region \\(F\\): there is room, increase \\(k\\).")
           : p.z > A.zs
-            ? T("La retta ha già lasciato \\(F\\): diminuisci \\(k\\).", "The line has already left \\(F\\): decrease \\(k\\).")
-            : T("Aumenta \\(k\\) finché la retta entra in \\(F\\).", "Increase \\(k\\) until the line enters \\(F\\).");
+            ? T("La retta ha già lasciato la regione ammissibile \\(F\\): diminuisci \\(k\\).", "The line has already left the feasible region \\(F\\): decrease \\(k\\).")
+            : T("Aumenta \\(k\\) finché la retta entra nella regione ammissibile \\(F\\).", "Increase \\(k\\) until the line enters the feasible region \\(F\\).");
       },
     },
   };
@@ -710,12 +710,12 @@
           `<strong>Infeasible</strong>: the constraints have no common point, \\(F = \\emptyset\\) (nothing is red).`);
       } else if (P.esito === "unb") {
         const d = P.raggio.map(Qs), cd = A.valore(d);
-        esito = T(`<strong>Illimitato</strong>: lungo il ${tinta(C.verde, "raggio")} \\(\\boldsymbol d = ${coppiaQ(d)}\\) si resta in \\(F\\) e \\(\\boldsymbol c'\\boldsymbol d = ${Qtex(cd)} > 0\\): \\(\\boldsymbol c'\\boldsymbol x\\) cresce senza limite, \\(z(LP) = +\\infty\\).`,
-          `<strong>Unbounded</strong>: along the ${tinta(C.verde, "ray")} \\(\\boldsymbol d = ${coppiaQ(d)}\\) we stay in \\(F\\) and \\(\\boldsymbol c'\\boldsymbol d = ${Qtex(cd)} > 0\\): \\(\\boldsymbol c'\\boldsymbol x\\) grows without limit, \\(z(LP) = +\\infty\\).`);
+        esito = T(`<strong>Illimitato</strong>: lungo il ${tinta(C.verde, "raggio")} \\(\\boldsymbol d = ${coppiaQ(d)}\\) si resta nella regione ammissibile \\(F\\) e \\(\\boldsymbol c'\\boldsymbol d = ${Qtex(cd)} > 0\\): \\(\\boldsymbol c'\\boldsymbol x\\) cresce senza limite, \\(z(LP) = +\\infty\\).`,
+          `<strong>Unbounded</strong>: along the ${tinta(C.verde, "ray")} \\(\\boldsymbol d = ${coppiaQ(d)}\\) we stay in the feasible region \\(F\\) and \\(\\boldsymbol c'\\boldsymbol d = ${Qtex(cd)} > 0\\): \\(\\boldsymbol c'\\boldsymbol x\\) grows without limit, \\(z(LP) = +\\infty\\).`);
       } else if (P.multipli) {
         const [u, w] = A.ottimi;
-        esito = T(`<strong>Ottimi multipli</strong>: \\(z(LP) = ${Qtex(A.zq)}\\), raggiunto in ${tinta(C.blu, "tutti i punti")} del lato da \\(${coppiaQ(u)}\\) a \\(${coppiaQ(w)}\\)${A.poli.some((q) => Math.abs(q[0]) > 40 || Math.abs(q[1]) > 40) ? " (qui \\(F\\) è illimitata, ma \\(\\boldsymbol c'\\boldsymbol x\\) no)" : ""}.`,
-          `<strong>Multiple optima</strong>: \\(z(LP) = ${Qtex(A.zq)}\\), attained at ${tinta(C.blu, "every point")} of the edge from \\(${coppiaQ(u)}\\) to \\(${coppiaQ(w)}\\)${A.poli.some((q) => Math.abs(q[0]) > 40 || Math.abs(q[1]) > 40) ? " (here \\(F\\) is unbounded, but \\(\\boldsymbol c'\\boldsymbol x\\) is not)" : ""}.`);
+        esito = T(`<strong>Ottimi multipli</strong>: \\(z(LP) = ${Qtex(A.zq)}\\), raggiunto in ${tinta(C.blu, "tutti i punti")} del lato da \\(${coppiaQ(u)}\\) a \\(${coppiaQ(w)}\\)${A.poli.some((q) => Math.abs(q[0]) > 40 || Math.abs(q[1]) > 40) ? " (qui la regione ammissibile \\(F\\) è illimitata, ma \\(\\boldsymbol c'\\boldsymbol x\\) no)" : ""}.`,
+          `<strong>Multiple optima</strong>: \\(z(LP) = ${Qtex(A.zq)}\\), attained at ${tinta(C.blu, "every point")} of the edge from \\(${coppiaQ(u)}\\) to \\(${coppiaQ(w)}\\)${A.poli.some((q) => Math.abs(q[0]) > 40 || Math.abs(q[1]) > 40) ? " (here the feasible region \\(F\\) is unbounded, but \\(\\boldsymbol c'\\boldsymbol x\\) is not)" : ""}.`);
       } else {
         esito = T(`<strong>Ottimo unico</strong>: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\), \\(z(LP) = ${Qtex(A.zq)}\\).`,
           `<strong>Unique optimum</strong>: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\), \\(z(LP) = ${Qtex(A.zq)}\\).`);
@@ -724,7 +724,7 @@
       const fine = P.esito !== "opt" || mostraOttimo(st);
       return r + statoRetta(p, st) + "<br>" + (fine ? esito : T("Fai scorrere la retta fino in fondo per leggere l'esito.", "Slide the line all the way to read the outcome."));
     },
-    domanda: T("Per ogni problema premi ▶ e guarda l'ultimo contatto fra la retta e \\(F\\): un punto, un lato, nessuno (la retta continua a tagliare \\(F\\)) o nessun contatto fin dall'inizio? In P36 la regione è illimitata: perché il problema ha comunque un ottimo?",
-      "For each problem press ▶ and watch the last contact between the line and \\(F\\): a point, an edge, none (the line keeps cutting \\(F\\)) or no contact from the start? In P36 the region is unbounded: why does the problem still have an optimum?"),
+    domanda: T("Per ogni problema premi ▶ e guarda l'ultimo contatto fra la retta e la regione ammissibile \\(F\\): un punto, un lato, nessuno (la retta continua a tagliare la regione ammissibile \\(F\\)) o nessun contatto fin dall'inizio? In P36 la regione è illimitata: perché il problema ha comunque un ottimo?",
+      "For each problem press ▶ and watch the last contact between the line and the feasible region \\(F\\): a point, an edge, none (the line keeps cutting the feasible region \\(F\\)) or no contact from the start? In P36 the region is unbounded: why does the problem still have an optimum?"),
   };
 })();

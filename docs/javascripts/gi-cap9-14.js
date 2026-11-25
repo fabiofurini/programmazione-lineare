@@ -550,7 +550,7 @@
     legenda: (st) => [
       ["ammissibile", T("regione ammissibile \\(F\\)", "feasible region \\(F\\)"), "pieno"],
       modoS(st) === "c" ? ["ammissibile", T("rette dei vincoli attivi nella base ottima", "lines of the constraints active in the optimal basis"), ""]
-        : ["orig", T("\\(F\\) con il \\(b_1\\) originale", "\\(F\\) with the original \\(b_1\\)"), "dashed"],
+        : ["orig", T("regione ammissibile \\(F\\) con il \\(b_1\\) originale", "feasible region \\(F\\) with the original \\(b_1\\)"), "dashed"],
       ["ottimo", T("retta di livello ottima \\(\\boldsymbol c'\\boldsymbol x = z^*\\)", "optimal level line \\(\\boldsymbol c'\\boldsymbol x = z^*\\)"), "dashed"],
       ["ottimo", T("\\(\\boldsymbol c\\)", "\\(\\boldsymbol c\\)"), ""],
       ["ottimo", T("vertice ottimo", "optimal vertex"), "punto"],

@@ -239,7 +239,7 @@
       return [
         [C.rosso, T("regione ammissibile \\(F\\)", "feasible region \\(F\\)"), "pieno"],
         [C.rosso, T("rette dei vincoli", "constraint lines"), ""],
-        [C.nero, T("vertici di \\(F\\)", "vertices of \\(F\\)"), "punto"],
+        [C.nero, T("vertici della regione ammissibile \\(F\\)", "vertices of the feasible region \\(F\\)"), "punto"],
         [C.viola, T("cammino del simplesso", "simplex path"), ""],
         [C.viola, T("vertici visitati", "visited vertices"), "punto"],
         [C.a, T("prossimo pivot", "next pivot"), "dashed"],

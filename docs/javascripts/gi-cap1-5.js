@@ -551,9 +551,26 @@
       const a0 = P[0], b0 = P[P.length - 1], t = 0.8;
       return [a0[0] + t * (b0[0] - a0[0]), a0[1] + t * (b0[1] - a0[1])];
     };
-    board.create("text", [() => puntoScritta()[0], () => puntoScritta()[1], () => `${linTxt(A.cq)} = ${num(st.p().z, 2)}`],
-      Object.assign({ fixed: true, highlight: false, fontSize: 14, anchorX: "right", anchorY: "bottom", offset: [-8, 12],
-        cssStyle: "font-weight:700" }, TXT_BLU));
+    // spostata di 14 px dalla retta, dal lato verso cui cresce la funzione obiettivo, e ruotata come la retta
+    const nc0 = Math.hypot(A.c[0], A.c[1]) || 1;
+    const accanto = () => {
+      const p = puntoScritta();
+      return [p[0] + (A.c[0] / nc0) * 14 / board.unitX, p[1] + (A.c[1] / nc0) * 14 / board.unitY];
+    };
+    const scritta = board.create("text", [() => accanto()[0], () => accanto()[1], () => `${linTxt(A.cq)} = ${num(st.p().z, 2)}`],
+      Object.assign({ fixed: true, highlight: false, fontSize: 14, anchorX: "middle", anchorY: "middle",
+        cssStyle: "font-weight:700;white-space:nowrap" }, TXT_BLU));
+    const ruota = () => {
+      const n = scritta.rendNode;
+      if (!n) return;
+      let ang = Math.atan2(A.c[0] * board.unitY, A.c[1] * board.unitX) * 180 / Math.PI;
+      if (ang > 90) ang -= 180;
+      if (ang < -90) ang += 180;
+      n.style.transformOrigin = "center center";
+      n.style.transform = `rotate(${ang}deg)`;
+    };
+    board.on("update", ruota);
+    ruota();
     // i vertici di F, neri (l'ottimo, blu, lo disegna la ricetta sopra)
     GI.nuvola(board, 12, () => A.vert.map((v) => [Qv(v[0]), Qv(v[1])]), ST_VERTICE(C));
     return A;

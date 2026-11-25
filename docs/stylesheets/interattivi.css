@@ -52,6 +52,9 @@
 .gi-legenda i { display: inline-block; width: 22px; border-top: 3px solid; vertical-align: middle; margin-right: .35em; }
 .gi-legenda i.gi-pieno { width: 14px; height: 10px; border: 2px solid; border-radius: 3px; }
 .gi-legenda i.gi-punto { width: 10px; height: 10px; border: 0; border-radius: 50%; }
+.gi-legenda i.gi-freccia { position: relative; width: 20px; margin-right: .6em; }
+.gi-legenda i.gi-freccia::after { content: ""; position: absolute; right: -7px; top: -6px; border: 4.5px solid transparent;
+  border-left: 8px solid currentColor; }
 .gi-chips { display: flex; flex-wrap: wrap; gap: .35em; margin: .2em 0 .6em; }
 .gi-chip { border: 1px solid var(--gi-line); background: transparent; color: inherit; border-radius: 999px; padding: .2em .8em; cursor: pointer; font: inherit; }
 .gi-chip[aria-pressed="true"] { background: #16324A; color: #fff; border-color: #16324A; }

@@ -125,7 +125,7 @@ extra_css:
   - stylesheets/collana.css
   - stylesheets/extra.css?v=d60085bd58
   - https://cdn.jsdelivr.net/npm/jsxgraph@1.10.1/distrib/jsxgraph.css
-  - stylesheets/interattivi.css?v=3fc4624332
+  - stylesheets/interattivi.css?v=0b9db7132d
   - stylesheets/quiz.css?v=9e3792b41c
 
 markdown_extensions:
@@ -152,9 +152,9 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js
   # grafici interattivi: JSXGraph, il motore, il catalogo dei problemi, poi le ricette (gi-*.js, le aggiunge genera_sito.py)
   - https://cdn.jsdelivr.net/npm/jsxgraph@1.10.1/distrib/jsxgraphcore.js
-  - javascripts/interattivi.js?v=21dd4bf4df
+  - javascripts/interattivi.js?v=2673bef489
   - javascripts/catalogo_pl.js?v=3aed29e2e0
-  - javascripts/gi-cap1-5.js?v=51a41a397b
+  - javascripts/gi-cap1-5.js?v=c06f350dad
   - javascripts/gi-cap6-8.js?v=e718758202
   - javascripts/gi-cap9-14.js?v=eff258dadf
   - javascripts/quiz.js?v=be7fae2b85

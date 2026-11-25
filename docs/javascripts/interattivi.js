@@ -451,6 +451,7 @@
           const c = cssVar(k in coloreDi ? coloreDi[k] : k);
           const segno = s === "pieno" ? `<i class="gi-pieno" style="border-color:${c};background:color-mix(in srgb, ${c} 25%, transparent)"></i>`
             : s === "punto" ? `<i class="gi-punto" style="background:${c}"></i>`
+              : s === "freccia" ? `<i class="gi-freccia" style="border-color:${c};color:${c}"></i>`
               : `<i style="border-color:${c};border-top-style:${s || "solid"}"></i>`;
           const testo = /\\\(/.test(t) || !(/[\\_^=]/.test(t) || /^[a-z]'*$/.test(t)) ? t : `\\(${t}\\)`;
           return `<span>${segno}${testo}</span>`;

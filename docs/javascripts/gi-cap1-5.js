@@ -83,8 +83,8 @@
     board.create("segment", [[x, 0], [x, y]], tr);
     board.create("segment", [[0, y], [x, y]], tr);
     const st0 = Object.assign({ fixed: true, highlight: false, fontSize: 14, visible: vis }, TXT_BLU);
-    board.create("text", [x, 0, Qtxt(A.xs[0])], Object.assign({ anchorX: "middle", anchorY: "top", offset: [0, -20] }, st0));
-    board.create("text", [0, y, Qtxt(A.xs[1])], Object.assign({ anchorX: "right", anchorY: "middle", offset: [-6, 0] }, st0));
+    board.create("text", [x, () => -24 / board.unitY, Qtxt(A.xs[0])], Object.assign({ anchorX: "middle", anchorY: "top" }, st0));
+    board.create("text", [() => -22 / board.unitX, y, Qtxt(A.xs[1])], Object.assign({ anchorX: "right", anchorY: "middle" }, st0));
   };
 
   // a_1 x_1 + a_2 x_2 con coefficienti frazione (0, 1, -1 trattati a parte)
@@ -271,7 +271,7 @@
       return [
         [C.blu, T("rette di livello \\(\\boldsymbol c'\\boldsymbol x = k\\) (sottili)", "level lines \\(\\boldsymbol c'\\boldsymbol x = k\\) (thin)"), "dashed"],
         [C.blu, T("retta di livello per \\(\\boldsymbol x\\) (spessa)", "level line through \\(\\boldsymbol x\\) (thick)"), "dashed"],
-        [C.blu, T("gradiente \\(\\boldsymbol c\\) applicato in \\(\\boldsymbol x\\)", "gradient \\(\\boldsymbol c\\) drawn at \\(\\boldsymbol x\\)"), ""],
+        [C.blu, T("gradiente \\(\\boldsymbol c\\) applicato in \\(\\boldsymbol x\\)", "gradient \\(\\boldsymbol c\\) drawn at \\(\\boldsymbol x\\)"), "freccia"],
         [C.nero, T("il punto \\(\\boldsymbol x\\) (trascinabile)", "the point \\(\\boldsymbol x\\) (draggable)"), "punto"],
       ];
     },
@@ -669,7 +669,7 @@
         [C.rosso, T("regione ammissibile \\(F\\)", "feasible region \\(F\\)"), "pieno"],
         [C.rosso, T("rette dei vincoli", "constraint lines"), ""],
         [C.blu, T("retta di livello \\(\\boldsymbol c'\\boldsymbol x = k\\)", "level line \\(\\boldsymbol c'\\boldsymbol x = k\\)"), "dashed"],
-        [C.blu, T("\\(\\boldsymbol c\\): gradiente della funzione obiettivo", "\\(\\boldsymbol c\\): gradient of the objective function"), ""],
+        [C.blu, T("\\(\\boldsymbol c\\): gradiente della funzione obiettivo", "\\(\\boldsymbol c\\): gradient of the objective function"), "freccia"],
         [C.nero, T("vertici", "vertices"), "punto"],
         [C.blu, T("vertice ottimo", "optimal vertex"), "punto"],
       ];
@@ -740,7 +740,7 @@
         ...(P.esito === "inf" ? [] : [[C.rosso, T("regione ammissibile \\(F\\)", "feasible region \\(F\\)"), "pieno"]]),
         [C.rosso, T("rette dei vincoli", "constraint lines"), ""],
         [C.blu, T("retta di livello \\(\\boldsymbol c'\\boldsymbol x = k\\)", "level line \\(\\boldsymbol c'\\boldsymbol x = k\\)"), "dashed"],
-        [C.blu, T("\\(\\boldsymbol c\\): gradiente della funzione obiettivo", "\\(\\boldsymbol c\\): gradient of the objective function"), ""],
+        [C.blu, T("\\(\\boldsymbol c\\): gradiente della funzione obiettivo", "\\(\\boldsymbol c\\): gradient of the objective function"), "freccia"],
         ...(P.esito === "inf" ? [] : [[C.nero, T("vertici", "vertices"), "punto"]]),
       ];
       if (P.esito === "opt") v.push(P.multipli ? [C.blu, T("soluzioni ottime", "optimal solutions"), ""] : [C.blu, T("vertice ottimo", "optimal vertex"), "punto"]);

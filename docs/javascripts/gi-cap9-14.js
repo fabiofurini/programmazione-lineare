@@ -421,7 +421,7 @@
   // =====================================================================
   // 2. Analisi di sensitività (cap. 14)
   // =====================================================================
-  const PROBLEMI_S = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9"];
+  const PROBLEMI_S = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10"];
   const datiSens = (k) => {
     const P = problema(k), G = righe(P.A), h = termini(P.b), xt = P.x;
     const att = attivi(G, h, xt); // non degeneri: due righe attive

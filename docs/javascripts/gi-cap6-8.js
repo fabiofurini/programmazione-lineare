@@ -212,7 +212,7 @@
     st.dati.ultima = k;
   };
 
-  const PROB_SIMPLESSO = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9"];
+  const PROB_SIMPLESSO = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10"];
   const voci = (lista) => Object.fromEntries(lista.map((k) => [k, { tex: k, etichetta: k }]));
 
   window.GI_RICETTE = window.GI_RICETTE || {};

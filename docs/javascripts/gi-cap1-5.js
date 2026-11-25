@@ -306,7 +306,7 @@
   // ================================================================
   // 2. Semispazi e poliedri (cap. 2)
   // ================================================================
-  const PROB_POLIEDRO = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9"];
+  const PROB_POLIEDRO = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10"];
   const voci = (lista) => Object.fromEntries(lista.map((k) => [k, { tex: k, etichetta: k }]));
   // i dati modificabili di ogni problema: A, b (interi, tutti in forma <=), vincolo scelto, x >= 0
   const datiPoliedro = (st) => {
@@ -536,7 +536,7 @@
   };
   const parametroZ = (descr) => [{ k: "z", nome: "k", min: 0, max: 20, step: 0.01, val: 0, colore: "livello", cifre: 2, descr }];
 
-  const PROB_GRAFICO = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9"];
+  const PROB_GRAFICO = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10"];
   // ------------------------------------------------------------ vetrina (home della collana)
   /** Vetrina: l'app nella home della collana, <div class="gi" data-grafico="…" data-vetrina="…"> (sesto campo di
    *  APP in COLLANA/collana.py). Senza l'attributo non fa nulla: nel laboratorio l'app resta com'è.

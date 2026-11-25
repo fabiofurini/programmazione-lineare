@@ -195,7 +195,7 @@
   // =====================================================================
   // 1. Dualità debole e forte (cap. 9)
   // =====================================================================
-  const PROBLEMI_D = ["P2", "P3", "P4", "P5", "P7", "P8", "P11", "P16"];
+  const PROBLEMI_D = ["P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P11", "P12"];   // m = 2 (P0, P1: m = 1; P10: m = 3)
   const datiDuale = (k) => {
     const P = problema(k);
     const G = righe(P.A), h = termini(P.b);
@@ -234,15 +234,13 @@
     return { d, S, zx, wp, zf, wf, xOtt, pOtt, pari, gap: wf - zf };
   };
   const vTex = (q, f) => (q ? fr(q) : num(f, 2));
+  // primale e duale come nelle dispense (GI.modelloPL, da gi-cap1-5.js)
+  const coefF = (q) => ({ s: sgn(q), t: fr(q.n < 0 ? neg(q) : q) });
   const arrayProblema = (d, duale) => {
     const P = d.P;
-    if (!duale) {
-      return `\\begin{array}{rl}\\max & ${lin(P.c, X)}\\\\` +
-        P.A.map((r, i) => `& ${lin(r, X)} \\le ${fr(P.b[i])}`).join("\\\\") + `\\\\ & x_1,\\ x_2 \\ge 0\\end{array}`;
-    }
+    if (!duale) return GI.modelloPL({ senso: "max", c: P.c.map(coefF), A: P.A.map((r) => r.map(coefF)), b: P.b.map(fr), x: X });
     const At = [[P.A[0][0], P.A[1][0]], [P.A[0][1], P.A[1][1]]];
-    return `\\begin{array}{rl}\\min & ${lin(P.b, PI)}\\\\` +
-      At.map((r, j) => `& ${lin(r, PI)} \\ge ${fr(P.c[j])}`).join("\\\\") + `\\\\ & \\pi_1,\\ \\pi_2 \\ge 0\\end{array}`;
+    return GI.modelloPL({ senso: "min", c: P.b.map(coefF), A: At.map((r) => r.map(coefF)), rel: [">=", ">="], b: P.c.map(fr), x: PI });
   };
 
   /** le due board affiancate: quella del motore (primale) e una seconda (duale) */
@@ -423,7 +421,7 @@
   // =====================================================================
   // 2. Analisi di sensitività (cap. 14)
   // =====================================================================
-  const PROBLEMI_S = ["P10", "P2", "P3", "P4", "P5", "P7", "P8"];
+  const PROBLEMI_S = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9"];
   const datiSens = (k) => {
     const P = problema(k), G = righe(P.A), h = termini(P.b), xt = P.x;
     const att = attivi(G, h, xt); // non degeneri: due righe attive
@@ -540,7 +538,7 @@
     titolo: T("Analisi di sensitività", "Sensitivity analysis"),
     sottotitolo: T("fin dove la base ottima resta ottima?", "how far does the optimal basis stay optimal?"),
     funzioni: Object.fromEntries(PROBLEMI_S.map((k) => [k, { tex: k, etichetta: k }])),
-    iniziale: "P10",
+    iniziale: "P2",
     etichettaFunzioni: T("Problema del catalogo", "Problem of the catalogue"),
     parametri: [
       { k: "d", nome: "\\delta", min: -6, max: 6, step: 0.25, val: 0,
@@ -645,8 +643,8 @@
       }
       return r;
     },
-    domanda: T("Con \\(c_1 + \\delta\\) premi ▶: la retta di livello ruota attorno al vertice ottimo finché \\(\\delta\\) resta nell'intervallo; a un estremo diventa parallela a uno spigolo. Poi passa a \\(b_1 + \\delta\\): il vertice scorre lungo una retta e \\(z^*\\) cresce di \\(\\pi_1\\) per ogni unità di \\(b_1\\). Che succede in P10, dove il vincolo 1 non è attivo?",
-      "With \\(c_1 + \\delta\\) press ▶: the level line rotates around the optimal vertex as long as \\(\\delta\\) stays in the interval; at an endpoint it becomes parallel to an edge. Then switch to \\(b_1 + \\delta\\): the vertex slides along a line and \\(z^*\\) grows by \\(\\pi_1\\) per unit of \\(b_1\\). What happens in P10, where constraint 1 is not active?"),
+    domanda: T("Con \\(c_1 + \\delta\\) premi ▶: la retta di livello ruota attorno al vertice ottimo finché \\(\\delta\\) resta nell'intervallo; a un estremo diventa parallela a uno spigolo. Poi passa a \\(b_1 + \\delta\\): il vertice scorre lungo una retta e \\(z^*\\) cresce di \\(\\pi_1\\) per ogni unità di \\(b_1\\). Che succede in P7, dove il vincolo 1 non è attivo?",
+      "With \\(c_1 + \\delta\\) press ▶: the level line rotates around the optimal vertex as long as \\(\\delta\\) stays in the interval; at an endpoint it becomes parallel to an edge. Then switch to \\(b_1 + \\delta\\): the vertex slides along a line and \\(z^*\\) grows by \\(\\pi_1\\) per unit of \\(b_1\\). What happens in P7, where constraint 1 is not active?"),
   });
 
   // spezzata del motore, chiamata solo al montaggio (window.GI esiste di sicuro)

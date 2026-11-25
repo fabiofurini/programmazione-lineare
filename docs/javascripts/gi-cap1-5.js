@@ -4,7 +4,7 @@
  * testa al motore); ognuna si registra in window.GI_RICETTE:
  *   livello-lineare  funzione lineare c'x: rette di livello e gradiente (cap. 1)
  *   poliedro         semispazi e poliedri in R^2, vertici esatti (cap. 2)
- *   metodo-grafico   la retta di livello c'x = z scorre fino al vertice ottimo (cap. 4)
+ *   metodo-grafico   la retta di livello c'x = k scorre fino al vertice ottimo (cap. 4)
  *   esiti            ottimo unico, ottimi multipli, illimitato, inammissibile (cap. 5)
  *
  * I problemi vengono dal catalogo P0-P86 (catalogo_pl.js, const CATALOGO, numeri
@@ -14,7 +14,7 @@
  *
  * Colori come nelle figure delle dispense: regione ammissibile rossa (riempimento
  * al 20% e bordo rosso), rette dei vincoli rosse continue, rette di livello
- * c'x = k blu tratteggiate (anche quella che scorre, c'x = z; il suo cursore è
+ * c'x = k blu tratteggiate (anche quella che scorre; il suo cursore k è
  * blu, --gi-livello), gradiente c freccia blu, vertice ottimo (o lato ottimo) blu,
  * altri vertici neri. Nessuna etichetta di testo sul grafico: valori e
  * spiegazioni stanno nelle letture e nella legenda.
@@ -73,6 +73,47 @@
     return s || "0";
   };
   const REL = { "<=": "\\le", ">=": "\\ge", "=": "=" };
+
+  /** modello di PL come nelle dispense (stesso codice in PL gi-cap1-5.js, PLI e MIP gi-comune.js):
+   *  ogni x_j nella sua colonna, coefficienti allineati a destra (1 non si scrive, 0 lascia la
+   *  colonna vuota), segni + − e relazioni ≤ = ≥ in colonna, termini noti allineati a destra.
+   *  M = { senso: "max" | "min", c: [...], A: [[...], ...], b: [...],
+   *        rel: ["<=" | "=" | ">=", ...] (assente: tutti <=), x: nomi TeX (assente: x_1 … x_n),
+   *        dominio: "nonneg" (assente: riga x_1, …, x_n ≥ 0) | "interi" (x_1, …, x_n ∈ Z_+) | TeX | null }
+   *  Coefficienti: numeri, oppure { s: segno (-1, 0, 1), t: TeX del valore assoluto } (frazioni,
+   *  colori); termini noti: numeri o TeX. Restituisce un alignedat (senza \( \)). */
+  const modelloPL = (M) => {
+    const n = M.c.length, x = M.x || Array.from({ length: n }, (_, j) => `x_${j + 1}`);
+    const co = (v) => (typeof v === "number" ? { s: Math.sign(v), t: String(Math.abs(v)) } : v);
+    const REL = { "<=": "\\le", ">=": "\\ge", "=": "=" };
+    // colonne: etichetta (r) | spazio (l) | x_1 (r) | segno (l) | x_2 (r) | … | x_n (r) | relazione (l) | termine noto (r)
+    const termini = (riga) => {
+      const out = [];
+      let primo = true;
+      riga.forEach((v, j) => {
+        const q = co(v);
+        if (!q.s) { if (j) out.push(""); out.push(""); return; }
+        const t = (q.t === "1" ? "" : q.t) + x[j];
+        if (j) out.push(primo ? "" : q.s < 0 ? "{}-{}" : "{}+{}");
+        out.push((primo && q.s < 0 ? "{-}" : "") + t);   // {-}: meno unario, attaccato
+        primo = false;
+      });
+      return out;
+    };
+    const righe = [[`\\${M.senso || "max"}`, "\\quad", ...termini(M.c)].join(" & ")];
+    M.A.forEach((r, i) => {
+      const rel = REL[(M.rel || [])[i] || "<="];
+      righe.push(["", "", ...termini(r), `{}${rel}{}`, String(M.b[i])].join(" & "));
+    });
+    const dom = M.dominio === undefined ? "nonneg" : M.dominio;
+    if (dom === "nonneg" || dom === "interi") {
+      const cel = [];
+      x.forEach((v, j) => { if (j) cel.push(""); cel.push(j < n - 1 ? `${v},` : v); });
+      righe.push(["", "", ...cel, dom === "interi" ? "{}\\in{}" : "{}\\ge{}", dom === "interi" ? "\\mathbb{Z}_+" : "0"].join(" & "));
+    } else if (dom) righe.push(`& \\rlap{${dom}}`);
+    return `\\begin{alignedat}{${n + 2}}${righe.join(" \\\\ ")}\\end{alignedat}`;
+  };
+  GI.modelloPL = modelloPL;   // lo usano anche gi-cap6-8.js e gi-cap9-14.js
 
   // ------------------------------------------------------------ vincoli e regioni
   // un vincolo è {a: [a1, a2], b} e significa a1 x1 + a2 x2 <= b (interi, se possibile)
@@ -134,7 +175,7 @@
     const lontano = P.some((p) => Math.abs(p[0]) > L / 2 || Math.abs(p[1]) > L / 2);
     return { tipo: lontano ? "illimitato" : "limitato", vert };
   };
-  // il tratto della retta c'x = z dentro il poligono P (o null)
+  // il tratto della retta c'x = k dentro il poligono P (o null)
   const trattoRetta = (P, c, z) => {
     const pts = [], f = (p) => c[0] * p[0] + c[1] * p[1] - z, tol = 1e-9 * (1 + Math.abs(z));
     for (let k = 0; k < P.length; k++) {
@@ -166,17 +207,12 @@
     return [-1.2, Y, X, -1.2];
   };
 
-  // il problema in forma di sistema (array TeX)
-  const sistema = (P, evidenzia) => {
-    const righe = [`\\${P.senso} & ${lin(P.c.map(Qs))}`];
-    P.A.forEach((r, i) => {
-      const t = `${lin(r.map(Qs))} ${REL[P.rel[i]]} ${Qtex(Qs(P.b[i]))}`;
-      righe.push(`& ${evidenzia ? evidenzia(i, t) : t}`);
-    });
-    const nn = P.segni.every((s) => s === ">=0");
-    if (nn) righe.push("& x_1,\\ x_2 \\ge 0");
-    return `\\begin{array}{rl}${righe.join(" \\\\ ")}\\end{array}`;
-  };
+  // il problema come nelle dispense (modelloPL: x_j, segni e relazioni in colonna)
+  const coefQ = (q) => ({ s: Math.sign(q.n), t: Qtex(Q(Math.abs(q.n), q.d)) });
+  const sistema = (P) => modelloPL({
+    senso: P.senso, c: P.c.map((v) => coefQ(Qs(v))), A: P.A.map((r) => r.map((v) => coefQ(Qs(v)))),
+    rel: P.rel, b: P.b.map((v) => Qtex(Qs(v))), dominio: P.segni.every((v) => v === ">=0") ? "nonneg" : null,
+  });
 
   // controlli del motore: gli input dei cursori (nell'ordine di parametri) e il pannello destro
   const pannello = (st) => st.el.querySelector(".gi-corpo").children[1];
@@ -270,7 +306,7 @@
   // ================================================================
   // 2. Semispazi e poliedri (cap. 2)
   // ================================================================
-  const PROB_POLIEDRO = ["P0", "P2", "P8", "P10", "P31", "P33", "P40"];
+  const PROB_POLIEDRO = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9"];
   const voci = (lista) => Object.fromEntries(lista.map((k) => [k, { tex: k, etichetta: k }]));
   // i dati modificabili di ogni problema: A, b (interi, tutti in forma <=), vincolo scelto, x >= 0
   const datiPoliedro = (st) => {
@@ -397,8 +433,8 @@
         : T("Nessun vertice: il poliedro contiene un'intera retta.", "No vertex: the polyhedron contains a whole line."));
       return r;
     },
-    domanda: T("Parti da P2 e togli \\(x_1, x_2 \\ge 0\\): il poliedro resta limitato? Quanti vertici restano? Poi in P0 aggiungi un vincolo e porta \\(b\\) sotto zero con \\(a_1 = a_2 = 1\\): quando il poliedro diventa vuoto? In P31 riesci a renderlo limitato con un vincolo in più?",
-      "Start from P2 and remove \\(x_1, x_2 \\ge 0\\): does the polyhedron stay bounded? How many vertices are left? Then in P0 add a constraint and bring \\(b\\) below zero with \\(a_1 = a_2 = 1\\): when does the polyhedron become empty? In P31, can you make it bounded with one more constraint?"),
+    domanda: T("Parti da P2 e togli \\(x_1, x_2 \\ge 0\\): il poliedro resta limitato? Quanti vertici restano? Poi in P0 aggiungi un vincolo e porta \\(b\\) sotto zero con \\(a_1 = a_2 = 1\\): quando il poliedro diventa vuoto? In P2 senza \\(x_1, x_2 \\ge 0\\), riesci a renderlo di nuovo limitato con un vincolo in più?",
+      "Start from P2 and remove \\(x_1, x_2 \\ge 0\\): does the polyhedron stay bounded? How many vertices are left? Then in P0 add a constraint and bring \\(b\\) below zero with \\(a_1 = a_2 = 1\\): when does the polyhedron become empty? In P2 without \\(x_1, x_2 \\ge 0\\), can you make it bounded again with one more constraint?"),
   };
 
   // ================================================================
@@ -469,7 +505,7 @@
     board.create("arrow", [[0, 0], [A.c[0] * s, A.c[1] * s]], {
       strokeColor: C.blu, strokeWidth: 3, fixed: true, highlight: false, withLabel: false, lastArrow: { type: 2, size: 5 },
     });
-    // la retta di livello c'x = z (blu tratteggiata, come nelle dispense) e il suo tratto in F, più spesso
+    // la retta di livello c'x = k (blu tratteggiata, come nelle dispense) e il suo tratto in F, più spesso
     retta(board, () => ({ a: A.c, b: st.p().z }), ST_LIVELLO(C));
     GI.spezzata(board, () => (A.poli.length ? trattoRetta(A.poli, A.c, st.p().z) || [] : []),
       Object.assign(ST_LIVELLO(C), { strokeWidth: 5.5, fixed: true }));
@@ -479,28 +515,28 @@
   };
   const formulaZ = (p, st) => {
     const A = analisi(st.chiave());
-    return `\\boldsymbol c'\\boldsymbol x = ${lin(A.cq)} = ${st.col("z", num(p.z, 2))}`;
+    return `\\boldsymbol c'\\boldsymbol x = ${lin(A.cq)} = ${st.col("z", `k = ${num(p.z, 2)}`)}`;
   };
   // dove sta la retta rispetto a F
   const statoRetta = (p, st) => {
     const A = analisi(st.chiave()), C = COL(st), z = num(p.z, 2), zc = C.blu;
-    if (!A.vert.length && A.P.esito === "inf") return T("La retta non incontra mai \\(F\\), per nessun \\(z\\): \\(F = \\emptyset\\).", "The line never meets \\(F\\), for any \\(z\\): \\(F = \\emptyset\\).");
+    if (!A.vert.length && A.P.esito === "inf") return T("La retta non incontra mai \\(F\\), per nessun \\(k\\): \\(F = \\emptyset\\).", "The line never meets \\(F\\), for any \\(k\\): \\(F = \\emptyset\\).");
     const t = trattoRetta(A.poli, A.c, p.z);
     if (A.zs !== undefined && Math.abs(p.z - A.zs) <= tolZ(A)) {
       return A.P.multipli
-        ? T(`Con \\(z = ${z}\\) la retta tocca \\(F\\) lungo ${tinta(C.blu, "un intero lato")}: è l'ultimo contatto, \\(z = z(LP)\\).`, `With \\(z = ${z}\\) the line touches \\(F\\) along ${tinta(C.blu, "a whole edge")}: it is the last contact, \\(z = z(LP)\\).`)
-        : T(`Con \\(z = ${z}\\) la retta tocca \\(F\\) ${tinta(C.blu, "in un solo vertice")}: è l'ultimo contatto, \\(z = z(LP)\\).`, `With \\(z = ${z}\\) the line touches \\(F\\) ${tinta(C.blu, "at a single vertex")}: it is the last contact, \\(z = z(LP)\\).`);
+        ? T(`Con \\(k = ${z}\\) la retta tocca \\(F\\) lungo ${tinta(C.blu, "un intero lato")}: è l'ultimo contatto, \\(k = z(LP)\\).`, `With \\(k = ${z}\\) the line touches \\(F\\) along ${tinta(C.blu, "a whole edge")}: it is the last contact, \\(k = z(LP)\\).`)
+        : T(`Con \\(k = ${z}\\) la retta tocca \\(F\\) ${tinta(C.blu, "in un solo vertice")}: è l'ultimo contatto, \\(k = z(LP)\\).`, `With \\(k = ${z}\\) the line touches \\(F\\) ${tinta(C.blu, "at a single vertex")}: it is the last contact, \\(k = z(LP)\\).`);
     }
-    if (t && Math.hypot(t[1][0] - t[0][0], t[1][1] - t[0][1]) < 1e-6) return T(`Con \\(z = ${z}\\) la retta tocca \\(F\\) in un solo vertice, ma non è l'ultimo contatto: aumenta \\(z\\).`,
-      `With \\(z = ${z}\\) the line touches \\(F\\) at a single vertex, but it is not the last contact: increase \\(z\\).`);
-    if (t) return T(`Con \\(z = ${z}\\) la retta taglia \\(F\\) (${tinta(zc, "tratto spesso")}): ci sono soluzioni ammissibili di valore \\(${z}\\), quindi \\(z(LP) \\ge ${z}\\). Si può salire.`,
-      `With \\(z = ${z}\\) the line cuts \\(F\\) (${tinta(zc, "thick part")}): there are feasible solutions of value \\(${z}\\), so \\(z(LP) \\ge ${z}\\). We can go higher.`);
-    if (A.zs !== undefined && p.z > A.zs) return T(`Con \\(z = ${z}\\) nessun punto di \\(F\\) sta sulla retta: \\(z > z(LP)\\).`, `With \\(z = ${z}\\) no point of \\(F\\) is on the line: \\(z > z(LP)\\).`);
-    return T(`Con \\(z = ${z}\\) la retta non incontra \\(F\\): sali con \\(z\\).`, `With \\(z = ${z}\\) the line does not meet \\(F\\): increase \\(z\\).`);
+    if (t && Math.hypot(t[1][0] - t[0][0], t[1][1] - t[0][1]) < 1e-6) return T(`Con \\(k = ${z}\\) la retta tocca \\(F\\) in un solo vertice, ma non è l'ultimo contatto: aumenta \\(k\\).`,
+      `With \\(k = ${z}\\) the line touches \\(F\\) at a single vertex, but it is not the last contact: increase \\(k\\).`);
+    if (t) return T(`Con \\(k = ${z}\\) la retta taglia \\(F\\) (${tinta(zc, "tratto spesso")}): ci sono soluzioni ammissibili di valore \\(${z}\\), quindi \\(z(LP) \\ge ${z}\\). Si può salire.`,
+      `With \\(k = ${z}\\) the line cuts \\(F\\) (${tinta(zc, "thick part")}): there are feasible solutions of value \\(${z}\\), so \\(z(LP) \\ge ${z}\\). We can go higher.`);
+    if (A.zs !== undefined && p.z > A.zs) return T(`Con \\(k = ${z}\\) nessun punto di \\(F\\) sta sulla retta: \\(k > z(LP)\\).`, `With \\(k = ${z}\\) no point of \\(F\\) is on the line: \\(k > z(LP)\\).`);
+    return T(`Con \\(k = ${z}\\) la retta non incontra \\(F\\): sali con \\(k\\).`, `With \\(k = ${z}\\) the line does not meet \\(F\\): increase \\(k\\).`);
   };
-  const parametroZ = (descr) => [{ k: "z", nome: "z", min: 0, max: 20, step: 0.01, val: 0, colore: "livello", cifre: 2, descr }];
+  const parametroZ = (descr) => [{ k: "z", nome: "k", min: 0, max: 20, step: 0.01, val: 0, colore: "livello", cifre: 2, descr }];
 
-  const PROB_GRAFICO = ["P0", "P2", "P3", "P4", "P8", "P10"];
+  const PROB_GRAFICO = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9"];
   // ------------------------------------------------------------ vetrina (home della collana)
   /** Vetrina: l'app nella home della collana, <div class="gi" data-grafico="…" data-vetrina="…"> (sesto campo di
    *  APP in COLLANA/collana.py). Senza l'attributo non fa nulla: nel laboratorio l'app resta com'è.
@@ -549,13 +585,13 @@
 
   window.GI_RICETTE["metodo-grafico"] = {
     titolo: T("Il metodo grafico", "The graphical method"),
-    sottotitolo: T("la retta \\(\\boldsymbol c'\\boldsymbol x = z\\) scorre verso \\(\\boldsymbol c\\) finché tocca ancora \\(F\\)",
-      "the line \\(\\boldsymbol c'\\boldsymbol x = z\\) slides along \\(\\boldsymbol c\\) as long as it still touches \\(F\\)"),
+    sottotitolo: T("la retta \\(\\boldsymbol c'\\boldsymbol x = k\\) scorre verso \\(\\boldsymbol c\\) finché tocca ancora \\(F\\)",
+      "the line \\(\\boldsymbol c'\\boldsymbol x = k\\) slides along \\(\\boldsymbol c\\) as long as it still touches \\(F\\)"),
     funzioni: voci(PROB_GRAFICO),
     iniziale: "P2",
     etichettaFunzioni: T("Problema (catalogo)", "Problem (catalogue)"),
-    parametri: parametroZ(T("il livello della retta \\(\\boldsymbol c'\\boldsymbol x = z\\): premi ▶ per farla scorrere",
-      "the level of the line \\(\\boldsymbol c'\\boldsymbol x = z\\): press ▶ to slide it")),
+    parametri: parametroZ(T("il livello della retta \\(\\boldsymbol c'\\boldsymbol x = k\\): premi ▶ per farla scorrere",
+      "the level of the line \\(\\boldsymbol c'\\boldsymbol x = k\\): press ▶ to slide it")),
     vista: (k) => vistaDi(CAT()[k]),
     stessaScala: true,
     legenda: (st) => {
@@ -563,7 +599,7 @@
       return [
         [C.rosso, T("regione ammissibile \\(F\\)", "feasible region \\(F\\)"), "pieno"],
         [C.rosso, T("rette dei vincoli", "constraint lines"), ""],
-        [C.blu, T("retta di livello \\(\\boldsymbol c'\\boldsymbol x = z\\)", "level line \\(\\boldsymbol c'\\boldsymbol x = z\\)"), "dashed"],
+        [C.blu, T("retta di livello \\(\\boldsymbol c'\\boldsymbol x = k\\)", "level line \\(\\boldsymbol c'\\boldsymbol x = k\\)"), "dashed"],
         [C.blu, T("direzione di \\(\\boldsymbol c\\)", "direction of \\(\\boldsymbol c\\)"), ""],
         [C.nero, T("vertici", "vertices"), "punto"],
         [C.blu, T("vertice ottimo", "optimal vertex"), "punto"],
@@ -594,11 +630,11 @@
       }
       return r;
     },
-    domanda: T("Premi ▶: in quale direzione si muove la retta quando \\(z\\) cresce, rispetto alla freccia \\(\\boldsymbol c\\)? Fermati quando la retta tocca \\(F\\) in un solo punto: è un vertice? Cambia problema: l'ultimo punto toccato è sempre un vertice?",
-      "Press ▶: in which direction does the line move as \\(z\\) grows, compared with the arrow \\(\\boldsymbol c\\)? Stop when the line touches \\(F\\) at a single point: is it a vertex? Change problem: is the last point touched always a vertex?"),
+    domanda: T("Premi ▶: in quale direzione si muove la retta quando \\(k\\) cresce, rispetto alla freccia \\(\\boldsymbol c\\)? Fermati quando la retta tocca \\(F\\) in un solo punto: è un vertice? Cambia problema: l'ultimo punto toccato è sempre un vertice?",
+      "Press ▶: in which direction does the line move as \\(k\\) grows, compared with the arrow \\(\\boldsymbol c\\)? Stop when the line touches \\(F\\) at a single point: is it a vertex? Change problem: is the last point touched always a vertex?"),
     sfida: {
-      testo: T("Trova il valore di \\(z\\) per cui la retta \\(\\boldsymbol c'\\boldsymbol x = z\\) tocca <strong>l'ultimo punto</strong> della regione ammissibile.",
-        "Find the value of \\(z\\) for which the line \\(\\boldsymbol c'\\boldsymbol x = z\\) touches the <strong>last point</strong> of the feasible region."),
+      testo: T("Trova il valore di \\(k\\) per cui la retta \\(\\boldsymbol c'\\boldsymbol x = k\\) tocca <strong>l'ultimo punto</strong> della regione ammissibile.",
+        "Find the value of \\(k\\) for which the line \\(\\boldsymbol c'\\boldsymbol x = k\\) touches the <strong>last point</strong> of the feasible region."),
       genera: () => ({}),
       vinta: (p, b, st) => vinta(p, st),
       vicinanza(p, b, st) {
@@ -609,23 +645,23 @@
         const A = analisi(st.chiave());
         if (vinta(p, st)) return T("Ci sei: la retta tocca solo il vertice ottimo.", "You are there: the line touches only the optimal vertex.");
         return trattoRetta(A.poli, A.c, p.z)
-          ? T("La retta taglia ancora \\(F\\): c'è spazio, aumenta \\(z\\).", "The line still cuts \\(F\\): there is room, increase \\(z\\).")
+          ? T("La retta taglia ancora \\(F\\): c'è spazio, aumenta \\(k\\).", "The line still cuts \\(F\\): there is room, increase \\(k\\).")
           : p.z > A.zs
-            ? T("La retta ha già lasciato \\(F\\): diminuisci \\(z\\).", "The line has already left \\(F\\): decrease \\(z\\).")
-            : T("Aumenta \\(z\\) finché la retta entra in \\(F\\).", "Increase \\(z\\) until the line enters \\(F\\).");
+            ? T("La retta ha già lasciato \\(F\\): diminuisci \\(k\\).", "The line has already left \\(F\\): decrease \\(k\\).")
+            : T("Aumenta \\(k\\) finché la retta entra in \\(F\\).", "Increase \\(k\\) until the line enters \\(F\\).");
       },
     },
   };
 
-  const PROB_ESITI = ["P2", "P40", "P36", "P31", "P38", "P33", "P35"];
+  const PROB_ESITI = ["P31", "P32", "P33", "P34", "P35", "P36", "P37", "P38", "P39", "P40"];   // il tipo D del catalogo
   window.GI_RICETTE["esiti"] = {
     titolo: T("Gli esiti di un problema di PL", "The outcomes of an LP problem"),
     sottotitolo: T("ottimo unico, ottimi multipli, illimitato, inammissibile", "unique optimum, multiple optima, unbounded, infeasible"),
     funzioni: voci(PROB_ESITI),
     iniziale: "P40",
     etichettaFunzioni: T("Problema (catalogo)", "Problem (catalogue)"),
-    parametri: parametroZ(T("il livello della retta \\(\\boldsymbol c'\\boldsymbol x = z\\): premi ▶ per farla scorrere",
-      "the level of the line \\(\\boldsymbol c'\\boldsymbol x = z\\): press ▶ to slide it")),
+    parametri: parametroZ(T("il livello della retta \\(\\boldsymbol c'\\boldsymbol x = k\\): premi ▶ per farla scorrere",
+      "the level of the line \\(\\boldsymbol c'\\boldsymbol x = k\\): press ▶ to slide it")),
     vista: (k) => vistaDi(CAT()[k]),
     stessaScala: true,
     legenda: (st) => {
@@ -633,7 +669,7 @@
       const v = [
         ...(P.esito === "inf" ? [] : [[C.rosso, T("regione ammissibile \\(F\\)", "feasible region \\(F\\)"), "pieno"]]),
         [C.rosso, T("rette dei vincoli", "constraint lines"), ""],
-        [C.blu, T("retta di livello \\(\\boldsymbol c'\\boldsymbol x = z\\)", "level line \\(\\boldsymbol c'\\boldsymbol x = z\\)"), "dashed"],
+        [C.blu, T("retta di livello \\(\\boldsymbol c'\\boldsymbol x = k\\)", "level line \\(\\boldsymbol c'\\boldsymbol x = k\\)"), "dashed"],
         [C.blu, T("direzione di \\(\\boldsymbol c\\)", "direction of \\(\\boldsymbol c\\)"), ""],
         ...(P.esito === "inf" ? [] : [[C.nero, T("vertici", "vertices"), "punto"]]),
       ];

@@ -212,7 +212,7 @@
     st.dati.ultima = k;
   };
 
-  const PROB_SIMPLESSO = ["P10", "P2", "P4", "P8", "P0"];
+  const PROB_SIMPLESSO = ["P0", "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9"];
   const voci = (lista) => Object.fromEntries(lista.map((k) => [k, { tex: k, etichetta: k }]));
 
   window.GI_RICETTE = window.GI_RICETTE || {};
@@ -225,7 +225,7 @@
     sottotitolo: T("da un vertice a un vertice adiacente, finché nessun costo ridotto è positivo",
       "from a vertex to an adjacent one, until no reduced cost is positive"),
     funzioni: voci(PROB_SIMPLESSO),
-    iniziale: "P10",
+    iniziale: "P2",
     etichettaFunzioni: T("Problema (catalogo)", "Problem (catalogue)"),
     parametri: [
       { k: "k", nome: "k", min: 0, max: 2, step: 1, val: 0, colore: "a", cifre: 0,
@@ -318,7 +318,7 @@
         `Along the ${tinta(C.a, "dashed")} edge \\(${xv(s.p)}\\) grows from \\(0\\) to \\(${s.tm.tex()}\\): we reach \\(${coppiaQ(nuovo.vertice)}\\) and \\(z\\) increases by \\(\\bar c_{${s.p + 1}}\\, t_m = ${nuovo.z.meno(s.z).tex()}\\).`);
       return r;
     },
-    domanda: T("In P10 premi ▶ e segui il cammino: a ogni pivot la variabile che esce dalla base indica quale vincolo diventa attivo \\((x_{n+i} = 0)\\). Il valore \\(\\bar z\\) diminuisce mai? In P0, perché il simplesso passa per \\((2; 0)\\) prima di arrivare all'ottimo, anche se \\(c_2 > c_1\\)?",
-      "In P10 press ▶ and follow the path: at each pivot the variable that leaves the basis tells which constraint becomes active \\((x_{n+i} = 0)\\). Does \\(\\bar z\\) ever decrease? In P0, why does the simplex method go through \\((2, 0)\\) before reaching the optimum, even though \\(c_2 > c_1\\)?"),
+    domanda: T("In P2 premi ▶ e segui il cammino: a ogni pivot la variabile che esce dalla base indica quale vincolo diventa attivo \\((x_{n+i} = 0)\\). Il valore \\(\\bar z\\) diminuisce mai? In P0, perché il simplesso passa per \\((2; 0)\\) prima di arrivare all'ottimo, anche se \\(c_2 > c_1\\)?",
+      "In P2 press ▶ and follow the path: at each pivot the variable that leaves the basis tells which constraint becomes active \\((x_{n+i} = 0)\\). Does \\(\\bar z\\) ever decrease? In P0, why does the simplex method go through \\((2, 0)\\) before reaching the optimum, even though \\(c_2 > c_1\\)?"),
   };
 })();

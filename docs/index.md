@@ -51,8 +51,6 @@ Il metodo grafico: la retta di livello è già sul vertice ottimo, l'ultimo punt
 
     Funzioni lineari (gradiente, Hessiano e insiemi di livello), semispazi e poliedri, problemi di ottimizzazione lineare con le loro soluzioni ottime, esempi e proprietà, le forme canonica e standard con il metodo grafico, esiti possibili ed equivalenze fra le forme.
 
-    1\. Funzioni lineari · 2\. Semispazi e poliedri · 3\. Problemi di ottimizzazione lineare · 4\. Problemi di programmazione lineare · 5\. Esiti possibili e formulazioni equivalenti
-
     [:octicons-arrow-right-24: I capitoli](problemi-pl/index.md)
 
 -   :material-stairs-up: **2 · L'algoritmo del simplesso**
@@ -60,8 +58,6 @@ Il metodo grafico: la retta di livello è già sul vertice ottimo, l'ultimo punt
     ---
 
     L'algoritmo del simplesso sui dizionari, condizioni di ottimalità, regole di pivot e ciclaggio, la Fase 0 con il problema ausiliario. Esempi svolti passo per passo ed esercizi con la soluzione completa in fondo a ogni capitolo.
-
-    6\. Algoritmo del simplesso · 7\. Condizioni di ottimalità e regole di pivot · 8\. Fase 0 dell'algoritmo del simplesso
 
     [:octicons-arrow-right-24: I capitoli](simplesso/index.md)
 
@@ -71,8 +67,6 @@ Il metodo grafico: la retta di livello è già sul vertice ottimo, l'ultimo punt
 
     Il problema duale, i teoremi della dualità debole e forte, gli esiti possibili della coppia primale-duale, gli scarti complementari; l'algoritmo del simplesso duale, i certificati di inammissibilità e la riottimizzazione. Esempi svolti passo per passo ed esercizi con la soluzione completa in fondo a ogni capitolo.
 
-    9\. Teoria della dualità · 10\. Algoritmo del simplesso duale
-
     [:octicons-arrow-right-24: I capitoli](dualita/index.md)
 
 -   :material-cube-outline: **4 · Metodi matriciali, sensitività e geometria**
@@ -80,8 +74,6 @@ Il metodo grafico: la retta di livello è già sul vertice ottimo, l'ultimo punt
     ---
 
     Il simplesso rivisto primale e duale, il metodo primale-duale, l'analisi di sensitività, la geometria della programmazione lineare (facce, vertici e soluzioni di base). Esempi svolti passo per passo ed esercizi con la soluzione completa in fondo a ogni capitolo.
-
-    11\. Algoritmo del simplesso rivisto · 12\. Algoritmo del simplesso duale rivisto · 13\. Il metodo primale-duale · 14\. Analisi di sensitività · 15\. La geometria della programmazione lineare
 
     [:octicons-arrow-right-24: I capitoli](metodi-avanzati/index.md)
 

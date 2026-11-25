@@ -689,7 +689,7 @@
       if (mostraOttimo(st)) {
         r += "<br>" + T(`${tinta(C.blu, "Soluzione ottima")}: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Valore ottimo")}: \\(z(LP) = ${Qtex(A.zq)}\\)`,
           `${tinta(C.blu, "Optimal solution")}: \\(\\tilde{\\boldsymbol x} = ${coppiaQ(A.xs)}\\)<br>${tinta(C.blu, "Optimal value")}: \\(z(LP) = ${Qtex(A.zq)}\\)`) +
-          (A.verificato ? T(" (dal catalogo; coincide con il massimo di \\(\\boldsymbol c'\\boldsymbol x\\) sui vertici).", " (from the catalogue; it equals the maximum of \\(\\boldsymbol c'\\boldsymbol x\\) over the vertices).") : ".");
+          ".";
       }
       return r;
     },

@@ -555,8 +555,33 @@
       if (Math.abs(c1) > 1e-12) for (const y of [y0, y1]) { const x = (k - c2 * y) / c1; if (x >= x0 && x <= x1) P.push([x, y]); }
       if (P.length < 2) return [NaN, NaN];
       P.sort((p, q) => p[0] - q[0] || p[1] - q[1]);
-      const a0 = P[0], b0 = P[P.length - 1], t = 0.8;
-      return [a0[0] + t * (b0[0] - a0[0]), a0[1] + t * (b0[1] - a0[1])];
+      const a0 = P[0], b0 = P[P.length - 1], ux = board.unitX, uy = board.unitY;
+      // fra i punti visibili della retta, quello più lontano (in pixel) dai vertici della regione ammissibile,
+      // dagli assi e dai bordi della figura: la scritta non si sovrappone (Fabio, 25/11/2026)
+      // distanza in pixel dal poligono della regione ammissibile (0 se il punto è dentro)
+      const poli = A.poli.map((q) => [q[0] * ux, q[1] * uy]);
+      const dPoli = (px, py) => {
+        if (poli.length < 3) return 400;
+        let dentro = false, d = Infinity;
+        for (let i = 0, j = poli.length - 1; i < poli.length; j = i++) {
+          const [xi, yi] = poli[i], [xj, yj] = poli[j];
+          if ((yi > py) !== (yj > py) && px < ((xj - xi) * (py - yi)) / (yj - yi) + xi) dentro = !dentro;
+          const vx = xj - xi, vy = yj - yi, L = vx * vx + vy * vy || 1;
+          const t = Math.max(0, Math.min(1, ((px - xi) * vx + (py - yi) * vy) / L));
+          d = Math.min(d, Math.hypot(px - xi - t * vx, py - yi - t * vy));
+        }
+        return dentro ? 0 : d;
+      };
+      let best = null, bestS = -Infinity;
+      for (let t = 0.05; t <= 0.951; t += 0.01) {
+        const x = a0[0] + t * (b0[0] - a0[0]), y = a0[1] + t * (b0[1] - a0[1]);
+        const dR = dPoli(x * ux, y * uy);
+        const dB = Math.min((x - x0) * ux, (x1 - x) * ux, (y - y0) * uy, (y1 - y) * uy);
+        const dAx = Math.min(Math.abs(x) * ux, Math.abs(y) * uy);
+        const sc = Math.min(dR, 140) * 2 + Math.min(dB - 70, 0) * 3 + Math.min(dAx - 25, 0);
+        if (sc > bestS) { bestS = sc; best = [x, y]; }
+      }
+      return best;
     };
     // spostata di 14 px dalla retta, dal lato verso cui cresce la funzione obiettivo, e ruotata come la retta
     const nc0 = Math.hypot(A.c[0], A.c[1]) || 1;
